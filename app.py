@@ -1,144 +1,394 @@
 import streamlit as st
-import time
+import streamlit.components.v1 as components
 
-# 1. CÀI ĐẶT TRANG & TIÊU ĐỀ
-st.set_page_config(layout="wide", page_title="Nguyen Hoang Minh - Portfolio", page_icon="🚀")
+# Cài đặt trang Streamlit chiếm toàn màn hình
+st.set_page_config(layout="wide", page_title="Nguyễn Hoàng Minh - AI Portfolio", initial_sidebar_state="collapsed")
 
-# 2. CSS TÙY CHỈNH: TỐI GIẢN, HIỆN ĐẠI (TRẮNG, XANH BIỂN, ĐEN)
-st.markdown("""
-<style>
-    /* Tổng thể nền trắng, chữ xám đen */
-    .stApp {
-        background-color: #FFFFFF;
-        color: #1F2937;
-        font-family: 'Inter', sans-serif;
-    }
-    /* Thanh bên (Sidebar) màu xám nhạt */
-    [data-testid="stSidebar"] {
-        background-color: #F8FAFC;
-        border-right: 1px solid #E2E8F0;
-    }
-    /* Nút bấm gợi ý (Pills) xanh biển */
-    .stButton>button {
-        background-color: #E0F2FE;
-        color: #0284C7;
-        border: 1px solid #BAE6FD;
-        border-radius: 20px;
-        padding: 5px 15px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-    }
-    .stButton>button:hover {
-        background-color: #0284C7;
-        color: #FFFFFF;
-        box-shadow: 0 4px 6px -1px rgba(2, 132, 199, 0.2);
-    }
-    /* Khung chat tin nhắn */
-    .stChatMessage {
-        background-color: #F8FAFC;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #E2E8F0;
-    }
-    /* Ẩn bớt viền không cần thiết */
-    div[data-testid="stChatInput"] {
-        border-color: #0284C7 !important;
-    }
-</style>
-""", unsafe_allow_html=True)
+# Chứa toàn bộ mã HTML/CSS/JS đã được điền thông tin CV của bạn
+html_code = """
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Hoàng Minh | AI Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-50 text-slate-800 h-screen overflow-hidden font-sans selection:bg-blue-200">
 
-# 3. CƠ SỞ DỮ LIỆU TỪ CV CỦA MINH (Dành cho AI)
-KNOWLEDGE_BASE = {
-    "tóm tắt": "Minh là một chuyên gia trẻ về Quản lý Công nghệ & Đổi mới Sáng tạo. Thế mạnh cốt lõi của Minh là giải quyết vấn đề hệ thống và tối ưu hóa Trải nghiệm Người dùng (UX). Minh cực kỳ đam mê việc thiết kế Bản đồ Hành trình Khách hàng (Customer Journey Map) và giải quyết các 'nỗi đau' (pain points) của người dùng.",
-    "sihub": "Tại SIHUB (Trung tâm Khởi nghiệp đổi mới sáng tạo TP.HCM), Minh đảm nhận vai trò Project Management Executive. Minh đã thiết kế luồng kích hoạt (activation flow) cho các startup, biến các vấn đề của người dùng thành User Stories rõ ràng, và áp dụng thử nghiệm A/B để tối ưu hóa sản phẩm trước khi tung ra thị trường.",
-    "nghiên cứu": "Trong vai trò Thực tập sinh Nghiên cứu (R&D Intern) tại SIHUB (07/2024 - 12/2024), Minh đã dẫn dắt vòng đời dữ liệu để phân tích khoảng trống năng lực cho hơn 150 bên liên quan và soạn thảo các tài liệu chiến lược theo chuẩn URD.",
-    "echomind": "Dự án EchoMind là một hệ thống AI chuyển đổi tín hiệu não thành văn bản (Brain-to-Text). Minh đã lập trình logic hệ thống bằng Python và PyTorch, tối ưu hóa hiệu suất bằng mô hình Transformer, đạt tốc độ giải mã ấn tượng 55-65 WPM với độ trễ dưới 1 giây.",
-    "e-reader": "Với dự án E-Reader (Hệ sinh thái Giáo dục Số), Minh đã lọt vào Top 20 Chung cuộc của TP.HCM. Minh áp dụng các nguyên tắc Tương tác Người - Máy (HCI) để thiết kế hành trình người dùng xuyên suốt, giảm tải nhận thức cho học sinh.",
-    "kỹ năng": "Minh sử dụng thành thạo phương pháp Agile/Scrum, thiết kế hành trình khách hàng (Journey Mapping), Tư duy Thiết kế (Design Thinking). Về mặt kỹ thuật, Minh nắm vững Python, phân tích dữ liệu và sở hữu các chứng chỉ của Google về Quản lý Dự án và Business Intelligence."
-}
+    <div class="flex flex-col md:flex-row h-full w-full max-w-[1600px] mx-auto bg-white shadow-2xl relative">
+        
+        <div class="w-full md:w-1/2 h-1/3 md:h-full bg-gradient-to-br from-blue-50 to-white border-b md:border-r border-gray-200 flex flex-col p-8 relative overflow-y-auto" id="visual-panel">
+            
+            <div id="view-welcome" class="flex flex-col items-center justify-center h-full animate-fade-in transition-opacity duration-500">
+                <div class="w-40 h-40 rounded-full bg-blue-100 border-4 border-white shadow-xl flex items-center justify-center mb-6 overflow-hidden">
+                    <span class="text-6xl">👨‍💻</span>
+                </div>
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">Nguyễn Hoàng Minh (hwinh)</h1>
+                <h2 class="text-xl text-blue-600 font-medium mb-4">Product Owner Intern</h2>
+                <div class="flex flex-wrap justify-center gap-2 mb-6">
+                    <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm shadow-sm">hwinh.work@gmail.com</span>
+                    <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm shadow-sm">+84 765828191</span>
+                    <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm shadow-sm">Hồ Chí Minh</span>
+                </div>
+                <p class="text-center text-slate-500 max-w-md">Bắt đầu trò chuyện với Trợ lý AI bên phải để khám phá chi tiết về kinh nghiệm và tư duy thiết kế của tôi.</p>
+            </div>
 
-def stream_response(text):
-    for char in text:
-        yield char
-        time.sleep(0.01) # Tốc độ gõ siêu mượt
+            <div id="view-experience" class="hidden flex-col h-full animate-fade-in transition-opacity duration-500">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2"><span class="text-3xl">💼</span> Kinh nghiệm làm việc</h2>
+                <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-blue-300 before:to-transparent">
+                    
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-500 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                            🚀
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-blue-100 bg-white shadow-sm transition hover:shadow-md">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-bold text-lg text-slate-800">SIHUB</h3>
+                                <time class="text-xs font-medium text-blue-500 bg-blue-50 px-2 py-1 rounded">08/2022 - Nay</time>
+                            </div>
+                            <p class="text-sm text-slate-500 font-medium mb-2">Project Management Executive</p>
+                            <ul class="text-sm text-slate-600 list-disc pl-4 space-y-1">
+                                <li>Quản lý hành trình ươm tạo startup công nghệ.</li>
+                                <li>Thiết kế Customer Journey Map và định hướng MVP.</li>
+                                <li>Áp dụng A/B Testing tối ưu hóa trải nghiệm.</li>
+                            </ul>
+                        </div>
+                    </div>
 
-def get_ai_response(query):
-    query = query.lower()
-    if any(kw in query for kw in ["tóm tắt", "giới thiệu", "bản thân", "summary"]): return KNOWLEDGE_BASE["tóm tắt"]
-    if any(kw in query for kw in ["sihub", "kinh nghiệm", "làm việc", "work"]): return KNOWLEDGE_BASE["sihub"]
-    if any(kw in query for kw in ["nghiên cứu", "r&d", "data", "dữ liệu"]): return KNOWLEDGE_BASE["nghiên cứu"]
-    if any(kw in query for kw in ["echomind", "ai", "brain", "não", "pytorch"]): return KNOWLEDGE_BASE["echomind"]
-    if any(kw in query for kw in ["e-reader", "giáo dục", "hci"]): return KNOWLEDGE_BASE["e-reader"]
-    if any(kw in query for kw in ["kỹ năng", "skill", "chứng chỉ", "công cụ"]): return KNOWLEDGE_BASE["kỹ năng"]
-    
-    return "Câu hỏi rất hay! Để trả lời chính xác nhất theo hồ sơ của Minh, Quý vị có thể hỏi tôi về: **Kinh nghiệm tại SIHUB, Dự án AI EchoMind, Dự án E-Reader**, hoặc các **Kỹ năng Quản lý Sản phẩm** nhé."
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-slate-300 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
+                            🔬
+                        </div>
+                        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-gray-100 bg-white shadow-sm transition hover:shadow-md">
+                            <div class="flex items-center justify-between mb-1">
+                                <h3 class="font-bold text-lg text-slate-800">SIHUB</h3>
+                                <time class="text-xs font-medium text-slate-500 bg-slate-50 px-2 py-1 rounded">07/2024 - 12/2024</time>
+                            </div>
+                            <p class="text-sm text-slate-500 font-medium mb-2">R&D Intern</p>
+                            <ul class="text-sm text-slate-600 list-disc pl-4 space-y-1">
+                                <li>Phân tích dữ liệu vòng đời cấp thành phố.</li>
+                                <li>Làm việc trực tiếp với 150+ bên liên quan.</li>
+                                <li>Tài liệu hóa theo tiêu chuẩn URD khắt khe.</li>
+                            </ul>
+                        </div>
+                    </div>
 
-# 4. GIAO DIỆN THANH BÊN (SIDEBAR) - THÔNG TIN CỐ ĐỊNH TỪ CV
-with st.sidebar:
-    st.markdown("## 👨‍💻 NGUYỄN HOÀNG MINH")
-    st.markdown("**Thực tập sinh Chủ sở hữu Sản phẩm** *(Product Owner Intern)*")
-    st.markdown("---")
-    st.markdown("📍 **Liên hệ:**")
-    st.markdown("📞 +84 765828191")
-    st.markdown("✉️ hwinh.work@gmail.com")
-    st.markdown("---")
-    st.markdown("🎓 **Học vấn:**")
-    st.markdown("Cử nhân Quản lý Công nghệ & ĐMST - Đại học Kinh tế TP.HCM")
-    st.markdown("**GPA:** 3.53/4.0")
-    st.markdown("---")
-    st.markdown("🛠️ **Kỹ năng Cốt lõi:**")
-    st.markdown("- Trải nghiệm Người dùng (UX)")
-    st.markdown("- Agile / Scrum")
-    st.markdown("- A/B Testing & Data Analysis")
-    st.markdown("- Python & PyTorch")
+                </div>
+            </div>
 
-# 5. GIAO DIỆN CHÍNH (MAIN AREA) - TRỢ LÝ ẢO
-st.markdown("### 💬 Trợ lý HR AI của hwinh")
-st.markdown("Chào mừng Quý Nhà tuyển dụng! Tôi được thiết kế dựa trên dữ liệu hồ sơ năng lực của Nguyễn Hoàng Minh. Bạn muốn tìm hiểu thông tin gì?")
+            <div id="view-projects" class="hidden flex-col h-full animate-fade-in transition-opacity duration-500">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2"><span class="text-3xl">🚀</span> Dự án nổi bật</h2>
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 overflow-y-auto pr-2 pb-10">
+                    
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-lg transition hover:border-blue-300 cursor-pointer">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl text-blue-700">EchoMind AI</h3>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded font-bold">09/2025 - 12/2025</span>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">Hệ thống chuyển đổi tín hiệu não thành văn bản (Brain-to-Text). Tối ưu hóa kiến trúc Transformer, đạt tốc độ giải mã 55-65 WPM với độ trễ siêu thấp.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Python</span>
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">PyTorch</span>
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">System Logic</span>
+                        </div>
+                    </div>
 
-# Khởi tạo lịch sử chat
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-if "trigger_query" not in st.session_state:
-    st.session_state.trigger_query = None
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-lg transition hover:border-blue-300 cursor-pointer">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl text-blue-700">E-Reader Ecosystem</h3>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded font-bold">03/2025 - 06/2025</span>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">Hệ sinh thái Giáo dục số lọt Top 20 Chung cuộc. Ứng dụng nguyên lý Tương tác Người-Máy (HCI) để giảm tải nhận thức và ma sát cho học sinh.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">UX/UI</span>
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Journey Mapping</span>
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">HCI</span>
+                        </div>
+                    </div>
 
-# Hàng nút bấm gợi ý thông minh (Nâng cao UX)
-st.markdown("💡 **Gợi ý hỏi nhanh:**")
-col1, col2, col3, col4 = st.columns([1, 1.2, 1, 1.5])
-with col1:
-    if st.button("Tóm tắt bản thân"): st.session_state.trigger_query = "tóm tắt bản thân"
-with col2:
-    if st.button("Kinh nghiệm SIHUB"): st.session_state.trigger_query = "kinh nghiệm sihub"
-with col3:
-    if st.button("Dự án AI EchoMind"): st.session_state.trigger_query = "dự án ai echomind"
-with col4:
-    if st.button("Kỹ năng & Chứng chỉ"): st.session_state.trigger_query = "kỹ năng chứng chỉ"
+                </div>
+            </div>
 
-st.markdown("---")
+            <div id="view-skills" class="hidden flex-col h-full animate-fade-in transition-opacity duration-500 w-full items-center">
+                <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center gap-2 self-start"><span class="text-3xl">⚡</span> Kỹ năng chuyên môn</h2>
+                <p class="text-sm text-slate-500 mb-6 self-start">Mức độ thành thạo các kỹ năng và công nghệ hiện tại.</p>
+                <div class="chart-container w-full max-w-md h-[350px] relative">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+                <div class="mt-6 flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-slate-800 text-white rounded text-sm font-medium">Agile/Scrum</span>
+                    <span class="px-3 py-1 bg-slate-800 text-white rounded text-sm font-medium">UX Design</span>
+                    <span class="px-3 py-1 bg-slate-800 text-white rounded text-sm font-medium">Journey Mapping</span>
+                    <span class="px-3 py-1 border border-slate-300 text-slate-600 rounded text-sm">Python</span>
+                    <span class="px-3 py-1 border border-slate-300 text-slate-600 rounded text-sm">PyTorch</span>
+                    <span class="px-3 py-1 border border-slate-300 text-slate-600 rounded text-sm">A/B Testing</span>
+                </div>
+            </div>
 
-# Vùng chứa tin nhắn
-chat_container = st.container()
+            <div id="view-education" class="hidden flex-col h-full animate-fade-in transition-opacity duration-500">
+                <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-2"><span class="text-3xl">📚</span> Học vấn & Thành tích</h2>
+                
+                <div class="bg-gradient-to-r from-blue-600 to-blue-400 rounded-2xl p-6 text-white shadow-lg mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="text-4xl">🏛️</div>
+                        <div class="text-right">
+                            <span class="text-blue-100 text-sm">Hiện tại</span>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-1">Đại học Kinh tế TP.HCM (UEH)</h3>
+                    <p class="text-blue-100 font-medium mb-4">Cử nhân Quản lý Công nghệ và Đổi mới sáng tạo</p>
+                    <div class="flex items-center gap-3 bg-white/20 p-3 rounded-lg backdrop-blur-sm w-fit">
+                        <span class="text-xl">🏆</span>
+                        <div>
+                            <p class="text-xs text-blue-100">Điểm trung bình (GPA)</p>
+                            <p class="font-bold text-lg">3.53 / 4.0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
+                    <h4 class="font-bold text-slate-800 mb-3">Chứng chỉ & Khóa học nổi bật</h4>
+                    <ul class="text-slate-600 list-disc pl-5 space-y-2">
+                        <li>Google Project Management</li>
+                        <li>Google Business Intelligence</li>
+                        <li>Agile Management</li>
+                    </ul>
+                </div>
+            </div>
 
-# Xử lý logic Chat
-user_input = st.chat_input("Hỏi tôi bất cứ điều gì về hồ sơ của Minh...")
+        </div>
 
-# Nếu có click từ nút bấm HOẶC nhập từ bàn phím
-query_to_process = st.session_state.trigger_query if st.session_state.trigger_query else user_input
+        <div class="w-full md:w-1/2 h-2/3 md:h-full bg-white flex flex-col relative">
+            
+            <div class="h-16 border-b border-gray-100 flex items-center px-6 bg-white shrink-0 z-10 shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 relative">
+                    <span class="text-xl">🤖</span>
+                    <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+                </div>
+                <div>
+                    <h2 class="font-bold text-slate-800 leading-tight">Minh's AI Assistant</h2>
+                    <p class="text-xs text-green-500 font-medium">Đang trực tuyến</p>
+                </div>
+                <button onclick="resetChat()" class="ml-auto text-sm text-slate-400 hover:text-blue-600 transition" title="Làm mới cuộc trò chuyện">🔄 Khởi động lại</button>
+            </div>
 
-if query_to_process:
-    st.session_state.messages.append({"role": "user", "content": query_to_process})
-    response_text = get_ai_response(query_to_process)
-    st.session_state.messages.append({"role": "assistant", "content": response_text, "stream": response_text})
-    st.session_state.trigger_query = None # Reset sau khi xử lý xong
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth pb-32">
+                </div>
 
-# Hiển thị lịch sử chat
-with chat_container:
-    for msg in st.session_state.messages:
-        with st.chat_message(msg["role"]):
-            # Nếu là tin nhắn của AI mới nhất thì chạy hiệu ứng gõ
-            if msg["role"] == "assistant" and "stream" in msg:
-                st.write_stream(stream_response(msg["stream"]))
-                del msg["stream"] # Xóa cờ stream để lần tải lại sau không bị gõ lại
-            else:
-                st.write(msg["content"])
+            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-white via-white to-transparent pt-10 pb-6 px-6 shrink-0">
+                <div id="quick-prompts" class="flex flex-wrap gap-2 justify-end transition-opacity duration-300">
+                    </div>
+            </div>
+
+        </div>
+    </div>
+
+    <style>
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .cursor-blink { display: inline-block; width: 8px; height: 16px; background-color: #2563eb; margin-left: 2px; animation: blink 1s step-end infinite; vertical-align: middle; }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .msg-ai { background-color: #ffffff; color: #1e293b; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .msg-user { background-color: #2563eb; color: #ffffff; border-bottom-right-radius: 4px; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3); }
+        .chart-container { margin: 0 auto; width: 100%; }
+    </style>
+
+    <script>
+        // Dữ liệu nội dung của AI
+        const cvData = {
+            greeting: "Chào Quý Nhà tuyển dụng! Tôi là trợ lý AI đại diện cho Nguyễn Hoàng Minh (hwinh). Minh là một Product Owner Intern đầy nhiệt huyết, đam mê giải quyết vấn đề hệ thống và tối ưu hóa UX. Mời bạn chọn các chủ đề bên dưới để khám phá hồ sơ của Minh nhé!",
+            experience: "Về kinh nghiệm làm việc:\\nMinh hiện đang làm Project Management Executive tại SIHUB. Tại đây, Minh quản lý toàn bộ hành trình ươm tạo, thiết kế bản đồ hành trình số (Customer Journey Mapping) và phân tích các điểm chạm (touchpoints).\\n\\nTrước đó (07/2024 - 12/2024), Minh làm R&D Intern, phụ trách thu thập dữ liệu và phân tích khoảng trống năng lực cho dự án cấp thành phố với hơn 150 bên liên quan. Mời bạn xem timeline chi tiết ở màn hình bên trái!",
+            projects: "Các dự án nổi bật chứng minh năng lực kết hợp Sản phẩm và Công nghệ của Minh.\\n\\nNổi bật là 'EchoMind' - Hệ thống AI chuyển đổi tín hiệu não thành văn bản dùng PyTorch, đạt tốc độ giải mã 55-65 WPM. Bên cạnh đó, dự án 'E-Reader' lọt Top 20 chung cuộc TP.HCM đã áp dụng sâu sắc các nguyên lý HCI.\\n\\nHãy click vào danh sách bên trái để xem mô tả nhé!",
+            skills: "Minh sở hữu bộ kỹ năng đa dạng.\\n\\nThế mạnh cốt lõi là tư duy Agile/Scrum, thiết kế trải nghiệm người dùng (UX) và thử nghiệm A/B. Về kỹ thuật, Minh có nền tảng vững về Python và Data Analysis.\\n\\nBiểu đồ Radar bên trái sẽ cho bạn cái nhìn trực quan nhất về mức độ tự tin của Minh.",
+            education: "Về học vấn:\\nMinh đang theo học Cử nhân ngành Quản lý Công nghệ & Đổi mới Sáng tạo tại Đại học Kinh tế TP.HCM (UEH).\\n\\nMinh đạt điểm GPA xuất sắc 3.53/4.0. Ngoài ra, Minh còn tích lũy các chứng chỉ chuyên nghiệp của Google về Project Management."
+        };
+
+        const prompts = [
+            { id: 'experience', label: '💼 Kinh nghiệm làm việc', type: 'primary' },
+            { id: 'projects', label: '🚀 Các dự án nổi bật', type: 'primary' },
+            { id: 'skills', label: '⚡ Kỹ năng công nghệ', type: 'primary' },
+            { id: 'education', label: '📚 Học vấn & Thành tích', type: 'secondary' }
+        ];
+
+        let isTyping = false;
+        let chartInstance = null;
+
+        const chatContainer = document.getElementById('chat-messages');
+        const promptsContainer = document.getElementById('quick-prompts');
+        const views = {
+            welcome: document.getElementById('view-welcome'),
+            experience: document.getElementById('view-experience'),
+            projects: document.getElementById('view-projects'),
+            skills: document.getElementById('view-skills'),
+            education: document.getElementById('view-education')
+        };
+
+        function initChat() {
+            chatContainer.innerHTML = '';
+            renderPrompts();
+            switchView('welcome');
+            setTimeout(() => {
+                appendMessage('ai', cvData.greeting, true);
+            }, 500);
+        }
+
+        function renderPrompts() {
+            promptsContainer.innerHTML = prompts.map(p => {
+                const bgClass = p.type === 'primary' 
+                    ? 'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-600 hover:text-white' 
+                    : 'bg-white text-slate-600 border-gray-200 hover:bg-slate-800 hover:text-white hover:border-slate-800';
+                return `<button onclick="handlePromptClick('${p.id}', '${p.label}')" class="px-4 py-2 rounded-full border text-sm font-medium transition-colors duration-200 shadow-sm ${bgClass}" ${isTyping ? 'disabled' : ''}>${p.label}</button>`;
+            }).join('');
+        }
+
+        function switchView(viewId) {
+            Object.values(views).forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('flex');
+            });
+            views[viewId].classList.remove('hidden');
+            views[viewId].classList.add('flex');
+
+            if (viewId === 'skills') {
+                renderSkillsChart();
+            }
+        }
+
+        function handlePromptClick(promptId, promptLabel) {
+            if (isTyping) return;
+            promptsContainer.style.opacity = '0';
+            setTimeout(() => { promptsContainer.style.display = 'none'; }, 300);
+            appendMessage('user', promptLabel, false);
+            setTimeout(() => {
+                switchView(promptId);
+                appendMessage('ai', cvData[promptId], true, () => {
+                    promptsContainer.style.display = 'flex';
+                    setTimeout(() => { promptsContainer.style.opacity = '1'; }, 50);
+                });
+            }, 600);
+        }
+
+        function appendMessage(sender, text, useTypewriter = false, callback = null) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `flex w-full ${sender === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`;
+            const innerDiv = document.createElement('div');
+            innerDiv.className = `max-w-[85%] md:max-w-[75%] rounded-2xl px-5 py-3 text-[15px] leading-relaxed ${sender === 'user' ? 'msg-user' : 'msg-ai'}`;
+            
+            if (sender === 'ai' && useTypewriter) {
+                msgDiv.appendChild(innerDiv);
+                chatContainer.appendChild(msgDiv);
+                typeWriter(text, innerDiv, 20, callback);
+            } else {
+                innerDiv.innerHTML = text.replace(/\\n/g, '<br>');
+                msgDiv.appendChild(innerDiv);
+                chatContainer.appendChild(msgDiv);
+                scrollToBottom();
+                if (callback) callback();
+            }
+        }
+
+        function typeWriter(text, element, speed, callback) {
+            isTyping = true;
+            renderPrompts(); 
+            let i = 0;
+            element.innerHTML = '<span class="text-content"></span><span class="cursor-blink"></span>';
+            const textContainer = element.querySelector('.text-content');
+            
+            function type() {
+                if (i < text.length) {
+                    let char = text.charAt(i);
+                    // Handle encoded newlines from JSON string
+                    if (char === '\\' && text.charAt(i+1) === 'n') {
+                        char = '<br>';
+                        i++;
+                    }
+                    textContainer.innerHTML += char;
+                    i++;
+                    scrollToBottom();
+                    setTimeout(type, speed);
+                } else {
+                    isTyping = false;
+                    element.querySelector('.cursor-blink').remove();
+                    renderPrompts(); 
+                    if (callback) callback();
+                }
+            }
+            type();
+        }
+
+        function scrollToBottom() {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function resetChat() {
+            if(isTyping) return;
+            initChat();
+        }
+
+        function renderSkillsChart() {
+            const ctx = document.getElementById('skillsChart');
+            if (chartInstance) chartInstance.destroy();
+
+            chartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['UX Design', 'Agile/Scrum', 'Journey Mapping', 'PRD Writing', 'A/B Testing', 'Data Analysis', 'Python/PyTorch'],
+                    datasets: [{
+                        label: 'Mức độ thông thạo',
+                        data: [90, 85, 95, 80, 85, 80, 75],
+                        fill: true,
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: 'rgb(37, 99, 235)',
+                        pointBackgroundColor: 'rgb(37, 99, 235)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgb(37, 99, 235)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0,0,0,0.1)' },
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            pointLabels: { font: { size: 12, family: "'Inter', sans-serif", weight: '600' }, color: '#1e293b' },
+                            ticks: { display: false, min: 0, max: 100, stepSize: 20 }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    let val = context.raw;
+                                    if(val >= 90) return ' Rất Tốt';
+                                    if(val >= 80) return ' Tốt';
+                                    if(val >= 70) return ' Khá';
+                                    return ' ' + val + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', initChat);
+    </script>
+</body>
+</html>
+"""
+
+# Gọi thành phần (component) để hiển thị toàn bộ giao diện lên Streamlit
+components.html(html_code, height=850, scrolling=True)
