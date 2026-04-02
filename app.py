@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(layout="wide", page_title="hwinh | Product Owner", page_icon="◈", initial_sidebar_state="collapsed")
+st.set_page_config(layout="wide", page_title="Minh Nguyen | Product & UX", page_icon="◈", initial_sidebar_state="collapsed")
 
 st.markdown("""
     <style>
@@ -14,1217 +14,171 @@ st.markdown("""
 
 html_code = r"""
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hwinh | Product Owner</title>
+    <title>Minh Nguyen | Product & UX</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --ink: #0a0a0f;
-            --ink2: #12121a;
-            --ink3: #1c1c28;
-            --surface: #1e1e2e;
-            --surface2: #252538;
-            --border: rgba(255,255,255,0.07);
-            --border2: rgba(255,255,255,0.12);
-            --text: #e8e8f0;
-            --text2: #9898b0;
-            --text3: #6060780;
-            --accent: #7c6af7;
-            --accent2: #a594fc;
-            --accent3: #c4b8fe;
-            --gold: #f0c060;
-            --green: #52d18a;
-            --coral: #ff7b6b;
-            --teal: #4dd9c0;
+            /* Elite Dark Theme Palette */
+            --bg-base: #050505;
+            --bg-panel: #0a0a0c;
+            --bg-card: #121217;
+            --bg-hover: #1a1a24;
+            --border-dim: rgba(255,255,255,0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            
+            /* Accents */
+            --accent-primary: #8b5cf6; 
+            --accent-secondary: #3b82f6; 
+            --accent-tertiary: #10b981;
+            --accent-gradient: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            --glow-shadow: 0 0 24px rgba(139, 92, 246, 0.2);
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--ink);
-            color: var(--text);
-            height: 100vh;
-            overflow: hidden;
-        }
-
-        /* === LAYOUT === */
-        .app {
-            display: flex;
-            height: 100vh;
-            width: 100%;
-        }
-
-        /* === LEFT SIDEBAR NAV === */
-        .sidenav {
-            width: 72px;
-            height: 100%;
-            background: var(--ink2);
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 24px 0;
-            gap: 8px;
-            flex-shrink: 0;
-            z-index: 10;
-        }
-
-        .nav-logo {
-            font-family: 'Syne', sans-serif;
-            font-weight: 800;
-            font-size: 14px;
-            color: var(--accent2);
-            letter-spacing: -0.5px;
-            margin-bottom: 16px;
-            writing-mode: horizontal-tb;
-        }
-
-        .nav-item {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--text2);
-            font-size: 18px;
-            border: 1px solid transparent;
-            position: relative;
-        }
-
-        .nav-item:hover { background: var(--surface); color: var(--text); }
-        .nav-item.active {
-            background: var(--accent);
-            color: white;
-            border-color: var(--accent2);
-            box-shadow: 0 0 20px rgba(124,106,247,0.3);
-        }
-
-        .nav-tooltip {
-            position: absolute;
-            left: 56px;
-            background: var(--surface2);
-            color: var(--text);
-            font-size: 11px;
-            font-family: 'DM Mono', monospace;
-            padding: 4px 10px;
-            border-radius: 6px;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.15s;
-            border: 1px solid var(--border2);
-        }
-        .nav-item:hover .nav-tooltip { opacity: 1; }
-
-        /* === VISUAL PANEL === */
-        .visual-panel {
-            flex: 1;
-            height: 100%;
-            overflow-y: auto;
-            background: var(--ink);
-            position: relative;
-        }
-
-        .visual-panel::-webkit-scrollbar { width: 4px; }
-        .visual-panel::-webkit-scrollbar-track { background: transparent; }
-        .visual-panel::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
-
-        /* === CHAT PANEL === */
-        .chat-panel {
-            width: 400px;
-            height: 100%;
-            flex-shrink: 0;
-            background: var(--ink2);
-            border-left: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* === NOISE TEXTURE OVERLAY === */
-        .noise {
-            position: fixed;
-            inset: 0;
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 100;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        /* ==================== VIEWS ==================== */
-
-        /* WELCOME VIEW */
-        .view-welcome {
-            min-height: 100%;
-            display: flex;
-            flex-direction: column;
-            padding: 60px 56px;
-        }
-
-        .welcome-eyebrow {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 32px;
-        }
-
-        .status-dot {
-            width: 8px; height: 8px;
-            background: var(--green);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--green);
-            animation: pulse-green 2s infinite;
-        }
-
-        @keyframes pulse-green {
-            0%, 100% { box-shadow: 0 0 6px var(--green); }
-            50% { box-shadow: 0 0 18px var(--green); }
-        }
-
-        .status-text {
-            font-family: 'DM Mono', monospace;
-            font-size: 11px;
-            color: var(--green);
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .welcome-name {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(40px, 5vw, 72px);
-            font-weight: 800;
-            line-height: 0.95;
-            letter-spacing: -2px;
-            color: var(--text);
-            margin-bottom: 12px;
-        }
-
-        .welcome-name .accent-word {
-            color: var(--accent2);
-            display: block;
-        }
-
-        .welcome-role {
-            font-size: 16px;
-            color: var(--text2);
-            font-weight: 300;
-            margin-bottom: 40px;
-            font-style: italic;
-        }
-
-        .welcome-summary {
-            font-size: 15px;
-            line-height: 1.8;
-            color: var(--text2);
-            max-width: 520px;
-            margin-bottom: 48px;
-            border-left: 2px solid var(--accent);
-            padding-left: 20px;
-        }
-
-        .contact-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 56px;
-        }
-
-        .contact-chip {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border2);
-            border-radius: 8px;
-            font-size: 12px;
-            font-family: 'DM Mono', monospace;
-            color: var(--text2);
-            transition: all 0.2s;
-        }
-
-        .contact-chip:hover {
-            border-color: var(--accent);
-            color: var(--text);
-        }
-
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            max-width: 560px;
-            margin-bottom: 56px;
-        }
-
-        .stat-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--teal));
-        }
-
-        .stat-number {
-            font-family: 'Syne', sans-serif;
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--text);
-            line-height: 1;
-        }
-
-        .stat-label {
-            font-size: 11px;
-            color: var(--text2);
-            margin-top: 6px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: var(--accent2);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 24px;
-        }
-
-        .section-tag::before {
-            content: '◈';
-            font-size: 12px;
-        }
-
-        /* EXPERIENCE VIEW */
-        .view-content {
-            padding: 56px;
-            min-height: 100%;
-        }
-
-        .view-title {
-            font-family: 'Syne', sans-serif;
-            font-size: 42px;
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            color: var(--text);
-            margin-bottom: 48px;
-            line-height: 1;
-        }
-
-        .view-title span { color: var(--accent2); }
-
-        .timeline {
-            position: relative;
-            padding-left: 28px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            bottom: 8px;
-            width: 1px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -32px;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--accent2);
-            box-shadow: 0 0 12px rgba(165,148,252,0.5);
-        }
-
-        .timeline-item.past::before { background: var(--text2); box-shadow: none; }
-
-        .tl-period {
-            font-family: 'DM Mono', monospace;
-            font-size: 11px;
-            color: var(--accent2);
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .tl-role {
-            font-family: 'Syne', sans-serif;
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 4px;
-        }
-
-        .tl-company {
-            font-size: 13px;
-            color: var(--text2);
-            font-style: italic;
-            margin-bottom: 16px;
-        }
-
-        .tl-bullets {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .tl-bullets li {
-            font-size: 14px;
-            color: var(--text2);
-            line-height: 1.6;
-            padding-left: 16px;
-            position: relative;
-        }
-
-        .tl-bullets li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-size: 12px;
-        }
-
-        .tl-bullets li strong {
-            color: var(--text);
-            font-weight: 500;
-        }
-
-        .tl-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 14px;
-        }
-
-        .tl-tag {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            padding: 3px 10px;
-            border-radius: 4px;
-            background: rgba(124,106,247,0.1);
-            border: 1px solid rgba(124,106,247,0.25);
-            color: var(--accent3);
-            letter-spacing: 0.5px;
-        }
-
-        /* PROJECTS VIEW */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 28px;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .project-card.featured::after {
-            background: linear-gradient(135deg, rgba(124,106,247,0.08) 0%, transparent 60%);
-        }
-
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-
-        .project-card:hover::after { opacity: 1; }
-
-        .project-card.featured {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 24px;
-            align-items: start;
-        }
-
-        .project-badge {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
-        }
-
-        .badge-featured { background: rgba(240,192,96,0.15); color: var(--gold); border: 1px solid rgba(240,192,96,0.3); }
-        .badge-active { background: rgba(82,209,138,0.15); color: var(--green); border: 1px solid rgba(82,209,138,0.3); }
-        .badge-top20 { background: rgba(255,123,107,0.15); color: var(--coral); border: 1px solid rgba(255,123,107,0.3); }
-
-        .project-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text);
-            margin: 10px 0 6px;
-            letter-spacing: -0.5px;
-        }
-
-        .project-period {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: var(--text2);
-            margin-bottom: 12px;
-            letter-spacing: 0.5px;
-        }
-
-        .project-desc {
-            font-size: 13px;
-            color: var(--text2);
-            line-height: 1.7;
-            margin-bottom: 16px;
-        }
-
-        .project-metrics {
-            display: flex;
-            gap: 20px;
-            margin: 14px 0;
-        }
-
-        .metric {
-            text-align: center;
-        }
-
-        .metric-val {
-            font-family: 'Syne', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--accent2);
-        }
-
-        .metric-lbl {
-            font-size: 10px;
-            color: var(--text2);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 2px;
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .tech-pill {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            padding: 3px 10px;
-            border-radius: 4px;
-            background: var(--ink3);
-            border: 1px solid var(--border2);
-            color: var(--text2);
-        }
-
-        /* SKILLS VIEW */
-        .skills-layout {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            align-items: start;
-        }
-
-        .skill-group { margin-bottom: 28px; }
-
-        .skill-group-label {
-            font-family: 'DM Mono', monospace;
-            font-size: 10px;
-            color: var(--accent2);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 14px;
-        }
-
-        .skill-bar-item {
-            margin-bottom: 12px;
-        }
-
-        .skill-bar-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 6px;
-        }
-
-        .skill-bar-name {
-            font-size: 13px;
-            color: var(--text);
-        }
-
-        .skill-bar-pct {
-            font-family: 'DM Mono', monospace;
-            font-size: 11px;
-            color: var(--text2);
-        }
-
-        .skill-bar-track {
-            height: 4px;
-            background: var(--surface2);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .skill-bar-fill {
-            height: 100%;
-            border-radius: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--teal));
-            transform-origin: left;
-            transform: scaleX(0);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .skill-bar-fill.animate { transform: scaleX(1); }
-
-        .cert-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 13px;
-            color: var(--text2);
-        }
-
-        .cert-icon {
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-
-        /* EDUCATION VIEW */
-        .edu-hero {
-            background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 36px;
-            margin-bottom: 24px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .edu-hero::before {
-            content: 'UEH';
-            position: absolute;
-            right: -20px;
-            bottom: -30px;
-            font-family: 'Syne', sans-serif;
-            font-size: 120px;
-            font-weight: 800;
-            color: rgba(255,255,255,0.03);
-            line-height: 1;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .gpa-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(240,192,96,0.1);
-            border: 1px solid rgba(240,192,96,0.3);
-            border-radius: 12px;
-            padding: 12px 20px;
-        }
-
-        .gpa-value {
-            font-family: 'Syne', sans-serif;
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--gold);
-        }
-
-        /* CHAT PANEL */
-        .chat-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .chat-avatar {
-            width: 38px; height: 38px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--accent), var(--teal));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-
-        .chat-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--text);
-        }
-
-        .chat-subtitle {
-            font-size: 11px;
-            color: var(--green);
-            font-family: 'DM Mono', monospace;
-        }
-
-        .reset-btn {
-            margin-left: auto;
-            background: none;
-            border: 1px solid var(--border2);
-            color: var(--text2);
-            font-size: 11px;
-            padding: 6px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'DM Mono', monospace;
-            transition: all 0.2s;
-        }
-
-        .reset-btn:hover {
-            border-color: var(--accent);
-            color: var(--accent2);
-        }
-
-        .chat-messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .chat-messages::-webkit-scrollbar { width: 3px; }
-        .chat-messages::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
-
-        .msg-row {
-            display: flex;
-            gap: 10px;
-            align-items: flex-end;
-            animation: msg-in 0.3s ease-out;
-        }
-
-        @keyframes msg-in {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-base); color: var(--text-main); height: 100vh; overflow: hidden; -webkit-font-smoothing: antialiased; }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        /* Splash Screen (Language Selector) */
+        #splash-screen {
+            position: fixed; inset: 0; z-index: 9999; background: rgba(5,5,5,0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 0.5s ease;
+        }
+        .splash-card {
+            background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 24px; padding: 48px; text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 0 40px rgba(139,92,246,0.1); max-width: 500px; width: 90%;
+        }
+        .splash-card h2 { font-family: 'Syne', sans-serif; font-size: 28px; margin-bottom: 8px; color: var(--text-main); }
+        .splash-card p { color: var(--text-muted); font-size: 15px; margin-bottom: 32px; }
+        .lang-btn {
+            width: 100%; padding: 16px; border-radius: 14px; border: 1px solid var(--border-dim); background: var(--bg-panel); color: var(--text-main);
+            font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 12px;
+        }
+        .lang-btn:hover { border-color: var(--accent-primary); background: rgba(139,92,246,0.1); transform: translateY(-2px); }
+
+        .app { display: none; height: 100vh; width: 100%; position: relative; opacity: 0; transition: opacity 0.8s ease; }
+        .grid-bg { position: absolute; inset: 0; z-index: 0; opacity: 0.03; pointer-events: none; background-image: linear-gradient(var(--text-main) 1px, transparent 1px), linear-gradient(90deg, var(--text-main) 1px, transparent 1px); background-size: 32px 32px; }
+
+        /* SIDENAV (Fixed UX: Bigger and Clearer) */
+        .sidenav { width: 90px; height: 100%; background: var(--bg-panel); border-right: 1px solid var(--border-dim); display: flex; flex-direction: column; align-items: center; padding: 32px 0; gap: 20px; z-index: 10; }
+        .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; color: var(--text-main); margin-bottom: 32px; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-item { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; color: var(--text-muted); font-size: 24px; position: relative; background: var(--bg-card); border: 1px solid transparent; }
+        .nav-item:hover { background: var(--bg-hover); color: var(--text-main); transform: scale(1.05); border-color: var(--border-dim); }
+        .nav-item.active { background: var(--accent-primary); color: white; box-shadow: var(--glow-shadow); border-color: transparent; }
+        .nav-tooltip { position: absolute; left: 76px; background: var(--bg-card); color: var(--text-main); font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 8px; white-space: nowrap; opacity: 0; pointer-events: none; transition: all 0.2s; border: 1px solid var(--border-dim); transform: translateX(-10px); }
+        .nav-item:hover .nav-tooltip { opacity: 1; transform: translateX(0); }
+
+        /* VISUAL PANEL */
+        .visual-panel { flex: 1; height: 100%; overflow-y: auto; position: relative; z-index: 5; scroll-behavior: smooth; }
+        .view-content { padding: 60px 8%; min-height: 100%; display: none; animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .view-content.active { display: block; }
+        .welcome-wrap { display: flex; flex-direction: column; justify-content: center; min-height: 100%; padding: 0 8%; }
+        
+        .pulse-status { display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 20px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--accent-tertiary); margin-bottom: 32px; width: fit-content; }
+        .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-tertiary); animation: ping 2s infinite; }
+        @keyframes ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
+
+        .hero-title { font-family: 'Syne', sans-serif; font-size: clamp(48px, 6vw, 84px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 16px; }
+        .hero-title span { background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { font-size: 22px; color: var(--text-muted); font-weight: 500; margin-bottom: 32px; }
+        .hero-desc { font-size: 17px; line-height: 1.8; color: var(--text-muted); max-width: 650px; margin-bottom: 48px; border-left: 3px solid var(--accent-primary); padding-left: 24px; }
+        
+        .contact-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 60px; }
+        .contact-chip { padding: 10px 20px; background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 10px; font-size: 14px; font-family: 'DM Mono', monospace; color: var(--text-muted); transition: all 0.3s; }
+        .contact-chip:hover { border-color: var(--accent-secondary); color: var(--text-main); background: rgba(59,130,246,0.1); }
+
+        .section-tag { display: inline-flex; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent-primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; font-weight: 500;}
+        .view-title { font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; color: var(--text-main); margin-bottom: 48px; letter-spacing: -1px; }
+
+        .glass-card { background: rgba(18, 18, 23, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--border-dim); border-radius: 20px; padding: 32px; transition: all 0.4s; position: relative; overflow: hidden; margin-bottom: 24px; }
+        .glass-card:hover { border-color: var(--accent-primary); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+        .card-tag { font-family: 'DM Mono', monospace; font-size: 11px; padding: 6px 14px; border-radius: 20px; font-weight: 500; background: rgba(255,255,255,0.05); }
+        .card-tag.gold { color: #fbbf24; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2); }
+        .card-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; margin: 20px 0 8px; }
+        .card-sub { font-size: 15px; color: var(--accent-secondary); margin-bottom: 16px; font-weight: 500;}
+        .card-desc { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+        .tech-pill { font-family: 'DM Mono', monospace; font-size: 12px; padding: 6px 14px; border-radius: 8px; background: var(--bg-base); border: 1px solid var(--border-dim); color: var(--text-muted); }
+
+        .chart-box { background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 24px; padding: 32px; height: 420px; width: 100%; display: flex; justify-content: center; margin-bottom: 40px; }
+
+        /* CHAT PANEL (Fixed UX) */
+        .chat-panel { width: 480px; height: 100%; background: var(--bg-panel); border-left: 1px solid var(--border-dim); display: flex; flex-direction: column; flex-shrink: 0; z-index: 10; }
+        .chat-header { padding: 28px 32px; border-bottom: 1px solid var(--border-dim); display: flex; align-items: center; gap: 16px; background: rgba(10,10,12,0.8); backdrop-filter: blur(10px); }
+        .ai-avatar { width: 48px; height: 48px; border-radius: 14px; background: var(--accent-gradient); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: var(--glow-shadow); }
+        .chat-name { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; }
+        .chat-status { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent-tertiary); margin-top: 4px; }
+
+        .chat-messages { flex: 1; overflow-y: auto; padding: 32px; display: flex; flex-direction: column; gap: 24px; }
+        .msg-row { display: flex; gap: 14px; align-items: flex-start; animation: fadeUp 0.3s ease-out; }
         .msg-row.user { flex-direction: row-reverse; }
+        .msg-icon { width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: var(--bg-card); border: 1px solid var(--border-dim); }
+        .msg-bubble { max-width: 85%; padding: 18px 22px; border-radius: 18px; font-size: 15px; line-height: 1.7; font-weight: 400; }
+        .msg-bubble.ai { background: var(--bg-card); border: 1px solid var(--border-dim); color: var(--text-main); border-top-left-radius: 4px; }
+        .msg-bubble.user { background: var(--accent-primary); color: white; border-top-right-radius: 4px; box-shadow: var(--glow-shadow); }
 
-        .msg-avatar-small {
-            width: 28px; height: 28px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, var(--accent), var(--teal));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            flex-shrink: 0;
-        }
+        .typing-indicator { display: none; gap: 6px; padding: 14px 20px; background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 16px; border-top-left-radius: 4px; width: fit-content; margin-left: 46px; margin-bottom: 20px;}
+        .typing-indicator.active { display: flex; align-items: center; }
+        .typing-dot { width: 8px; height: 8px; background: var(--accent-primary); border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        .typing-text { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text-muted); margin-left: 10px; }
 
-        .msg-bubble {
-            max-width: 82%;
-            padding: 12px 16px;
-            border-radius: 16px;
-            font-size: 13px;
-            line-height: 1.65;
-        }
+        .chat-footer { padding: 28px 32px; border-top: 1px solid var(--border-dim); background: var(--bg-panel); }
+        .prompts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        
+        /* Prompts (Bigger & Clearer) */
+        .prompt-btn { background: var(--bg-card); border: 1px solid var(--border-dim); border-radius: 14px; padding: 16px; font-size: 14px; color: var(--text-main); cursor: pointer; transition: all 0.2s; text-align: left; display: flex; flex-direction: column; gap: 8px; font-weight: 600; line-height: 1.4;}
+        .prompt-btn span.icon { font-size: 22px; }
+        .prompt-btn:hover { border-color: var(--accent-primary); background: rgba(139,92,246,0.1); transform: translateY(-2px); }
+        .prompt-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-        .msg-bubble.ai {
-            background: var(--surface);
-            border: 1px solid var(--border2);
-            color: var(--text);
-            border-bottom-left-radius: 4px;
-        }
-
-        .msg-bubble.user {
-            background: var(--accent);
-            color: white;
-            border-bottom-right-radius: 4px;
-        }
-
-        .cursor-blink {
-            display: inline-block;
-            width: 7px; height: 14px;
-            background: var(--accent2);
-            margin-left: 2px;
-            animation: cursor-blink 1s step-end infinite;
-            vertical-align: middle;
-            border-radius: 1px;
-        }
-
-        @keyframes cursor-blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-        .chat-footer {
-            padding: 16px;
-            border-top: 1px solid var(--border);
-            flex-shrink: 0;
-        }
-
-        .prompts-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-
-        .prompt-btn {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 10px 12px;
-            font-size: 12px;
-            color: var(--text2);
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: left;
-            font-family: 'DM Sans', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .prompt-btn:hover {
-            border-color: var(--accent);
-            color: var(--text);
-            background: var(--surface2);
-        }
-
-        .prompt-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-
-        .prompt-icon { font-size: 14px; flex-shrink: 0; }
-
-        /* ANIMATIONS */
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-up { animation: fadeUp 0.5s ease-out forwards; opacity: 0; }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-
-        /* divider */
-        .subtle-div {
-            height: 1px;
-            background: var(--border);
-            margin: 32px 0;
-        }
-
-        /* highlight accent text */
-        .hl { color: var(--accent2); }
-        .hl-gold { color: var(--gold); }
-        .hl-green { color: var(--green); }
-        .hl-coral { color: var(--coral); }
-
-        /* responsive */
-        @media (max-width: 900px) {
-            .chat-panel { width: 340px; }
-            .projects-grid { grid-template-columns: 1fr; }
-            .project-card.featured { grid-template-columns: 1fr; }
-        }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-<div class="noise"></div>
 
-<div class="app">
-    <!-- SIDEBAR NAV -->
-    <nav class="sidenav">
-        <div class="nav-logo">hw</div>
+<div id="splash-screen">
+    <div class="splash-card">
+        <h2>Nguyễn Hoàng Minh</h2>
+        <p>Product Manager & UX Designer Portfolio</p>
+        <button class="lang-btn" onclick="startGame('en')"><span style="font-size: 24px;">🇬🇧</span> Continue in English</button>
+        <button class="lang-btn" onclick="startGame('vi')"><span style="font-size: 24px;">🇻🇳</span> Khám phá bằng Tiếng Việt</button>
+    </div>
+</div>
 
-        <div class="nav-item active" data-view="welcome" onclick="switchView('welcome', this)" title="">
-            ◈
-            <span class="nav-tooltip">Overview</span>
-        </div>
-        <div class="nav-item" data-view="experience" onclick="switchView('experience', this)">
-            ⟳
-            <span class="nav-tooltip">Experience</span>
-        </div>
-        <div class="nav-item" data-view="projects" onclick="switchView('projects', this)">
-            ⬡
-            <span class="nav-tooltip">Projects</span>
-        </div>
-        <div class="nav-item" data-view="skills" onclick="switchView('skills', this)">
-            ◎
-            <span class="nav-tooltip">Skills</span>
-        </div>
-        <div class="nav-item" data-view="education" onclick="switchView('education', this)">
-            ▣
-            <span class="nav-tooltip">Education</span>
-        </div>
-    </nav>
+<div class="grid-bg"></div>
 
-    <!-- VISUAL PANEL -->
+<div class="app" id="main-app">
+    <nav class="sidenav" id="sidenav-container"></nav>
+
     <main class="visual-panel" id="visual-panel">
-
-        <!-- WELCOME -->
-        <div id="view-welcome" class="view-welcome">
-            <div class="welcome-eyebrow fade-up">
-                <div class="status-dot"></div>
-                <span class="status-text">Available for opportunities · HCMC, Vietnam</span>
-            </div>
-
-            <h1 class="welcome-name fade-up delay-1">
-                Nguyễn
-                <span class="accent-word">Hoàng Minh</span>
-            </h1>
-            <p class="welcome-role fade-up delay-2">Product Owner Intern · UX Strategist · AI Builder</p>
-
-            <p class="welcome-summary fade-up delay-3">
-                Chuyên gia trẻ về Quản lý Công nghệ & Đổi mới Sáng tạo — xây dựng tại giao điểm của <strong style="color:var(--text)">UX Design</strong>, <strong style="color:var(--text)">System Thinking</strong> và <strong style="color:var(--text)">AI Engineering</strong>. Tôi chuyển hoá dữ liệu người dùng phức tạp thành trải nghiệm sản phẩm mượt mà và đo lường được.
-            </p>
-
-            <div class="contact-row fade-up delay-4">
-                <div class="contact-chip">✉ hwinh.work@gmail.com</div>
-                <div class="contact-chip">📞 +84 765 828 191</div>
-                <div class="contact-chip">📍 Hồ Chí Minh</div>
-                <div class="contact-chip">🎓 UEH · GPA 3.53</div>
-            </div>
-
-            <div class="stat-grid fade-up delay-5">
-                <div class="stat-card">
-                    <div class="stat-number">3+</div>
-                    <div class="stat-label">Năm kinh nghiệm</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">150+</div>
-                    <div class="stat-label">Stakeholders quản lý</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">Top 20</div>
-                    <div class="stat-label">Finalist cấp TP</div>
-                </div>
-            </div>
-
-            <div class="subtle-div fade-up"></div>
-
-            <div class="section-tag fade-up">Hãy khám phá hồ sơ</div>
-            <p style="font-size:13px;color:var(--text2);line-height:1.7;max-width:480px;" class="fade-up">
-                Sử dụng thanh điều hướng bên trái hoặc trò chuyện với AI Assistant bên phải để khám phá kinh nghiệm, dự án và kỹ năng của tôi.
-            </p>
-        </div>
-
-        <!-- EXPERIENCE -->
-        <div id="view-experience" class="view-content" style="display:none">
-            <div class="section-tag">Work History</div>
-            <h2 class="view-title">Kinh nghiệm <span>làm việc</span></h2>
-
-            <div class="timeline">
-
-                <div class="timeline-item">
-                    <div class="tl-period">JAN 2025 — OCT 2025 · HIỆN TẠI</div>
-                    <div class="tl-role">Project Management Executive</div>
-                    <div class="tl-company">Startup & Innovation Hub of HCMC (SIHUB) · Under Dept. of Science & Technology</div>
-                    <ul class="tl-bullets">
-                        <li><strong>Customer Journey Mapping & MVP Delivery:</strong> Thiết kế end-to-end digital journey map cho tech startups, xây dựng onboarding & activation flow. Định nghĩa core user problems và dịch sang user stories rõ ràng để dẫn dắt phát triển MVP nhanh.</li>
-                        <li><strong>Pain Point Resolution & Advanced Testing:</strong> Liên tục theo dõi các touchpoint để phát hiện operational bottlenecks. Áp dụng A/B testing và Interleaving experiments để validate feature iterations trước full-scale rollout.</li>
-                        <li><strong>Omnichannel Data & Stakeholder Management:</strong> Làm đầu mối chính với startup founders, phân tích behavioral data để cải thiện satisfaction metrics (NPS focus) và báo cáo insights tới Ban Giám đốc.</li>
-                    </ul>
-                    <div class="tl-tags">
-                        <span class="tl-tag">Customer Journey</span>
-                        <span class="tl-tag">A/B Testing</span>
-                        <span class="tl-tag">MVP Delivery</span>
-                        <span class="tl-tag">NPS Metrics</span>
-                        <span class="tl-tag">Stakeholder Mgmt</span>
-                    </div>
-                </div>
-
-                <div class="timeline-item past">
-                    <div class="tl-period">JUL 2024 — DEC 2024</div>
-                    <div class="tl-role">Research & Development Intern</div>
-                    <div class="tl-company">SIHUB · Executed data-driven project management for city-level framework</div>
-                    <ul class="tl-bullets">
-                        <li><strong>Data Analysis & Requirements Gathering:</strong> Dẫn dắt end-to-end data lifecycle cho competency gap analysis liên quan đến 150+ key stakeholders trong báo cáo nghiên cứu khoa học cấp thành phố.</li>
-                        <li><strong>Structured Documentation:</strong> Soạn thảo strategic reports và structured documentation (chuẩn URD), dịch qualitative user problems thành actionable system requirements.</li>
-                    </ul>
-                    <div class="tl-tags">
-                        <span class="tl-tag">Data Analysis</span>
-                        <span class="tl-tag">URD Standards</span>
-                        <span class="tl-tag">Requirements Gathering</span>
-                        <span class="tl-tag">150+ Stakeholders</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- PROJECTS -->
-        <div id="view-projects" class="view-content" style="display:none">
-            <div class="section-tag">Product Experience</div>
-            <h2 class="view-title">Dự án <span>nổi bật</span></h2>
-
-            <div class="projects-grid">
-
-                <!-- Featured: EchoMind -->
-                <div class="project-card featured" onclick="askAbout('EchoMind AI')">
-                    <div>
-                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-                            <span class="project-badge badge-featured">★ Flagship Project</span>
-                            <span class="project-badge badge-active" style="background:rgba(82,209,138,0.1);">Sep–Dec 2025</span>
-                        </div>
-                        <div class="project-name">EchoMind AI</div>
-                        <div style="font-size:12px;color:var(--text2);margin-bottom:14px;font-style:italic;">AI-Based Brain-to-Text System · Project Lead</div>
-                        <p class="project-desc">
-                            Hệ thống AI dựa trên PyTorch chuyển đổi tín hiệu não thành văn bản theo thời gian thực. Tối ưu kiến trúc từ baseline lên Transformer-based model, giải quyết bottleneck xử lý tín hiệu phức tạp. Quản lý full product lifecycle bằng Agile framework và RACI matrix — đảm bảo 100% milestone completion.
-                        </p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <div class="metric-val">55–65</div>
-                                <div class="metric-lbl">WPM Output</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-val">&lt;1s</div>
-                                <div class="metric-lbl">Latency</div>
-                            </div>
-                            <div class="metric">
-                                <div class="metric-val">100%</div>
-                                <div class="metric-lbl">Milestone</div>
-                            </div>
-                        </div>
-                        <div class="tech-stack">
-                            <span class="tech-pill">Python</span>
-                            <span class="tech-pill">PyTorch</span>
-                            <span class="tech-pill">Transformer</span>
-                            <span class="tech-pill">Agile/Scrum</span>
-                            <span class="tech-pill">RACI Matrix</span>
-                            <span class="tech-pill">System Optimization</span>
-                        </div>
-                    </div>
-                    <div style="width:180px;text-align:center;padding:20px;background:var(--ink3);border-radius:16px;border:1px solid var(--border2);">
-                        <div style="font-size:40px;margin-bottom:12px;">🧠</div>
-                        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);line-height:1.8;">
-                            Signal decoding<br>
-                            ↓<br>
-                            Transformer<br>
-                            ↓<br>
-                            Text output
-                        </div>
-                    </div>
-                </div>
-
-                <!-- E-Reader -->
-                <div class="project-card" onclick="askAbout('E-Reader Ecosystem')">
-                    <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
-                        <span class="project-badge badge-top20">🏆 Top 20 Finalist</span>
-                        <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2);">Mar–Jun 2025</span>
-                    </div>
-                    <div class="project-name">E-Reader Ecosystem</div>
-                    <div style="font-size:12px;color:var(--text2);margin-bottom:12px;font-style:italic;">Product Lead · HCMC People's Committee</div>
-                    <p class="project-desc">
-                        Thiết kế end-to-end user journey từ device provisioning đến content updates, ứng dụng chuẩn HCI để giảm cognitive load tối đa. Phân tách student pain points thành structured feature sets với clear user stories và logical flows.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-pill">HCI Principles</span>
-                        <span class="tech-pill">UX Design</span>
-                        <span class="tech-pill">Journey Mapping</span>
-                        <span class="tech-pill">Feature Decomposition</span>
-                    </div>
-                </div>
-
-                <!-- Startup Events -->
-                <div class="project-card" onclick="askAbout('Startup Events')">
-                    <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:8px;">
-                        <span class="project-badge badge-active">● Ongoing</span>
-                        <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--text2);">Jul 2024 — Now</span>
-                    </div>
-                    <div class="project-name">Startup Events Ops</div>
-                    <div style="font-size:12px;color:var(--text2);margin-bottom:12px;font-style:italic;">Operations · Innovation Ecosystem</div>
-                    <p class="project-desc">
-                        Trực tiếp vận hành các sự kiện đổi mới sáng tạo cấp thành phố: Univ.Star 2024/2025 và tuần lễ WHISE 2024 — kết nối startup founders, investors và ecosystem builders.
-                    </p>
-                    <div class="tech-stack">
-                        <span class="tech-pill">Event Management</span>
-                        <span class="tech-pill">Startup Ecosystem</span>
-                        <span class="tech-pill">Cross-team Coordination</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- SKILLS -->
-        <div id="view-skills" class="view-content" style="display:none">
-            <div class="section-tag">Competencies</div>
-            <h2 class="view-title">Kỹ năng <span>chuyên môn</span></h2>
-
-            <div class="skills-layout">
-                <div>
-                    <div class="skill-group">
-                        <div class="skill-group-label">Product Management</div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-header"><span class="skill-bar-name">Journey Mapping</span><span class="skill-bar-pct">95%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-header"><span class="skill-bar-name">UX / HCI Design</span><span class="skill-bar-pct">90%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-header"><span class="skill-bar-name">Agile / Scrum</span><span class="skill-bar-pct">85%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-header"><span class="skill-bar-name">PRD & User Stories</span><span class="skill-bar-pct">85%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-header"><span class="skill-bar-name">A/B Testing</span><span class="skill-bar-pct">82%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%"></div></div>
-                        </div>
-                    </div>
-
-                    <div class="skill-group">
-                        <div class="skill-group-label">Data & Tech</div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-header"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">80%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-header"><span class="skill-bar-name">Data Analysis</span><span class="skill-bar-pct">80%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div>
-                        </div>
-                        <div class="skill-bar-item">
-                            <div class="skill-bar-header"><span class="skill-bar-name">PyTorch / ML</span><span class="skill-bar-pct">72%</span></div>
-                            <div class="skill-bar-track"><div class="skill-bar-fill" style="width:72%"></div></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="skill-group-label" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;">Radar Overview</div>
-                    <div style="width:100%;height:280px;position:relative;margin-bottom:28px;">
-                        <canvas id="skillsChart"></canvas>
-                    </div>
-
-                    <div class="skill-group-label" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;">Certifications</div>
-                    <div class="cert-card"><span class="cert-icon">🏅</span> Google Project Management</div>
-                    <div class="cert-card"><span class="cert-icon">📊</span> Google Business Intelligence</div>
-                    <div class="cert-card"><span class="cert-icon">🔄</span> Agile Management Certification</div>
-                    <div class="cert-card" style="border-style:dashed;"><span class="cert-icon">⚡</span> AI Thực Chiến · Vingroup <span style="font-size:10px;color:var(--accent2);margin-left:auto;font-family:'DM Mono',monospace;">In Progress</span></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- EDUCATION -->
-        <div id="view-education" class="view-content" style="display:none">
-            <div class="section-tag">Academic Background</div>
-            <h2 class="view-title">Học vấn & <span>Thành tích</span></h2>
-
-            <div class="edu-hero">
-                <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:1px;margin-bottom:16px;">AUG 2022 — AUG 2026</div>
-                <h3 style="font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--text);margin-bottom:4px;">Đại học Kinh tế TP.HCM</h3>
-                <p style="color:var(--text2);font-size:14px;margin-bottom:20px;">Cử nhân Quản lý Công nghệ và Đổi mới Sáng tạo</p>
-                <div class="gpa-badge">
-                    <span style="font-size:24px;">🏆</span>
-                    <div>
-                        <div style="font-size:11px;color:var(--text2);margin-bottom:2px;">Grade Point Average</div>
-                        <div class="gpa-value">3.53 / 4.0</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="margin-bottom:28px;">
-                <div class="skill-group-label" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;">Relevant Coursework</div>
-                <div style="display:flex;flex-wrap:wrap;gap:8px;">
-                    <span style="font-size:12px;padding:6px 14px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;color:var(--text2);">Design Thinking</span>
-                    <span style="font-size:12px;padding:6px 14px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;color:var(--text2);">Human-Computer Interaction (HCI)</span>
-                    <span style="font-size:12px;padding:6px 14px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;color:var(--text2);">Innovation Management</span>
-                    <span style="font-size:12px;padding:6px 14px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;color:var(--text2);">Business Intelligence</span>
-                    <span style="font-size:12px;padding:6px 14px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;color:var(--text2);">Digital Business Transformation</span>
-                    <span style="font-size:12px;padding:6px 14px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;color:var(--text2);">Project AI</span>
-                </div>
-            </div>
-
-            <div>
-                <div class="skill-group-label" style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;">Certifications & In Progress</div>
-                <div class="cert-card"><span class="cert-icon">🏅</span><div><div style="color:var(--text);font-size:13px;">Google Project Management</div><div style="font-size:11px;color:var(--text2);">Coursera · Google</div></div></div>
-                <div class="cert-card"><span class="cert-icon">📊</span><div><div style="color:var(--text);font-size:13px;">Google Business Intelligence</div><div style="font-size:11px;color:var(--text2);">Coursera · Google</div></div></div>
-                <div class="cert-card"><span class="cert-icon">🔄</span><div><div style="color:var(--text);font-size:13px;">Agile Management</div><div style="font-size:11px;color:var(--text2);">Professional Certification</div></div></div>
-                <div class="cert-card" style="border-style:dashed;border-color:rgba(124,106,247,0.3);">
-                    <span class="cert-icon">⚡</span>
-                    <div style="flex:1;">
-                        <div style="color:var(--text);font-size:13px;">AI Thực Chiến · Vingroup</div>
-                        <div style="font-size:11px;color:var(--text2);">VinBigData Institute</div>
-                    </div>
-                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);padding:3px 10px;background:rgba(124,106,247,0.1);border-radius:20px;">In Progress</span>
-                </div>
-                <div class="cert-card" style="border-style:dashed;border-color:rgba(240,192,96,0.3);">
-                    <span class="cert-icon">🗣️</span>
-                    <div style="flex:1;">
-                        <div style="color:var(--text);font-size:13px;">TOEIC · English Proficiency</div>
-                        <div style="font-size:11px;color:var(--text2);">Preparing for certification</div>
-                    </div>
-                    <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);padding:3px 10px;background:rgba(240,192,96,0.1);border-radius:20px;">In Progress</span>
-                </div>
-            </div>
-        </div>
-
+        <div id="view-welcome" class="view-content welcome-wrap active"></div>
+        <div id="view-experience" class="view-content"></div>
+        <div id="view-projects" class="view-content"></div>
+        <div id="view-skills" class="view-content"></div>
+        <div id="view-education" class="view-content"></div>
     </main>
 
-    <!-- CHAT PANEL -->
     <aside class="chat-panel">
-        <div class="chat-header">
-            <div class="chat-avatar">🤖</div>
-            <div>
-                <div class="chat-name">Minh's AI Assistant</div>
-                <div class="chat-subtitle">● Online · Powered by portfolio data</div>
-            </div>
-            <button class="reset-btn" onclick="resetChat()">↺ Reset</button>
-        </div>
-
+        <div class="chat-header" id="chat-header-container"></div>
         <div class="chat-messages" id="chat-messages"></div>
-
+        <div class="typing-indicator" id="typing-indicator">
+            <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+            <div class="typing-text" id="typing-text-ui">Analyzing data...</div>
+        </div>
         <div class="chat-footer">
             <div class="prompts-grid" id="prompts-grid"></div>
         </div>
@@ -1232,104 +186,373 @@ html_code = r"""
 </div>
 
 <script>
-const cvData = {
-    greeting: `Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh — Product Owner Intern với nền tảng vững chắc về UX Strategy và AI Engineering.\n\nMinh đang tìm kiếm cơ hội để áp dụng kỹ năng thiết kế hành trình người dùng và tư duy sản phẩm hệ thống vào các môi trường sản phẩm thực chiến. Bạn muốn biết thêm điều gì?`,
-
-    experience: `Minh có hơn 3 năm kinh nghiệm tại SIHUB — trung tâm khởi nghiệp trực thuộc Sở Khoa học & Công nghệ TP.HCM.\n\n◈ Vai trò gần nhất (Jan–Oct 2025): Project Management Executive\nMinh thiết kế end-to-end digital journey map cho hàng chục tech startups, xây dựng activation flows và validate features qua A/B testing. Điểm đặc biệt: Minh tiếp cận NPS không chỉ như một con số mà như một hệ thống signals hành vi người dùng cần phân tích liên tục.\n\n◈ Trước đó (Jul–Dec 2024): R&D Intern\nDẫn dắt competency gap analysis cho 150+ key stakeholders trong dự án cấp thành phố — đây là nơi Minh rèn giũa khả năng xử lý dữ liệu chất lượng lẫn số lượng và tài liệu hóa chuẩn URD.`,
-
-    projects: `Minh có 3 dự án nổi bật thể hiện khả năng kết hợp Technical & Product thinking:\n\n🧠 EchoMind AI (Flagship)\nBrain-to-text system dùng PyTorch Transformer — đạt 55–65 WPM với latency <1s. Minh quản lý toàn bộ lifecycle bằng Agile + RACI, đảm bảo 100% milestone. Đây là bằng chứng Minh không chỉ nghĩ về UX mà còn thực sự build và optimize hệ thống AI.\n\n📚 E-Reader Ecosystem (Top 20 TP)\nÁp dụng HCI principles thiết kế user journey từ device provisioning đến content updates — lọt Top 20 cuộc thi cấp Thành phố do UBND TP.HCM tổ chức.\n\n🚀 Startup Events Operations\nVận hành các sự kiện đổi mới sáng tạo lớn: Univ.Star 2024/2025 và WHISE 2024 — kết nối hệ sinh thái startup.`,
-
-    skills: `Minh định vị mình ở giao điểm của 3 năng lực:\n\n◈ Product Craft (Core strength)\n→ Journey Mapping (95%) · UX/HCI Design (90%)\n→ Agile/Scrum Execution với CPMAI tools, RACI matrix\n→ PRD Writing, User Stories, A/B Testing & Interleaving\n\n◈ Data & Systems Thinking\n→ Python · Data Analysis · Google Colab\n→ PyTorch / ML basics (applied in EchoMind project)\n\n◈ Soft Skills\n→ Cross-functional stakeholder management (150+ contacts)\n→ Strategic documentation & reporting to Board level\n\nMinh đang gia tăng depth ở AI Engineering qua khoá Vingroup, và chuẩn bị TOEIC để mở rộng cơ hội làm việc với sản phẩm quốc tế.`,
-
-    education: `Minh đang học năm cuối tại Đại học Kinh tế TP.HCM (UEH), chuyên ngành Quản lý Công nghệ & Đổi mới Sáng tạo.\n\n🏆 GPA: 3.53 / 4.0 — thuộc top đầu ngành\n\nCác môn học cốt lõi trực tiếp áp dụng vào công việc:\n→ Human-Computer Interaction (HCI)\n→ Design Thinking & Innovation Management\n→ Business Intelligence & Digital Transformation\n→ Project AI\n\n🏅 Chứng chỉ đã có:\n→ Google Project Management (Coursera)\n→ Google Business Intelligence (Coursera)\n→ Agile Management Certification\n\n⚡ Đang hoàn thiện:\n→ AI Thực Chiến by VinBigData · TOEIC`
+// ==========================================
+// 1. DICTIONARY & CONTENT DATA (VI & EN)
+// ==========================================
+const contentData = {
+    vi: {
+        navTooltip: ["Tổng quan", "Sự nghiệp", "Sản phẩm", "Năng lực", "Học vấn"],
+        status: "Sẵn sàng đón nhận cơ hội mới",
+        role: "Product Manager | UX Designer",
+        desc: "Xây dựng sản phẩm số tại giao điểm của <b>Tâm lý học Người dùng (HCI)</b> và <b>Kiến trúc Hệ thống (AI/Tech)</b>. Thay vì chỉ thiết kế giao diện, tôi thiết kế 'hành trình' — giải quyết tận gốc nỗi đau người dùng bằng dữ liệu thực nghiệm.",
+        location: "Hồ Chí Minh, VN",
+        secExp: "Hành trình Sự nghiệp",
+        secProj: "Sản phẩm Tiêu biểu",
+        secSkill: "Triết lý T-Shaped PM",
+        secEdu: "Học vấn & Nền tảng",
+        chatTitle: "Đặc vụ AI của Minh",
+        chatStatus: "● Đã kết nối Dữ liệu",
+        typing: "AI đang phân tích dữ liệu...",
+        prompts: [
+            { id: 'experience', icon: '💼', label: 'Tầm nhìn<br>Sự nghiệp' },
+            { id: 'projects', icon: '🚀', label: 'Sản phẩm<br>Cốt lõi' },
+            { id: 'skills', icon: '⚡', label: 'Ma trận<br>Năng lực' },
+            { id: 'education', icon: '🎓', label: 'Học vấn &<br>Chứng chỉ' }
+        ],
+        chatbot: {
+            greeting: `Kính chào Quý Nhà tuyển dụng. Tôi là Đặc vụ AI đại diện cho <b>Nguyễn Hoàng Minh</b>.\n\nMinh là một chuyên viên Quản lý Sản phẩm (Product Manager) và Thiết kế UX sở hữu tư duy hệ thống sắc bén. Giá trị lõi của Minh nằm ở khả năng thấu hiểu hành vi người dùng và hiện thực hóa nó bằng quy trình phát triển sản phẩm chuẩn mực.\n\nNgài muốn đánh giá khía cạnh nào trong hồ sơ năng lực của Minh? Xin mời chọn chủ đề.`,
+            
+            experience: `Tại <b>Saigon Innovation Hub (SIHUB)</b>, Minh không chỉ làm vận hành, Minh thiết kế "hành trình".\n\nTrong vai trò <b>Project Management Executive</b>, Minh đã vẽ nên bản đồ hành trình số (End-to-end Journey Map) cho hàng loạt Tech Startups. Thay vì phỏng đoán, Minh sử dụng <b>A/B Testing</b> và <b>Interleaving</b> để xác thực tính năng, giải quyết tận gốc các điểm nghẽn (bottlenecks) trước khi ra mắt.\n\nNgoài ra, kinh nghiệm phân tích khoảng trống năng lực cho 150+ bên liên quan và tài liệu hóa chuẩn URD chứng minh khả năng quản trị dự án quy mô lớn của Minh.`,
+            
+            projects: `Sản phẩm của Minh là sự hòa quyện giữa Deep-tech và UX.\n\nTuyệt tác kỹ thuật là <b>EchoMind AI</b>. Áp dụng khung quản lý CPMAI & Agile, Minh đã tái cấu trúc hệ thống giải mã sóng não (EEG 256 kênh) từ LSTM sang kiến trúc <b>Transformer (Multi-Head Attention, Label Smoothing)</b>, triệt tiêu hoàn toàn lỗi 'Mode Collapse'. Kết quả: Tốc độ giải mã đạt 55-65 WPM, độ trễ <1s, ROI kỹ thuật 72%. <i>Giao diện được trực quan hóa hoàn chỉnh bằng Gradio.</i>\n\nỞ khía cạnh UX, <b>E-Reader Ecosystem</b> (Top 20 TP.HCM) là minh chứng cho việc áp dụng nguyên lý <b>HCI (Tương tác Người-Máy)</b> để giảm tải nhận thức và ma sát cho người dùng.`,
+            
+            skills: `Minh theo đuổi mô hình <b>T-Shaped Product Manager</b>:\n\n<b>1. Bề rộng (Product & UX):</b>\nThành thạo Customer Journey Mapping, UX/HCI Design, và viết tài liệu PRD/User Stories. Quản trị dự án xuất sắc bằng phương pháp Agile/Scrum & RACI Matrix.\n\n<b>2. Bề sâu (Data & Tech):</b>\nNắm vững Python, Phân tích Dữ liệu và kiến trúc Machine Learning (PyTorch). Sử dụng dữ liệu để ra quyết định thay vì cảm tính.\n\nBiểu đồ Radar bên trái sẽ cho Ngài thấy bức tranh toàn cảnh về năng lực này.`,
+            
+            education: `Minh sở hữu nền tảng học thuật tinh hoa.\n\nLà sinh viên năm cuối ngành <b>Quản lý Công nghệ & Đổi mới Sáng tạo tại Đại học Kinh tế TP.HCM (UEH)</b>, Minh duy trì mức GPA xuất sắc <b>3.53/4.0</b>.\n\nĐộng lực học tập của Minh không dừng lại ở giảng đường. Minh đã chinh phục các chứng chỉ chuyên nghiệp của Google (Project Management, Business Intelligence) và hiện đang hoàn thiện TOEIC để sẵn sàng hội nhập môi trường quốc tế.`
+        },
+        htmlBlocks: {
+            exp: `
+                <div class="glass-card">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent-secondary); margin-bottom: 12px;">JAN 2025 — HIỆN TẠI</div>
+                    <h3 class="card-title" style="margin-top: 0;">Project Management Executive</h3>
+                    <div class="card-sub">Startup & Innovation Hub (SIHUB) · Sở KH&CN TP.HCM</div>
+                    <p class="card-desc">Kiến trúc sư trải nghiệm cho hệ sinh thái Tech Startups. Thiết kế bản đồ hành trình số (End-to-end Journey Map) và luồng kích hoạt sản phẩm. Trực tiếp chẩn đoán điểm nghẽn hệ thống (bottlenecks), ứng dụng A/B Testing và Interleaving experiments để xác thực tính năng trước khi tung ra thị trường.</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span class="tech-pill">A/B Testing</span><span class="tech-pill">Journey Mapping</span><span class="tech-pill">MVP Delivery</span>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text-dim); margin-bottom: 12px;">JUL 2024 — DEC 2024</div>
+                    <h3 class="card-title" style="margin-top: 0;">R&D Intern</h3>
+                    <div class="card-sub">SIHUB · Dự án cấp Thành phố</div>
+                    <p class="card-desc">Đóng vai trò then chốt trong việc phân tích khoảng trống năng lực (Competency Gap Analysis). Điều phối vòng đời dữ liệu với hơn 150+ bên liên quan (Stakeholders). Tài liệu hóa chiến lược khắt khe theo chuẩn URD, chuyển đổi nhu cầu phức tạp thành các yêu cầu hệ thống thực thi được.</p>
+                </div>
+            `,
+            proj: `
+                <div class="glass-card" style="grid-column: 1 / -1;">
+                    <span class="card-tag gold">★ Flagship: Deep Tech AI</span>
+                    <h3 class="card-title">EchoMind System</h3>
+                    <div class="card-sub">Non-invasive BCI System · AI Product Lead</div>
+                    <p class="card-desc">Hệ thống giải mã tín hiệu điện não đồ (EEG 256 kênh) thành văn bản. Quản trị vòng đời sản phẩm bằng khung <b>CPMAI và Agile (RACI matrix)</b>. Đột phá công nghệ: Chỉ đạo tái cấu trúc từ Baseline LSTM sang <b>Transformer (Multi-Head Attention, Label Smoothing)</b>, xử lý triệt để nút thắt cổ chai thông tin và lỗi 'Mode Collapse'.<br><br><b>Hiệu suất:</b> Tốc độ giải mã 55–65 WPM, độ trễ <1s. Đạt mục tiêu ROI Kỹ thuật 72%. Giao diện người dùng được triển khai tối ưu trên Gradio.</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span class="tech-pill">Transformer Architecture</span><span class="tech-pill">PyTorch</span><span class="tech-pill">Agile/Scrum</span><span class="tech-pill">WER Evaluation</span>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="glass-card">
+                        <span class="card-tag" style="background: rgba(59,130,246,0.1); color: #60a5fa;">🏆 Top 20 Finalist</span>
+                        <h3 class="card-title">E-Reader Ecosystem</h3>
+                        <div class="card-sub">Hệ sinh thái Giáo dục Số</div>
+                        <p class="card-desc">Áp dụng nguyên lý Tương tác Người-Máy (HCI) để phân tách các 'nỗi đau' của học sinh. Thiết kế luồng UX mượt mà giúp giảm thiểu tải lượng nhận thức trong giai đoạn onboarding.</p>
+                    </div>
+                    <div class="glass-card">
+                        <span class="card-tag" style="background: rgba(16,185,129,0.1); color: #34d399;">● Operations</span>
+                        <h3 class="card-title">Startup Ecosystem</h3>
+                        <div class="card-sub">Vận hành Sự kiện quy mô lớn</div>
+                        <p class="card-desc">Trực tiếp vận hành các sự kiện hạt nhân của thành phố như Univ.Star 2024/2025 và WHISE 2024. Khẳng định năng lực điều phối Cross-functional team.</p>
+                    </div>
+                </div>
+            `,
+            edu: `
+                <div class="glass-card" style="background: linear-gradient(135deg, rgba(18,18,23,0.8), rgba(139,92,246,0.1)); border-color: var(--accent-primary);">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent-secondary); margin-bottom: 12px;">2022 — 2026</div>
+                    <h3 style="font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 8px;">Đại học Kinh tế TP.HCM (UEH)</h3>
+                    <div style="font-size: 17px; color: var(--text-main); margin-bottom: 24px;">Cử nhân Quản lý Công nghệ và Đổi mới Sáng tạo</div>
+                    <div style="display: inline-flex; align-items: center; gap: 16px; background: rgba(0,0,0,0.4); padding: 16px 28px; border-radius: 16px; border: 1px solid var(--border-dim);">
+                        <span style="font-size: 28px;">🎓</span>
+                        <div>
+                            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Điểm Trung Bình (GPA)</div>
+                            <div style="font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: #fbbf24;">3.53 <span style="font-size: 18px; color: var(--text-muted);">/ 4.0</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="glass-card" style="display: flex; align-items: center; gap: 20px;">
+                        <div style="font-size: 36px;">📊</div>
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Google Project Management & BI</div>
+                            <div style="font-size: 14px; color: var(--text-muted);">Professional Certificate by Google</div>
+                        </div>
+                    </div>
+                    <div class="glass-card" style="display: flex; align-items: center; gap: 20px;">
+                        <div style="font-size: 36px;">🗣️</div>
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">TOEIC Proficiency</div>
+                            <div style="font-size: 14px; color: var(--accent-tertiary);">In Progress · Preparing for Global Environment</div>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+    },
+    en: {
+        navTooltip: ["Overview", "Experience", "Projects", "Skills", "Education"],
+        status: "Available for new opportunities",
+        role: "Product Manager | UX Designer",
+        desc: "Building digital products at the intersection of <b>Human-Computer Interaction (HCI)</b> and <b>System Architecture</b>. I don't just design interfaces; I design 'journeys' — solving core user pain points through empirical data and technical logic.",
+        location: "Ho Chi Minh, VN",
+        secExp: "Career Journey",
+        secProj: "Core Products",
+        secSkill: "T-Shaped PM Matrix",
+        secEdu: "Academic Foundation",
+        chatTitle: "Minh's AI Proxy",
+        chatStatus: "● Data System Connected",
+        typing: "AI is analyzing data...",
+        prompts: [
+            { id: 'experience', icon: '💼', label: 'Career<br>Vision' },
+            { id: 'projects', icon: '🚀', label: 'Flagship<br>Products' },
+            { id: 'skills', icon: '⚡', label: 'Skill<br>Matrix' },
+            { id: 'education', icon: '🎓', label: 'Education &<br>Certs' }
+        ],
+        chatbot: {
+            greeting: `Welcome. I am the AI Proxy representing <b>Nguyen Hoang Minh</b>.\n\nMinh is a Product Manager and UX Designer with a sharp systems-thinking mindset. His core value lies in understanding user behavior and translating it into reality through rigorous product development workflows.\n\nWhich aspect of Minh's portfolio would you like to evaluate? Please select a topic.`,
+            
+            experience: `At <b>Saigon Innovation Hub (SIHUB)</b>, Minh doesn't just operate; he designs "journeys".\n\nAs a <b>Project Management Executive</b>, Minh mapped the end-to-end digital journeys for numerous Tech Startups. Rather than guessing, he utilized <b>A/B Testing</b> and <b>Interleaving</b> experiments to validate features, resolving system bottlenecks at their root before market launch.\n\nAdditionally, his experience in conducting Competency Gap Analysis for 150+ stakeholders and standardizing URD documentation proves his capability in large-scale project governance.`,
+            
+            projects: `Minh's products are a seamless blend of Deep-tech and UX.\n\nHis technical masterpiece is <b>EchoMind AI</b>. Applying the CPMAI & Agile frameworks, Minh directed the restructuring of a 256-channel EEG decoding system from LSTM to a <b>Transformer architecture (Multi-Head Attention, Label Smoothing)</b>, completely eradicating 'Mode Collapse'. Results: 55-65 WPM decoding speed, <1s latency, and a 72% Technical ROI. <i>The GUI was fully visualized using Gradio.</i>\n\nOn the UX front, the <b>E-Reader Ecosystem</b> (Top 20 HCMC) exemplifies his application of <b>HCI (Human-Computer Interaction)</b> principles to reduce cognitive load and friction.`,
+            
+            skills: `Minh pursues the <b>T-Shaped Product Manager</b> model:\n\n<b>1. Breadth (Product & UX):</b>\nProficient in Customer Journey Mapping, UX/HCI Design, and drafting PRDs/User Stories. Excellent project governance using Agile/Scrum & RACI Matrices.\n\n<b>2. Depth (Data & Tech):</b>\nStrong grasp of Python, Data Analysis, and Machine Learning architectures (PyTorch). Uses data to drive decisions rather than relying on intuition.\n\nThe Radar Chart on the left provides a comprehensive view of these competencies.`,
+            
+            education: `Minh possesses an elite academic foundation.\n\nAs a final-year student majoring in <b>Technology & Innovation Management at University of Economics HCMC (UEH)</b>, Minh maintains an outstanding GPA of <b>3.53/4.0</b>.\n\nHis drive for learning extends beyond the classroom. Minh has conquered professional certifications from Google (Project Management, Business Intelligence) and is currently finalizing his TOEIC to be fully prepared for international environments.`
+        },
+        htmlBlocks: {
+            exp: `
+                <div class="glass-card">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent-secondary); margin-bottom: 12px;">JAN 2025 — PRESENT</div>
+                    <h3 class="card-title" style="margin-top: 0;">Project Management Executive</h3>
+                    <div class="card-sub">Startup & Innovation Hub (SIHUB) · Dept. of Science & Tech</div>
+                    <p class="card-desc">Experience architect for the Tech Startup ecosystem. Designed End-to-end Journey Maps and product activation flows. Diagnosed operational bottlenecks and applied A/B Testing & Interleaving experiments to validate features before market rollout.</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span class="tech-pill">A/B Testing</span><span class="tech-pill">Journey Mapping</span><span class="tech-pill">MVP Delivery</span>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text-dim); margin-bottom: 12px;">JUL 2024 — DEC 2024</div>
+                    <h3 class="card-title" style="margin-top: 0;">R&D Intern</h3>
+                    <div class="card-sub">SIHUB · City-Level Framework</div>
+                    <p class="card-desc">Played a pivotal role in Competency Gap Analysis. Coordinated the data lifecycle involving 150+ key stakeholders. Authored strict strategic documentation (URD standards), translating complex qualitative needs into executable system requirements.</p>
+                </div>
+            `,
+            proj: `
+                <div class="glass-card" style="grid-column: 1 / -1;">
+                    <span class="card-tag gold">★ Flagship: Deep Tech AI</span>
+                    <h3 class="card-title">EchoMind System</h3>
+                    <div class="card-sub">Non-invasive BCI System · AI Product Lead</div>
+                    <p class="card-desc">A system decoding 256-channel EEG brain signals into text. Governed the product lifecycle using <b>CPMAI and Agile frameworks (RACI matrix)</b>. Technological breakthrough: Directed the architecture migration from a Baseline LSTM to a <b>Transformer (Multi-Head Attention, Label Smoothing)</b>, effectively resolving information bottlenecks and 'Mode Collapse'.<br><br><b>Performance:</b> 55–65 WPM decoding speed, <1s latency. Achieved 72% Technical ROI. User interface optimally deployed via Gradio.</p>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <span class="tech-pill">Transformer Architecture</span><span class="tech-pill">PyTorch</span><span class="tech-pill">Agile/Scrum</span><span class="tech-pill">WER Evaluation</span>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="glass-card">
+                        <span class="card-tag" style="background: rgba(59,130,246,0.1); color: #60a5fa;">🏆 Top 20 Finalist</span>
+                        <h3 class="card-title">E-Reader Ecosystem</h3>
+                        <div class="card-sub">Digital Education Ecosystem</div>
+                        <p class="card-desc">Applied Human-Computer Interaction (HCI) principles to decompose student 'pain points'. Designed a seamless UX flow to minimize cognitive load during the onboarding phase.</p>
+                    </div>
+                    <div class="glass-card">
+                        <span class="card-tag" style="background: rgba(16,185,129,0.1); color: #34d399;">● Operations</span>
+                        <h3 class="card-title">Startup Ecosystem</h3>
+                        <div class="card-sub">Large-scale Event Operations</div>
+                        <p class="card-desc">Directly operated the city's core innovation events such as Univ.Star 2024/2025 and WHISE 2024. Demonstrated strong Cross-functional team coordination capabilities.</p>
+                    </div>
+                </div>
+            `,
+            edu: `
+                <div class="glass-card" style="background: linear-gradient(135deg, rgba(18,18,23,0.8), rgba(139,92,246,0.1)); border-color: var(--accent-primary);">
+                    <div style="font-family: 'DM Mono', monospace; font-size: 13px; color: var(--accent-secondary); margin-bottom: 12px;">2022 — 2026</div>
+                    <h3 style="font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; margin-bottom: 8px;">University of Economics HCMC (UEH)</h3>
+                    <div style="font-size: 17px; color: var(--text-main); margin-bottom: 24px;">Bachelor in Technology & Innovation Management</div>
+                    <div style="display: inline-flex; align-items: center; gap: 16px; background: rgba(0,0,0,0.4); padding: 16px 28px; border-radius: 16px; border: 1px solid var(--border-dim);">
+                        <span style="font-size: 28px;">🎓</span>
+                        <div>
+                            <div style="font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Grade Point Average (GPA)</div>
+                            <div style="font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: #fbbf24;">3.53 <span style="font-size: 18px; color: var(--text-muted);">/ 4.0</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="glass-card" style="display: flex; align-items: center; gap: 20px;">
+                        <div style="font-size: 36px;">📊</div>
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Google Project Management & BI</div>
+                            <div style="font-size: 14px; color: var(--text-muted);">Professional Certificate by Google</div>
+                        </div>
+                    </div>
+                    <div class="glass-card" style="display: flex; align-items: center; gap: 20px;">
+                        <div style="font-size: 36px;">🗣️</div>
+                        <div>
+                            <div style="font-size: 16px; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">TOEIC Proficiency</div>
+                            <div style="font-size: 14px; color: var(--accent-tertiary);">In Progress · Preparing for Global Environment</div>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+    }
 };
 
-const prompts = [
-    { id: 'experience', icon: '⟳', label: 'Kinh nghiệm' },
-    { id: 'projects', icon: '⬡', label: 'Dự án' },
-    { id: 'skills', icon: '◎', label: 'Kỹ năng' },
-    { id: 'education', icon: '▣', label: 'Học vấn' }
-];
-
+let currentLang = 'en';
 let isTyping = false;
 let chartInstance = null;
 
-const chatMessages = document.getElementById('chat-messages');
-const promptsGrid = document.getElementById('prompts-grid');
-
-// === INIT ===
-function initChat() {
-    chatMessages.innerHTML = '';
-    renderPrompts();
-    setTimeout(() => appendMessage('ai', cvData.greeting, true), 600);
+// ==========================================
+// 2. CORE LOGIC
+// ==========================================
+function startGame(lang) {
+    currentLang = lang;
+    document.getElementById('splash-screen').style.opacity = '0';
+    setTimeout(() => {
+        document.getElementById('splash-screen').style.display = 'none';
+        buildUI();
+        document.getElementById('main-app').style.display = 'flex';
+        setTimeout(() => {
+            document.getElementById('main-app').style.opacity = '1';
+            initChat();
+        }, 100);
+    }, 500);
 }
 
-function renderPrompts() {
-    promptsGrid.innerHTML = prompts.map(p =>
-        `<button class="prompt-btn" onclick="handlePrompt('${p.id}','${p.icon} ${p.label}')" ${isTyping ? 'disabled' : ''}>
-            <span class="prompt-icon">${p.icon}</span>${p.label}
+function buildUI() {
+    const d = contentData[currentLang];
+    
+    // Build Sidenav
+    const navIcons = ['🏠', '💼', '🚀', '⚡', '🎓'];
+    const navViews = ['welcome', 'experience', 'projects', 'skills', 'education'];
+    let navHTML = `<div class="nav-logo">HW</div>`;
+    for(let i=0; i<5; i++) {
+        navHTML += `<div class="nav-item ${i===0?'active':''}" data-view="${navViews[i]}" onclick="switchView('${navViews[i]}', this)">${navIcons[i]}<span class="nav-tooltip">${d.navTooltip[i]}</span></div>`;
+    }
+    document.getElementById('sidenav-container').innerHTML = navHTML;
+
+    // Build Welcome View
+    document.getElementById('view-welcome').innerHTML = `
+        <div class="pulse-status"><div class="pulse-dot"></div> ${d.status}</div>
+        <h1 class="hero-title">Nguyễn <br><span>Hoàng Minh</span></h1>
+        <p class="hero-subtitle">${d.role}</p>
+        <p class="hero-desc">${d.desc}</p>
+        <div class="contact-row">
+            <div class="contact-chip">✉ hwinh.work@gmail.com</div>
+            <div class="contact-chip">📞 +84 765 828 191</div>
+            <div class="contact-chip">📍 ${d.location}</div>
+            <div class="contact-chip" style="color:var(--accent-primary); border-color:var(--accent-primary); font-weight:bold;">🎓 GPA 3.53 / 4.0</div>
+        </div>
+    `;
+
+    // Build Static Views
+    document.getElementById('view-experience').innerHTML = `<div class="section-tag">Work History</div><h2 class="view-title">${d.secExp}</h2>${d.htmlBlocks.exp}`;
+    document.getElementById('view-projects').innerHTML = `<div class="section-tag">Case Studies</div><h2 class="view-title">${d.secProj}</h2>${d.htmlBlocks.proj}`;
+    
+    document.getElementById('view-skills').innerHTML = `
+        <div class="section-tag">Competencies Map</div><h2 class="view-title">${d.secSkill}</h2>
+        <div class="chart-box"><canvas id="skillsChart"></canvas></div>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;">
+            <span class="contact-chip" style="color:white; border-color:var(--accent-primary);">Journey Mapping</span>
+            <span class="contact-chip" style="color:white; border-color:var(--accent-primary);">UX/HCI Design</span>
+            <span class="contact-chip" style="color:white; border-color:var(--accent-primary);">Agile/Scrum</span>
+            <span class="contact-chip">Python / PyTorch</span>
+            <span class="contact-chip">A/B Testing</span>
+        </div>
+    `;
+    
+    document.getElementById('view-education').innerHTML = `<div class="section-tag">Academic Foundation</div><h2 class="view-title">${d.secEdu}</h2>${d.htmlBlocks.edu}`;
+
+    // Build Chat Header & Footer
+    document.getElementById('chat-header-container').innerHTML = `
+        <div class="ai-avatar">🤖</div>
+        <div><div class="chat-name">${d.chatTitle}</div><div class="chat-status">${d.chatStatus}</div></div>
+    `;
+    document.getElementById('typing-text-ui').innerText = d.typing;
+}
+
+function initChat() {
+    const d = contentData[currentLang];
+    document.getElementById('chat-messages').innerHTML = '';
+    
+    // Render Prompts
+    document.getElementById('prompts-grid').innerHTML = d.prompts.map(p =>
+        `<button class="prompt-btn" onclick="handlePrompt('${p.id}','${p.label.replace('<br>',' ')}')" ${isTyping ? 'disabled' : ''}>
+            <span class="icon">${p.icon}</span> <span>${p.label}</span>
         </button>`
     ).join('');
+
+    switchView('welcome');
+    setTimeout(() => {
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            appendMessage('ai', d.chatbot.greeting, true);
+        }, 1200);
+    }, 500);
 }
 
-// === VIEW SWITCHING ===
 function switchView(viewId, navEl) {
-    document.querySelectorAll('[id^="view-"]').forEach(v => v.style.display = 'none');
-    document.getElementById('view-' + viewId).style.display = '';
+    document.querySelectorAll('[id^="view-"]').forEach(v => v.classList.remove('active'));
+    document.getElementById('view-' + viewId).classList.add('active');
+    
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     if (navEl) navEl.classList.add('active');
     else {
         const nav = document.querySelector(`[data-view="${viewId}"]`);
         if (nav) nav.classList.add('active');
     }
+    
     if (viewId === 'skills') setTimeout(initSkillsChart, 100);
-    if (viewId === 'skills') setTimeout(animateBars, 200);
 }
 
-function animateBars() {
-    document.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.add('animate'));
-}
-
-// === CHAT ===
 function handlePrompt(id, label) {
     if (isTyping) return;
-    promptsGrid.style.opacity = '0.4';
+    isTyping = true;
+    const grid = document.getElementById('prompts-grid');
+    grid.style.opacity = '0.3';
+    grid.style.pointerEvents = 'none';
+    
     appendMessage('user', label, false);
+    
     setTimeout(() => {
-        switchView(id, null);
-        appendMessage('ai', cvData[id], true, () => {
-            promptsGrid.style.opacity = '1';
-        });
-    }, 500);
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            switchView(id, null);
+            appendMessage('ai', contentData[currentLang].chatbot[id], true, () => {
+                grid.style.opacity = '1';
+                grid.style.pointerEvents = 'auto';
+            });
+        }, 1200);
+    }, 300);
 }
 
-function askAbout(topic) {
-    if (isTyping) return;
-    appendMessage('user', `Cho tôi biết thêm về: ${topic}`, false);
-    const key = topic.toLowerCase().includes('echomind') ? 'projects' :
-                topic.toLowerCase().includes('e-reader') ? 'projects' : 'projects';
-    setTimeout(() => {
-        appendMessage('ai', cvData[key], true);
-    }, 500);
-}
+function showTyping() { document.getElementById('typing-indicator').classList.add('active'); scrollBottom(); }
+function hideTyping() { document.getElementById('typing-indicator').classList.remove('active'); }
 
 function appendMessage(sender, text, useTypewriter = false, callback = null) {
     const row = document.createElement('div');
     row.className = `msg-row ${sender}`;
 
-    const avatar = document.createElement('div');
-    avatar.className = 'msg-avatar-small';
-    avatar.textContent = sender === 'ai' ? '🤖' : '👤';
+    const icon = document.createElement('div');
+    icon.className = 'msg-icon';
+    icon.textContent = sender === 'ai' ? '🤖' : '👤';
+    if(sender === 'ai') { icon.style.background = 'var(--accent-gradient)'; icon.style.color = 'white'; icon.style.border = 'none';}
 
     const bubble = document.createElement('div');
     bubble.className = `msg-bubble ${sender}`;
 
-    row.appendChild(avatar);
+    row.appendChild(icon);
     row.appendChild(bubble);
-    chatMessages.appendChild(row);
+    document.getElementById('chat-messages').appendChild(row);
 
     if (sender === 'ai' && useTypewriter) {
-        typeWriter(text, bubble, 18, callback);
+        typeWriter(text, bubble, 10, callback);
     } else {
         bubble.innerHTML = text.replace(/\n/g, '<br>');
         scrollBottom();
@@ -1338,8 +561,6 @@ function appendMessage(sender, text, useTypewriter = false, callback = null) {
 }
 
 function typeWriter(text, el, speed, callback) {
-    isTyping = true;
-    renderPrompts();
     let i = 0;
     el.innerHTML = '<span class="tc"></span><span class="cursor-blink"></span>';
     const tc = el.querySelector('.tc');
@@ -1347,103 +568,71 @@ function typeWriter(text, el, speed, callback) {
     function type() {
         if (i < text.length) {
             let ch = text.charAt(i);
-            if (ch === '\n') ch = '<br>';
-            tc.innerHTML += ch;
-            i++;
-            scrollBottom();
-            setTimeout(type, speed);
+            if(ch === '<') {
+                let tag = '';
+                while(text.charAt(i) !== '>' && i < text.length) { tag += text.charAt(i); i++; }
+                tag += '>'; tc.innerHTML += tag;
+            } else {
+                if (ch === '\n') {
+                    tc.innerHTML += '<br>';
+                    if(text.charAt(i+1) === '\n') { tc.innerHTML += '<br>'; i++; }
+                } else {
+                    tc.innerHTML += ch;
+                }
+            }
+            i++; scrollBottom(); setTimeout(type, speed);
         } else {
             isTyping = false;
             const cur = el.querySelector('.cursor-blink');
             if (cur) cur.remove();
-            renderPrompts();
             if (callback) callback();
         }
     }
     type();
 }
 
-function scrollBottom() {
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+function scrollBottom() { const c = document.getElementById('chat-messages'); c.scrollTop = c.scrollHeight + 50; }
 
-function resetChat() {
-    if (isTyping) return;
-    initChat();
-}
-
-// === SKILLS CHART ===
 function initSkillsChart() {
     const ctx = document.getElementById('skillsChart');
     if (!ctx) return;
-    if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+    if (chartInstance) { chartInstance.destroy(); }
+
+    Chart.defaults.color = '#94a3b8';
+    Chart.defaults.font.family = "'DM Sans', sans-serif";
 
     chartInstance = new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: ['UX/HCI', 'Agile', 'Journey Map', 'Data Analysis', 'Python', 'PyTorch', 'A/B Testing'],
+            labels: ['UX/HCI', 'Agile/Scrum', 'Journey Map', 'Data Analysis', 'Python/Tech', 'PyTorch', 'A/B Testing'],
             datasets: [{
-                data: [90, 85, 95, 80, 80, 72, 82],
+                label: currentLang==='en'?'Competency Level':'Độ thông thạo',
+                data: [90, 85, 95, 80, 80, 72, 85],
                 fill: true,
-                backgroundColor: 'rgba(124,106,247,0.15)',
-                borderColor: '#7c6af7',
-                pointBackgroundColor: '#a594fc',
-                pointBorderColor: '#1e1e2e',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: '#7c6af7',
-                borderWidth: 1.5,
-                pointRadius: 4,
+                backgroundColor: 'rgba(139, 92, 246, 0.2)',
+                borderColor: '#8b5cf6', borderWidth: 2,
+                pointBackgroundColor: '#3b82f6', pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff', pointHoverBorderColor: '#3b82f6',
+                pointRadius: 4, pointHoverRadius: 6
             }]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                r: {
-                    min: 0, max: 100,
-                    ticks: { display: false, stepSize: 20 },
-                    angleLines: { color: 'rgba(255,255,255,0.06)' },
-                    grid: { color: 'rgba(255,255,255,0.06)' },
-                    pointLabels: {
-                        font: { size: 11, family: "'DM Sans', sans-serif", weight: '500' },
-                        color: '#9898b0'
-                    }
-                }
-            },
+            responsive: true, maintainAspectRatio: false,
+            scales: { r: { min: 0, max: 100, ticks: { display: false }, angleLines: { color: 'rgba(255,255,255,0.08)' }, grid: { color: 'rgba(255,255,255,0.08)' }, pointLabels: { font: { size: 14, weight: '600' }, color: '#cbd5e1' } } },
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: '#252538',
-                    borderColor: 'rgba(255,255,255,0.1)',
-                    borderWidth: 1,
-                    padding: 10,
-                    titleFont: { family: "'DM Mono', monospace", size: 11 },
-                    bodyFont: { family: "'DM Sans', sans-serif", size: 12 },
-                    callbacks: {
-                        label: ctx => {
-                            const v = ctx.raw;
-                            return v >= 90 ? ' Expert' : v >= 80 ? ' Advanced' : v >= 70 ? ' Proficient' : ' Familiar';
-                        }
-                    }
+                    backgroundColor: 'rgba(10, 10, 12, 0.95)', borderColor: 'rgba(139, 92, 246, 0.4)', borderWidth: 1, padding: 14,
+                    titleFont: { family: "'DM Mono', monospace", size: 13 }, bodyFont: { size: 15, weight: 'bold' }, displayColors: false,
+                    callbacks: { label: ctx => { const v = ctx.raw; if(v >= 90) return currentLang==='en'?' Level: Expert':' Mức độ: Xuất sắc'; if(v >= 80) return currentLang==='en'?' Level: Advanced':' Mức độ: Cao cấp'; return currentLang==='en'?' Level: Proficient':' Mức độ: Thành thạo'; } }
                 }
             }
         }
     });
 }
-
-// === BOOT ===
-window.addEventListener('DOMContentLoaded', () => {
-    initChat();
-    // Animate welcome stats
-    setTimeout(() => {
-        document.querySelectorAll('.fade-up').forEach((el, i) => {
-            el.style.animationPlayState = 'running';
-        });
-    }, 100);
-});
 </script>
 </body>
 </html>
 """
 
-components.html(html_code, height=900, scrolling=False)
+components.html(html_code, height=950, scrolling=False)
