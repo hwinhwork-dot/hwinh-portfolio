@@ -221,8 +221,11 @@ html_code = r"""
 
         /* === VIEW TRANSITION OVERLAY === */
         .view-transition-overlay {
-            position: absolute;
-            inset: 0;
+            position: fixed;
+            top: 0;
+            left: 90px;
+            right: 420px;
+            bottom: 0;
             background: var(--ink);
             z-index: 999;
             display: flex;
@@ -272,6 +275,7 @@ html_code = r"""
         .view-content {
             padding: 60px 80px;
             min-height: 100%;
+            position: relative;
         }
 
         .welcome-eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 32px; }
@@ -370,7 +374,7 @@ html_code = r"""
         .reset-btn { margin-left: auto; background: none; border: 1px solid var(--border2); color: var(--text2); font-size: 12px; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-family: 'DM Mono', monospace; transition: all 0.2s; }
         .reset-btn:hover { border-color: var(--accent); background: var(--surface2); color: var(--text); }
 
-        .chat-messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 20px; scroll-behavior: smooth; }
         .chat-messages::-webkit-scrollbar { width: 4px; }
         .chat-messages::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 4px; }
 
@@ -402,12 +406,14 @@ html_code = r"""
         /* === RESPONSIVE MEDIA QUERIES === */
         @media (max-width: 1200px) {
             .chat-panel { width: 340px; }
+            .view-transition-overlay { right: 340px; }
             .view-content { padding: 40px; }
             .stat-grid { grid-template-columns: repeat(2, 1fr); }
             .skills-layout { grid-template-columns: 1fr; gap: 20px;}
         }
         @media (max-width: 900px) {
-            .chat-panel { display: none; /* Hide chat panel on small screens to prioritize main info */ }
+            .chat-panel { display: none; }
+            .view-transition-overlay { left: 72px; right: 0; }
             .projects-grid { grid-template-columns: 1fr; }
             .project-card.featured { grid-template-columns: 1fr; }
             #scroll-progress { left: 72px; }
@@ -765,7 +771,7 @@ const i18n = {
 
 let currentLang = 'en'; // Default
 let isTyping = false;
-let isTransitioning = false; // Flag to prevent multi-clicks during transition
+let isTransitioning = false; // Ngăn người dùng click liên tục khi đang chuyển cảnh
 let chartInstance = null;
 
 const chatMessages = document.getElementById('chat-messages');
@@ -780,8 +786,9 @@ function selectLanguage(lang) {
     
     renderUI();
     initChat();
+    // Re-init chart nếu đang ở tab Kỹ năng
     if(document.getElementById('view-skills').style.display !== 'none') {
-        initSkillsChart();
+        setTimeout(initSkillsChart, 50); // Cho canvas có thời gian được render
     }
 }
 
@@ -912,13 +919,12 @@ function renderUI() {
 function switchView(viewId, navEl) {
     if (isTransitioning) return;
     
-    const currentView = document.querySelector('.view-content:not([style*="display: none"])');
     const targetView = document.getElementById('view-' + viewId);
-    if (currentView === targetView) return;
+    if (!targetView || targetView.style.display !== 'none') return; // Không switch lại tab đang mở
 
     isTransitioning = true;
     
-    // 1. Cập nhật Nav Bar ngay lập tức
+    // 1. Cập nhật Sidebar Nav tức thì
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     if (navEl) navEl.classList.add('active');
     else {
@@ -930,36 +936,46 @@ function switchView(viewId, navEl) {
     const transOverlay = document.getElementById('view-transition-overlay');
     transOverlay.classList.add('active');
 
-    // 3. Sau 300ms (khi overlay đã che kín), thay đổi DOM ở dưới
+    // 3. Đợi 300ms (khi overlay đã che kín màn hình), tiến hành đổi DOM ở dưới
     setTimeout(() => {
-        if (currentView) currentView.style.display = 'none';
+        // Fix lỗi đè View: Ép ẨN toàn bộ các view trước khi MỞ view mới
+        document.querySelectorAll('.view-content').forEach(v => {
+            v.style.display = 'none';
+        });
+        
         targetView.style.display = '';
         
         // Reset thanh cuộn
         document.getElementById('scroll-progress').style.width = '0%';
         document.getElementById('visual-panel').scrollTop = 0;
 
-        // Xử lý riêng cho View Kỹ năng (biểu đồ)
+        // Xử lý riêng cho View Kỹ năng (biểu đồ & thanh skill)
         if (viewId === 'skills') {
-            initSkillsChart();
-            animateBars();
+            // Xóa class animate trước để thanh kỹ năng có thể chạy lại hiệu ứng
+            document.querySelectorAll('.skill-bar-fill').forEach(bar => bar.classList.remove('animate'));
+            
+            // Đợi 50ms cho trình duyệt kịp "vẽ" không gian (display:block) rồi mới gọi biểu đồ
+            setTimeout(() => {
+                initSkillsChart();
+                animateBars();
+            }, 50);
         }
 
         // Tái kích hoạt hiệu ứng fade-up của tab mới
         const animElements = targetView.querySelectorAll('.fade-up');
         animElements.forEach(el => {
             el.style.animation = 'none';
-            el.offsetHeight; /* trigger reflow */
+            void el.offsetWidth; /* hack để trigger reflow của trình duyệt */
             el.style.animation = null; 
         });
 
         // 4. Cho overlay biến mất dần
         setTimeout(() => {
             transOverlay.classList.remove('active');
-            isTransitioning = false; // Mở khóa thao tác
-        }, 300); 
+            isTransitioning = false; // Mở khóa cho phép click tiếp
+        }, 100); 
 
-    }, 300); // Overlay fadeIn time
+    }, 300); // Overlay cần 0.3s để fade in
 }
 
 function animateBars() {
@@ -976,7 +992,7 @@ function initChat() {
 function renderPrompts() {
     const pData = i18n[currentLang].chat.prompts;
     promptsGrid.innerHTML = pData.map(p =>
-        `<button class="prompt-btn" onclick="handlePrompt('${p.id}','${p.icon} ${p.label}')" ${isTyping ? 'disabled' : ''}>
+        `<button class="prompt-btn" onclick="handlePrompt('${p.id}','${p.icon} ${p.label}')" ${isTyping || isTransitioning ? 'disabled' : ''}>
             <span style="font-size:16px;">${p.icon}</span>${p.label}
         </button>`
     ).join('');
@@ -987,12 +1003,13 @@ function handlePrompt(id, label) {
     promptsGrid.style.opacity = '0.4';
     appendMessage('user', label, false);
     
-    // Switch view mapping
+    // Switch view mapping cho các cục chat prompts
     const viewMap = { exp: 'experience', proj: 'projects', edu: 'education', skills: 'skills' };
     
-    // Delay xíu cho mượt rồi mới switch view
+    // Đợi 300ms rồi mới đổi màn hình cho cảm giác tự nhiên
     setTimeout(() => switchView(viewMap[id] || 'welcome', null), 300);
 
+    // AI trả lời
     setTimeout(() => {
         appendMessage('ai', i18n[currentLang].chat['ans_'+id], true, () => {
             promptsGrid.style.opacity = '1';
@@ -1025,10 +1042,10 @@ function appendMessage(sender, text, useTypewriter = false, callback = null) {
     }
 }
 
-// Hiệu ứng gõ phím ngẫu nhiên tạo cảm giác AI/người
+// Hiệu ứng gõ phím ngẫu nhiên tạo cảm giác tự nhiên như người thật đang gõ
 function typeWriter(text, el, callback) {
     isTyping = true;
-    renderPrompts(); // disable buttons
+    renderPrompts(); // Tắt nút ấn để tránh spam
     
     let tempDiv = document.createElement('div');
     tempDiv.innerHTML = text.replace(/\n/g, '<br>');
@@ -1043,13 +1060,13 @@ function typeWriter(text, el, callback) {
     function type() {
         if (nodeIndex < nodes.length) {
             let node = nodes[nodeIndex];
-            if (node.nodeType === 3) { // Text node
+            if (node.nodeType === 3) { // Phân tích Node Text chữ
                 if (charIndex < node.textContent.length) {
                     tc.innerHTML += node.textContent.charAt(charIndex);
                     charIndex++;
                     scrollBottom();
                     
-                    // Tốc độ gõ ngẫu nhiên từ 5ms đến 25ms (Cảm giác tự nhiên hơn)
+                    // Tốc độ gõ ngẫu nhiên từ 5ms đến 25ms (Cảm giác natural hơn)
                     let randomSpeed = Math.floor(Math.random() * 20) + 5;
                     setTimeout(type, randomSpeed);
                 } else {
@@ -1057,7 +1074,7 @@ function typeWriter(text, el, callback) {
                     charIndex = 0;
                     type();
                 }
-            } else { // Element node (<br>, <strong>, etc.)
+            } else { // Xử lý các thẻ HTML con (ví dụ: <br>, <strong>...)
                 tc.appendChild(node.cloneNode(true));
                 nodeIndex++;
                 scrollBottom();
@@ -1079,7 +1096,7 @@ function scrollBottom() {
 }
 
 function resetChat() {
-    if (isTyping) return;
+    if (isTyping || isTransitioning) return;
     initChat();
 }
 
