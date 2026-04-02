@@ -1,23 +1,33 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# Cài đặt trang Streamlit chiếm toàn màn hình
-st.set_page_config(layout="wide", page_title="Nguyễn Hoàng Minh - AI Portfolio", initial_sidebar_state="collapsed")
+# 1. Cài đặt trang Streamlit (chiếm toàn màn hình, ẩn sidebar mặc định)
+st.set_page_config(layout="wide", page_title="Nguyen Hoang Minh - AI Portfolio", page_icon="🚀", initial_sidebar_state="collapsed")
 
-# Chứa toàn bộ mã HTML/CSS/JS đã được điền thông tin CV của bạn
-html_code = """
+# 2. Xóa các khoảng trắng (padding) và menu mặc định của Streamlit để HTML tràn viền tuyệt đối
+st.markdown("""
+    <style>
+        .block-container { padding: 0 !important; max-width: 100% !important; overflow: hidden; }
+        header { display: none !important; }
+        footer { display: none !important; }
+        iframe { border: none !important; height: 100vh !important; width: 100% !important; }
+    </style>
+""", unsafe_allow_html=True)
+
+# 3. Mã nguồn HTML/JS nguyên bản được bọc trong chuỗi thô (r"") để không bị lỗi JavaScript
+html_code = r"""
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyễn Hoàng Minh | AI Portfolio</title>
+    <title>Minh Nguyen | AI Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-50 text-slate-800 h-screen overflow-hidden font-sans selection:bg-blue-200">
 
-    <div class="flex flex-col md:flex-row h-full w-full max-w-[1600px] mx-auto bg-white shadow-2xl relative">
+    <div class="flex flex-col md:flex-row h-full w-full mx-auto bg-white shadow-2xl relative">
         
         <div class="w-full md:w-1/2 h-1/3 md:h-full bg-gradient-to-br from-blue-50 to-white border-b md:border-r border-gray-200 flex flex-col p-8 relative overflow-y-auto" id="visual-panel">
             
@@ -32,7 +42,7 @@ html_code = """
                     <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm shadow-sm">+84 765828191</span>
                     <span class="px-3 py-1 bg-white border border-gray-200 rounded-full text-sm shadow-sm">Hồ Chí Minh</span>
                 </div>
-                <p class="text-center text-slate-500 max-w-md">Bắt đầu trò chuyện với Trợ lý AI bên phải để khám phá chi tiết về kinh nghiệm và tư duy thiết kế của tôi.</p>
+                <p class="text-center text-slate-500 max-w-md">Bắt đầu trò chuyện với AI Assistant bên phải để khám phá chi tiết về kinh nghiệm và dự án của tôi.</p>
             </div>
 
             <div id="view-experience" class="hidden flex-col h-full animate-fade-in transition-opacity duration-500">
@@ -41,7 +51,7 @@ html_code = """
                     
                     <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                         <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-blue-500 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                            🚀
+                            🏢
                         </div>
                         <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-blue-100 bg-white shadow-sm transition hover:shadow-md">
                             <div class="flex items-center justify-between mb-1">
@@ -68,9 +78,9 @@ html_code = """
                             </div>
                             <p class="text-sm text-slate-500 font-medium mb-2">R&D Intern</p>
                             <ul class="text-sm text-slate-600 list-disc pl-4 space-y-1">
-                                <li>Phân tích dữ liệu vòng đời cấp thành phố.</li>
+                                <li>Phân tích khoảng trống năng lực dự án thành phố.</li>
                                 <li>Làm việc trực tiếp với 150+ bên liên quan.</li>
-                                <li>Tài liệu hóa theo tiêu chuẩn URD khắt khe.</li>
+                                <li>Tài liệu hóa theo chuẩn URD.</li>
                             </ul>
                         </div>
                     </div>
@@ -87,11 +97,12 @@ html_code = """
                             <h3 class="font-bold text-xl text-blue-700">EchoMind AI</h3>
                             <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded font-bold">09/2025 - 12/2025</span>
                         </div>
-                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">Hệ thống chuyển đổi tín hiệu não thành văn bản (Brain-to-Text). Tối ưu hóa kiến trúc Transformer, đạt tốc độ giải mã 55-65 WPM với độ trễ siêu thấp.</p>
+                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">Hệ thống AI dựa trên PyTorch chuyển đổi tín hiệu não thành văn bản. Tối ưu kiến trúc Transformer đạt tốc độ 55-65 WPM với độ trễ <1s.</p>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Python</span>
                             <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">PyTorch</span>
                             <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">System Logic</span>
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Agile</span>
                         </div>
                     </div>
 
@@ -100,11 +111,24 @@ html_code = """
                             <h3 class="font-bold text-xl text-blue-700">E-Reader Ecosystem</h3>
                             <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded font-bold">03/2025 - 06/2025</span>
                         </div>
-                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">Hệ sinh thái Giáo dục số lọt Top 20 Chung cuộc. Ứng dụng nguyên lý Tương tác Người-Máy (HCI) để giảm tải nhận thức và ma sát cho học sinh.</p>
+                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">Dự án lọt Top 20 Chung cuộc cấp Thành phố. Áp dụng nguyên lý HCI thiết kế hành trình người dùng xuyên suốt, giảm thiểu ma sát.</p>
                         <div class="flex flex-wrap gap-2 mt-auto">
                             <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">UX/UI</span>
-                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Journey Mapping</span>
                             <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">HCI</span>
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Journey Map</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-xl p-5 shadow-sm hover:shadow-lg transition hover:border-blue-300 cursor-pointer">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="font-bold text-xl text-blue-700">Startup Events</h3>
+                            <span class="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded font-bold">07/2024 - Nay</span>
+                        </div>
+                        <p class="text-sm text-slate-600 mb-4 line-clamp-3">Trực tiếp tham gia tổ chức, vận hành các sự kiện đổi mới sáng tạo lớn như Univ.Star 2024/2025 và tuần lễ WHISE 2024.</p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Event Management</span>
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Innovation</span>
+                            <span class="text-xs font-medium bg-blue-50 text-blue-600 px-2 py-1 rounded">Startup Ecosystem</span>
                         </div>
                     </div>
 
@@ -113,14 +137,15 @@ html_code = """
 
             <div id="view-skills" class="hidden flex-col h-full animate-fade-in transition-opacity duration-500 w-full items-center">
                 <h2 class="text-2xl font-bold text-slate-800 mb-2 flex items-center gap-2 self-start"><span class="text-3xl">⚡</span> Kỹ năng chuyên môn</h2>
-                <p class="text-sm text-slate-500 mb-6 self-start">Mức độ thành thạo các kỹ năng và công nghệ hiện tại.</p>
+                <p class="text-sm text-slate-500 mb-6 self-start">Mức độ thành thạo các công cụ và nghiệp vụ hiện tại.</p>
                 <div class="chart-container w-full max-w-md h-[350px] relative">
                     <canvas id="skillsChart"></canvas>
                 </div>
                 <div class="mt-6 flex flex-wrap justify-center gap-2">
-                    <span class="px-3 py-1 bg-slate-800 text-white rounded text-sm font-medium">Agile/Scrum</span>
                     <span class="px-3 py-1 bg-slate-800 text-white rounded text-sm font-medium">UX Design</span>
+                    <span class="px-3 py-1 bg-slate-800 text-white rounded text-sm font-medium">Agile/Scrum</span>
                     <span class="px-3 py-1 bg-slate-800 text-white rounded text-sm font-medium">Journey Mapping</span>
+                    <span class="px-3 py-1 bg-slate-800 text-white rounded text-sm font-medium">Data Analysis</span>
                     <span class="px-3 py-1 border border-slate-300 text-slate-600 rounded text-sm">Python</span>
                     <span class="px-3 py-1 border border-slate-300 text-slate-600 rounded text-sm">PyTorch</span>
                     <span class="px-3 py-1 border border-slate-300 text-slate-600 rounded text-sm">A/B Testing</span>
@@ -147,12 +172,14 @@ html_code = """
                         </div>
                     </div>
                 </div>
+                
                 <div class="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
-                    <h4 class="font-bold text-slate-800 mb-3">Chứng chỉ & Khóa học nổi bật</h4>
-                    <ul class="text-slate-600 list-disc pl-5 space-y-2">
+                    <h4 class="font-bold text-slate-800 mb-3">🏅 Chứng chỉ nổi bật</h4>
+                    <ul class="text-sm text-slate-600 list-disc pl-5 space-y-2">
                         <li>Google Project Management</li>
                         <li>Google Business Intelligence</li>
                         <li>Agile Management</li>
+                        <li>Đang rèn luyện AI Thực Chiến (Vingroup) & TOEIC.</li>
                     </ul>
                 </div>
             </div>
@@ -191,36 +218,45 @@ html_code = """
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         .cursor-blink { display: inline-block; width: 8px; height: 16px; background-color: #2563eb; margin-left: 2px; animation: blink 1s step-end infinite; vertical-align: middle; }
         
+        /* Custom Scrollbar for sleek UI */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        .msg-ai { background-color: #ffffff; color: #1e293b; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        /* Bubble styles */
+        .msg-ai { background-color: #ffffff; color: #1e293b; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); }
         .msg-user { background-color: #2563eb; color: #ffffff; border-bottom-right-radius: 4px; box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3); }
+
         .chart-container { margin: 0 auto; width: 100%; }
     </style>
 
     <script>
-        // Dữ liệu nội dung của AI
+        // --- DATA & STATE ---
+        // SỬ DỤNG BACKTICKS (`) ĐỂ TRÁNH LỖI XUỐNG DÒNG TRONG JAVASCRIPT
         const cvData = {
-            greeting: "Chào Quý Nhà tuyển dụng! Tôi là trợ lý AI đại diện cho Nguyễn Hoàng Minh (hwinh). Minh là một Product Owner Intern đầy nhiệt huyết, đam mê giải quyết vấn đề hệ thống và tối ưu hóa UX. Mời bạn chọn các chủ đề bên dưới để khám phá hồ sơ của Minh nhé!",
-            experience: "Về kinh nghiệm làm việc:\\nMinh hiện đang làm Project Management Executive tại SIHUB. Tại đây, Minh quản lý toàn bộ hành trình ươm tạo, thiết kế bản đồ hành trình số (Customer Journey Mapping) và phân tích các điểm chạm (touchpoints).\\n\\nTrước đó (07/2024 - 12/2024), Minh làm R&D Intern, phụ trách thu thập dữ liệu và phân tích khoảng trống năng lực cho dự án cấp thành phố với hơn 150 bên liên quan. Mời bạn xem timeline chi tiết ở màn hình bên trái!",
-            projects: "Các dự án nổi bật chứng minh năng lực kết hợp Sản phẩm và Công nghệ của Minh.\\n\\nNổi bật là 'EchoMind' - Hệ thống AI chuyển đổi tín hiệu não thành văn bản dùng PyTorch, đạt tốc độ giải mã 55-65 WPM. Bên cạnh đó, dự án 'E-Reader' lọt Top 20 chung cuộc TP.HCM đã áp dụng sâu sắc các nguyên lý HCI.\\n\\nHãy click vào danh sách bên trái để xem mô tả nhé!",
-            skills: "Minh sở hữu bộ kỹ năng đa dạng.\\n\\nThế mạnh cốt lõi là tư duy Agile/Scrum, thiết kế trải nghiệm người dùng (UX) và thử nghiệm A/B. Về kỹ thuật, Minh có nền tảng vững về Python và Data Analysis.\\n\\nBiểu đồ Radar bên trái sẽ cho bạn cái nhìn trực quan nhất về mức độ tự tin của Minh.",
-            education: "Về học vấn:\\nMinh đang theo học Cử nhân ngành Quản lý Công nghệ & Đổi mới Sáng tạo tại Đại học Kinh tế TP.HCM (UEH).\\n\\nMinh đạt điểm GPA xuất sắc 3.53/4.0. Ngoài ra, Minh còn tích lũy các chứng chỉ chuyên nghiệp của Google về Project Management."
+            greeting: `Chào Quý Nhà tuyển dụng! Tôi là trợ lý AI đại diện cho Nguyễn Hoàng Minh (hwinh). Minh là một Product Owner Intern với thế mạnh giải quyết vấn đề hệ thống và thiết kế trải nghiệm người dùng (UX).\n\nBạn muốn tìm hiểu khía cạnh nào trong hồ sơ của Minh? Hãy chọn các gợi ý bên dưới nhé!`,
+            
+            experience: `Về kinh nghiệm làm việc:\nMinh đã và đang công tác tại Trung tâm Khởi nghiệp Đổi mới Sáng tạo TP.HCM (SIHUB).\n\nTừ tháng 08/2022 đến nay, Minh giữ vị trí Project Management Executive, quản lý trực tiếp hành trình ươm tạo startup và thiết kế Customer Journey Map.\n\nTrước đó, Minh cũng làm R&D Intern, xử lý dữ liệu và tài liệu hóa chuẩn URD. Mời bạn xem các mốc thời gian chi tiết ở màn hình bên trái!`,
+            
+            projects: `Minh sở hữu các dự án kết hợp xuất sắc giữa logic kỹ thuật và tư duy thiết kế.\n\nĐáng chú ý nhất là 'EchoMind AI' - hệ thống chuyển đổi tín hiệu não thành văn bản dùng PyTorch, có hiệu suất cực cao (55-65 WPM). Kế tiếp là 'E-Reader Ecosystem' lọt Top 20 cấp Thành phố nhờ áp dụng chuẩn các nguyên lý Tương tác Người-Máy (HCI).\n\nBạn có thể nhấp vào các thẻ dự án bên trái để đọc chi tiết tech stack.`,
+            
+            skills: `Định hướng của Minh là kết nối Công nghệ và Kinh doanh.\n\nKỹ năng cốt lõi của Minh bao gồm UX Design, thiết kế bản đồ hành trình và quản lý bằng Agile/Scrum. Về mặt phân tích dữ liệu và AI, Minh thành thạo Python, PyTorch và A/B Testing.\n\nBiểu đồ Radar bên trái sẽ mô tả sinh động nhất mức độ thông thạo từng kỹ năng của Minh.`,
+            
+            education: `Về học vấn:\nMinh đang là Cử nhân năm cuối chuyên ngành Quản lý Công nghệ & Đổi mới Sáng tạo tại Đại học Kinh tế TP.HCM (UEH).\n\nMinh duy trì thành tích học tập xuất sắc với GPA 3.53 / 4.0, đồng thời tích lũy thêm các chứng chỉ chuyên sâu của Google để bổ trợ cho công việc Quản lý Sản phẩm.`
         };
 
         const prompts = [
             { id: 'experience', label: '💼 Kinh nghiệm làm việc', type: 'primary' },
             { id: 'projects', label: '🚀 Các dự án nổi bật', type: 'primary' },
-            { id: 'skills', label: '⚡ Kỹ năng công nghệ', type: 'primary' },
+            { id: 'skills', label: '⚡ Kỹ năng chuyên môn', type: 'primary' },
             { id: 'education', label: '📚 Học vấn & Thành tích', type: 'secondary' }
         ];
 
         let isTyping = false;
         let chartInstance = null;
 
+        // --- DOM ELEMENTS ---
         const chatContainer = document.getElementById('chat-messages');
         const promptsContainer = document.getElementById('quick-prompts');
         const views = {
@@ -230,6 +266,8 @@ html_code = """
             skills: document.getElementById('view-skills'),
             education: document.getElementById('view-education')
         };
+
+        // --- CORE FUNCTIONS ---
 
         function initChat() {
             chatContainer.innerHTML = '';
@@ -264,9 +302,12 @@ html_code = """
 
         function handlePromptClick(promptId, promptLabel) {
             if (isTyping) return;
+            
             promptsContainer.style.opacity = '0';
             setTimeout(() => { promptsContainer.style.display = 'none'; }, 300);
+
             appendMessage('user', promptLabel, false);
+
             setTimeout(() => {
                 switchView(promptId);
                 appendMessage('ai', cvData[promptId], true, () => {
@@ -279,15 +320,16 @@ html_code = """
         function appendMessage(sender, text, useTypewriter = false, callback = null) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `flex w-full ${sender === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`;
+            
             const innerDiv = document.createElement('div');
             innerDiv.className = `max-w-[85%] md:max-w-[75%] rounded-2xl px-5 py-3 text-[15px] leading-relaxed ${sender === 'user' ? 'msg-user' : 'msg-ai'}`;
             
             if (sender === 'ai' && useTypewriter) {
                 msgDiv.appendChild(innerDiv);
                 chatContainer.appendChild(msgDiv);
-                typeWriter(text, innerDiv, 20, callback);
+                typeWriter(text, innerDiv, 25, callback);
             } else {
-                innerDiv.innerHTML = text.replace(/\\n/g, '<br>');
+                innerDiv.innerHTML = text.replace(/\n/g, '<br>');
                 msgDiv.appendChild(innerDiv);
                 chatContainer.appendChild(msgDiv);
                 scrollToBottom();
@@ -305,11 +347,7 @@ html_code = """
             function type() {
                 if (i < text.length) {
                     let char = text.charAt(i);
-                    // Handle encoded newlines from JSON string
-                    if (char === '\\' && text.charAt(i+1) === 'n') {
-                        char = '<br>';
-                        i++;
-                    }
+                    if (char === '\n') char = '<br>';
                     textContainer.innerHTML += char;
                     i++;
                     scrollToBottom();
@@ -333,19 +371,22 @@ html_code = """
             initChat();
         }
 
+        // --- CHART.JS IMPLEMENTATION CHO MINH ---
         function renderSkillsChart() {
             const ctx = document.getElementById('skillsChart');
-            if (chartInstance) chartInstance.destroy();
+            if (chartInstance) {
+                chartInstance.destroy();
+            }
 
             chartInstance = new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['UX Design', 'Agile/Scrum', 'Journey Mapping', 'PRD Writing', 'A/B Testing', 'Data Analysis', 'Python/PyTorch'],
+                    labels: ['UX/UI Design', 'Agile/Scrum', 'Journey Mapping', 'Data Analysis', 'Python', 'PyTorch', 'A/B Testing'],
                     datasets: [{
                         label: 'Mức độ thông thạo',
-                        data: [90, 85, 95, 80, 85, 80, 75],
+                        data: [90, 85, 95, 80, 80, 75, 85],
                         fill: true,
-                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)', 
                         borderColor: 'rgb(37, 99, 235)',
                         pointBackgroundColor: 'rgb(37, 99, 235)',
                         pointBorderColor: '#fff',
@@ -360,8 +401,16 @@ html_code = """
                         r: {
                             angleLines: { color: 'rgba(0,0,0,0.1)' },
                             grid: { color: 'rgba(0,0,0,0.1)' },
-                            pointLabels: { font: { size: 12, family: "'Inter', sans-serif", weight: '600' }, color: '#1e293b' },
-                            ticks: { display: false, min: 0, max: 100, stepSize: 20 }
+                            pointLabels: {
+                                font: { size: 12, family: "'Inter', sans-serif", weight: '600' },
+                                color: '#1e293b' 
+                            },
+                            ticks: {
+                                display: false, 
+                                min: 0,
+                                max: 100,
+                                stepSize: 20
+                            }
                         }
                     },
                     plugins: {
@@ -385,10 +434,11 @@ html_code = """
         }
 
         window.addEventListener('DOMContentLoaded', initChat);
+
     </script>
 </body>
 </html>
 """
 
-# Gọi thành phần (component) để hiển thị toàn bộ giao diện lên Streamlit
-components.html(html_code, height=850, scrolling=True)
+# 4. Triển khai component hiển thị HTML toàn màn hình
+components.html(html_code, height=900, scrolling=True)
