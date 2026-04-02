@@ -56,7 +56,7 @@ html_code = r"""
         #scroll-progress {
             position: fixed;
             top: 0;
-            left: 90px; /* offset for sidebar */
+            left: 90px;
             height: 3px;
             background: linear-gradient(90deg, var(--accent), var(--teal));
             width: 0%;
@@ -219,6 +219,33 @@ html_code = r"""
         .visual-panel::-webkit-scrollbar-track { background: transparent; }
         .visual-panel::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 6px; }
 
+        /* === VIEW TRANSITION OVERLAY === */
+        .view-transition-overlay {
+            position: absolute;
+            inset: 0;
+            background: var(--ink);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .view-transition-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border2);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
         /* === CHAT PANEL === */
         .chat-panel {
             width: 420px;
@@ -228,6 +255,7 @@ html_code = r"""
             border-left: 1px solid var(--border);
             display: flex;
             flex-direction: column;
+            transition: width 0.3s ease;
         }
 
         /* === NOISE TEXTURE OVERLAY === */
@@ -331,7 +359,8 @@ html_code = r"""
         .edu-hero::before { content: 'UEH'; position: absolute; right: -20px; bottom: -40px; font-family: 'Syne', sans-serif; font-size: 160px; font-weight: 800; color: rgba(255,255,255,0.02); line-height: 1; pointer-events: none; }
         .gpa-badge { display: inline-flex; align-items: center; gap: 12px; background: rgba(240,192,96,0.1); border: 1px solid rgba(240,192,96,0.3); border-radius: 16px; padding: 16px 24px; margin-top: 16px; }
 
-        .cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px; }
+        .cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px 20px; margin-bottom: 12px; display: flex; align-items: center; gap: 16px; transition: transform 0.2s; }
+        .cert-card:hover { transform: translateX(4px); border-color: var(--accent2); }
         
         /* CHAT PANEL */
         .chat-header { padding: 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
@@ -369,6 +398,23 @@ html_code = r"""
         @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .d1{animation-delay:0.1s} .d2{animation-delay:0.2s} .d3{animation-delay:0.3s} .d4{animation-delay:0.4s} .d5{animation-delay:0.5s}
         .subtle-div { height: 1px; background: var(--border); margin: 40px 0; }
+
+        /* === RESPONSIVE MEDIA QUERIES === */
+        @media (max-width: 1200px) {
+            .chat-panel { width: 340px; }
+            .view-content { padding: 40px; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .skills-layout { grid-template-columns: 1fr; gap: 20px;}
+        }
+        @media (max-width: 900px) {
+            .chat-panel { display: none; /* Hide chat panel on small screens to prioritize main info */ }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-card.featured { grid-template-columns: 1fr; }
+            #scroll-progress { left: 72px; }
+            .sidenav { width: 72px; }
+            .nav-item { width: 44px; height: 44px; }
+            .nav-tooltip { left: 56px; }
+        }
 
     </style>
 </head>
@@ -418,6 +464,11 @@ html_code = r"""
     </nav>
 
     <main class="visual-panel" id="visual-panel">
+        
+        <div id="view-transition-overlay" class="view-transition-overlay">
+            <div class="spinner"></div>
+        </div>
+
         <div id="view-welcome" class="view-content">
             <div class="welcome-eyebrow fade-up">
                 <div class="status-dot"></div>
@@ -714,6 +765,7 @@ const i18n = {
 
 let currentLang = 'en'; // Default
 let isTyping = false;
+let isTransitioning = false; // Flag to prevent multi-clicks during transition
 let chartInstance = null;
 
 const chatMessages = document.getElementById('chat-messages');
@@ -728,7 +780,6 @@ function selectLanguage(lang) {
     
     renderUI();
     initChat();
-    // Re-init chart if on skills view
     if(document.getElementById('view-skills').style.display !== 'none') {
         initSkillsChart();
     }
@@ -857,23 +908,58 @@ function renderUI() {
     document.getElementById('c-reset').textContent = t.chat.reset;
 }
 
-// === VIEW SWITCHING ===
+// === VIEW SWITCHING (WITH UX TRANSITION) ===
 function switchView(viewId, navEl) {
-    document.querySelectorAll('.view-content').forEach(v => v.style.display = 'none');
-    document.getElementById('view-' + viewId).style.display = '';
+    if (isTransitioning) return;
     
-    // Reset scroll progress when switching views
-    document.getElementById('scroll-progress').style.width = '0%';
-    document.getElementById('visual-panel').scrollTop = 0;
+    const currentView = document.querySelector('.view-content:not([style*="display: none"])');
+    const targetView = document.getElementById('view-' + viewId);
+    if (currentView === targetView) return;
 
+    isTransitioning = true;
+    
+    // 1. Cập nhật Nav Bar ngay lập tức
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     if (navEl) navEl.classList.add('active');
     else {
         const nav = document.querySelector(`[data-view="${viewId}"]`);
         if (nav) nav.classList.add('active');
     }
-    if (viewId === 'skills') setTimeout(initSkillsChart, 100);
-    if (viewId === 'skills') setTimeout(animateBars, 200);
+
+    // 2. Kích hoạt lớp màn mờ (overlay) chứa spinner
+    const transOverlay = document.getElementById('view-transition-overlay');
+    transOverlay.classList.add('active');
+
+    // 3. Sau 300ms (khi overlay đã che kín), thay đổi DOM ở dưới
+    setTimeout(() => {
+        if (currentView) currentView.style.display = 'none';
+        targetView.style.display = '';
+        
+        // Reset thanh cuộn
+        document.getElementById('scroll-progress').style.width = '0%';
+        document.getElementById('visual-panel').scrollTop = 0;
+
+        // Xử lý riêng cho View Kỹ năng (biểu đồ)
+        if (viewId === 'skills') {
+            initSkillsChart();
+            animateBars();
+        }
+
+        // Tái kích hoạt hiệu ứng fade-up của tab mới
+        const animElements = targetView.querySelectorAll('.fade-up');
+        animElements.forEach(el => {
+            el.style.animation = 'none';
+            el.offsetHeight; /* trigger reflow */
+            el.style.animation = null; 
+        });
+
+        // 4. Cho overlay biến mất dần
+        setTimeout(() => {
+            transOverlay.classList.remove('active');
+            isTransitioning = false; // Mở khóa thao tác
+        }, 300); 
+
+    }, 300); // Overlay fadeIn time
 }
 
 function animateBars() {
@@ -897,20 +983,22 @@ function renderPrompts() {
 }
 
 function handlePrompt(id, label) {
-    if (isTyping) return;
+    if (isTyping || isTransitioning) return;
     promptsGrid.style.opacity = '0.4';
     appendMessage('user', label, false);
     
-    // Switch view logic including education
+    // Switch view mapping
     const viewMap = { exp: 'experience', proj: 'projects', edu: 'education', skills: 'skills' };
-    setTimeout(() => switchView(viewMap[id] || 'welcome', null), 200);
+    
+    // Delay xíu cho mượt rồi mới switch view
+    setTimeout(() => switchView(viewMap[id] || 'welcome', null), 300);
 
     setTimeout(() => {
         appendMessage('ai', i18n[currentLang].chat['ans_'+id], true, () => {
             promptsGrid.style.opacity = '1';
             renderPrompts();
         });
-    }, 500);
+    }, 700);
 }
 
 function appendMessage(sender, text, useTypewriter = false, callback = null) {
@@ -929,7 +1017,7 @@ function appendMessage(sender, text, useTypewriter = false, callback = null) {
     chatMessages.appendChild(row);
 
     if (sender === 'ai' && useTypewriter) {
-        typeWriter(text, bubble, 12, callback); // Fast typing speed
+        typeWriter(text, bubble, callback);
     } else {
         bubble.innerHTML = text.replace(/\n/g, '<br>');
         scrollBottom();
@@ -937,11 +1025,11 @@ function appendMessage(sender, text, useTypewriter = false, callback = null) {
     }
 }
 
-function typeWriter(text, el, speed, callback) {
+// Hiệu ứng gõ phím ngẫu nhiên tạo cảm giác AI/người
+function typeWriter(text, el, callback) {
     isTyping = true;
     renderPrompts(); // disable buttons
     
-    // Parse HTML properly during typewriter effect
     let tempDiv = document.createElement('div');
     tempDiv.innerHTML = text.replace(/\n/g, '<br>');
     let nodes = Array.from(tempDiv.childNodes);
@@ -960,17 +1048,20 @@ function typeWriter(text, el, speed, callback) {
                     tc.innerHTML += node.textContent.charAt(charIndex);
                     charIndex++;
                     scrollBottom();
-                    setTimeout(type, speed);
+                    
+                    // Tốc độ gõ ngẫu nhiên từ 5ms đến 25ms (Cảm giác tự nhiên hơn)
+                    let randomSpeed = Math.floor(Math.random() * 20) + 5;
+                    setTimeout(type, randomSpeed);
                 } else {
                     nodeIndex++;
                     charIndex = 0;
                     type();
                 }
-            } else { // Element node (like <br>, <strong>, <span>)
+            } else { // Element node (<br>, <strong>, etc.)
                 tc.appendChild(node.cloneNode(true));
                 nodeIndex++;
                 scrollBottom();
-                setTimeout(type, speed);
+                setTimeout(type, 10);
             }
         } else {
             isTyping = false;
