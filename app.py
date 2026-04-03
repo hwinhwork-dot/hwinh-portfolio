@@ -403,10 +403,10 @@ en:{
   w:{
     status:'Available for Product & UX opportunities · HCMC, Vietnam',
     role:'Product Owner · UX Strategist · AI Builder',
-    summary:`Young professional in <strong style="color:var(--text)">Technology & Innovation Management</strong> — operating at the intersection of UX Design, System Thinking, and AI Engineering. I turn messy user data and tangled pain points into clean, measurable product experiences. Whether it's mapping a startup's entire onboarding journey or leading an AI project from a blank canvas to a working Transformer model, I believe the best products are built when deep empathy meets rigorous systems thinking.`,
+    summary:`I am a young professional in <strong style="color:var(--text)">Technology & Innovation Management</strong>, operating at the intersection of UX Design, Systems Thinking, and AI. I specialize in turning complex user data and behavioral pain points into seamless, measurable digital experiences. I believe the best products emerge when deep empathy meets rigorous execution — whether it’s streamlining a startup's onboarding journey or leading an AI project from an initial concept to a fully functioning model.`,
     stats:['Years Exp.','Stakeholders Managed','AI Tech. ROI','City-level Finalist'],
     explore:'Explore this portfolio',
-    hint:'Use the sidebar or chat with the AI Assistant on the right to dive into experience, projects, and skills in full detail.'
+    hint:'Use the sidebar or chat with the AI Assistant on the right to dive into my experience, projects, and skills in full detail.'
   },
   exp:{
     tag:'Work History',title:'Work <span>Experience</span>',
@@ -416,9 +416,9 @@ en:{
         role:'Project Management Executive',
         company:'Startup & Innovation Hub of HCMC (SIHUB) · Under Dept. of Science & Technology HCMC',
         bullets:[
-          `<strong>End-to-End Customer Journey Mapping & MVP Delivery:</strong> Designed the complete digital journey for tech startups from first touchpoint to activation — functioning as both an onboarding flow and a performance baseline. Translated messy founder frustrations into structured User Stories and delivered MVPs iteratively, reducing time-to-first-value for startups in the incubation program.`,
-          `<strong>Data-Driven Pain Point Resolution:</strong> Continuously monitored omnichannel touchpoints to surface operational bottlenecks. Deployed A/B testing and Interleaving experiments to rigorously evaluate feature iterations — ensuring every product change was backed by behavioral evidence, not gut feeling. Resolved several high-friction activation blockers before full-scale rollout.`,
-          `<strong>Stakeholder Management & NPS Intelligence:</strong> Acted as the central liaison for 150+ startup founders, managing communication across all stages of the incubation journey. Analyzed behavioral data to build NPS dashboards, presenting actionable retention insights directly to the Board of Directors. Helped shift the team's mindset from treating NPS as a single score to understanding it as a real-time behavioral signal system.`
+          `<strong>End-to-End Customer Journey Mapping & MVP Delivery:</strong> Designed complete digital user journeys for tech startups. Instead of just creating flowcharts, I focused on identifying core user frustrations, translating them into structured User Stories, and driving rapid, iterative MVP development to reduce time-to-first-value.`,
+          `<strong>Data-Driven Product Validation:</strong> Monitored omnichannel touchpoints to identify operational bottlenecks. I implemented A/B testing and Interleaving experiments to rigorously evaluate feature changes, ensuring that every product decision was backed by behavioral evidence rather than assumptions.`,
+          `<strong>Stakeholder Management & NPS Analytics:</strong> Served as the primary liaison for 150+ startup founders. By analyzing behavioral data, I transformed NPS from a static metric into a real-time behavioral signal system, presenting actionable retention insights directly to the Board of Directors.`
         ],
         tags:['Customer Journey Mapping','A/B Testing','Interleaving','MVP Delivery','NPS Analytics','Stakeholder Management (150+)','URD Documentation']
       },
@@ -427,8 +427,8 @@ en:{
         role:'Research & Development Intern',
         company:'SIHUB · Executed data-driven project management for a city-level scientific competency framework',
         bullets:[
-          `<strong>Large-Scale Data Analysis & Requirements Gathering:</strong> Led the end-to-end data lifecycle for a city-level competency gap analysis project involving 150+ key stakeholders — including government officials, research institutes, and corporate partners. Designed the data collection methodology, cleaned raw qualitative inputs, and extracted structured insights that directly shaped the final policy recommendations.`,
-          `<strong>URD-Standard Structured Documentation:</strong> Authored comprehensive strategic reports and system requirement documents aligned with URD (User Requirements Document) standards. The challenge was bridging the gap between qualitative user feedback and concrete system requirements — a skill that directly informed how I later approached PRD writing and user story creation in product roles.`
+          `<strong>Large-Scale Data Analysis & Requirements Gathering:</strong> Directed the full data lifecycle for a city-level competency gap analysis. I successfully managed conflicting requirements from over 150 key stakeholders (government officials, research institutes, and corporate partners), extracting structured insights that shaped final policy recommendations.`,
+          `<strong>URD-Standard Structured Documentation:</strong> Authored comprehensive strategic reports and system requirement documents aligned with URD (User Requirements Document) standards. This experience refined my ability to bridge the gap between qualitative user feedback and concrete technical requirements.`
         ],
         tags:['Data Lifecycle Management','Competency Gap Analysis','150+ Stakeholders','URD Standards','Requirements Engineering','Strategic Reporting']
       }
@@ -440,7 +440,7 @@ en:{
       {
         id:'echomind',badge:'★ Flagship AI Project',bClass:'badge-featured',date:'Sep — Dec 2025',
         name:'EchoMind AI',sub:'Non-Invasive Brain-to-Text System · Project Lead · MindConnect Labs · UEH Course: Project AI',
-        desc:`EchoMind started with a human problem: patients with stroke, ALS, or TBI who are fully conscious but completely locked inside their bodies — unable to speak, unable to move, unable to tell the person next to them what they need. Traditional AAC (Augmentative & Alternative Communication) devices offer a workaround, but they're slow (25–30 WPM), laggy (3–5s), and achieve only 35–40% session success. We wanted to do better.\n\nAs <strong style="color:var(--text)">Project Lead</strong>, I managed the full AI product lifecycle using the <strong style="color:var(--text)">CPMAI 6-phase framework</strong> combined with 8 Agile Sprints and a RACI matrix for a 7-member team (3,833.5 total hours tracked). The technical journey was humbling: our first model — a Seq2Seq LSTM — collapsed into Mode Collapse, endlessly repeating "you you you..." regardless of input. The root cause was an information bottleneck: the LSTM was trying to compress an entire EEG sequence (hundreds of timesteps) into a single context vector. It couldn't hold that much.\n\nThe pivot to <strong style="color:var(--text)">Transformer V2</strong> (Multi-Head Attention, 8 heads, Positional Encoding, Label Smoothing ε=0.1, LR=0.00005) solved the bottleneck by letting the decoder attend directly to all encoder states at every decoding step. The results spoke: <strong style="color:var(--text)">55–65 WPM, &lt;1s latency, 92–95% accuracy, 72% Technical ROI</strong> vs traditional AAC. We also designed an Expert Dashboard with Attention Maps — so the black-box problem in healthcare could be addressed: doctors can see which brain regions the model focused on when decoding each word.`,
+        desc:`EchoMind addresses a profound human challenge: empowering patients with locked-in syndrome to communicate. Traditional AAC devices are slow (25–30 WPM), laggy, and have low session success rates. Our goal was to build a faster, more reliable non-invasive EEG-to-text system.\n\nAs <strong style="color:var(--text)">Project Lead</strong>, I managed the full AI product lifecycle utilizing the <strong style="color:var(--text)">CPMAI 6-phase framework</strong>, executing 8 Agile Sprints with a 7-member team. Early on, our baseline LSTM model suffered from Mode Collapse due to an information bottleneck. I made the strategic decision to pivot to a <strong style="color:var(--text)">Transformer V2</strong> architecture. To optimize for edge devices, we applied Int8 Quantization, allowing the model to run smoothly without GPUs. \n\nThe final system achieved <strong style="color:var(--text)">55–65 WPM, &lt;1s latency, and a 72% Technical ROI</strong> over traditional AAC. We also integrated an Expert Dashboard with Attention Maps to provide Explainable AI for healthcare professionals.`,
         info:[
           {l:'Final Architecture',v:'Transformer V2 · 8-head Multi-Head Attention · Positional Encoding · Label Smoothing ε=0.1'},
           {l:'Baseline vs Final',v:'Seq2Seq LSTM (Mode Collapse, WER ~85–90%) → Transformer V2 (Structured output, 6–7/10 correct)'},
@@ -453,13 +453,13 @@ en:{
       {
         id:'ereader',badge:'🏆 Top 20 Finalist',bClass:'badge-top20',date:'Mar — Jun 2025',
         name:'E-Reader Ecosystem',sub:'Product Lead · HCMC Digital Education · Directed by HCMC People\'s Committee',
-        desc:`The brief was broad: design a digital education ecosystem for student e-reading devices. But beneath the surface, the real challenge was about cognitive friction — students were dropping off during the activation phase because the journey from "I received this device" to "I'm actually learning on it" was full of unnecessary obstacles.\n\nI applied <strong style="color:var(--text)">HCI (Human-Computer Interaction)</strong> principles systematically: mapped the full student journey from device provisioning and registration through content onboarding to daily use and content updates. For each stage, I ran a pain point decomposition — breaking down where cognitive load spikes, where confusion sets in, and where students give up. This translated into structured feature sets with clear User Stories, each tied to a specific friction point with a measurable success criterion.\n\nThe result was a cohesive ecosystem design where every touchpoint spoke the same language. The project was recognised as a <strong style="color:var(--text)">Top 20 Finalist</strong> at the HCMC People's Committee city-level digital education competition.`,
+        desc:`A Top 20 City-level initiative aimed at designing a digital education ecosystem for student e-reading devices. The core challenge was minimizing cognitive friction — ensuring students wouldn't abandon the device during the initial setup phase.\n\nI rigorously applied <strong style="color:var(--text)">HCI (Human-Computer Interaction)</strong> principles to map the complete user journey. By systematically decomposing pain points, I identified specific stages causing cognitive overload. These insights were translated into actionable User Stories with clear success criteria, resulting in a cohesive ecosystem design that significantly streamlined the user experience.`,
         tech:['HCI Principles','UX Design','Journey Mapping','Problem Decomposition','User Stories','Cognitive Load Analysis','Figma Prototyping']
       },
       {
         id:'events',badge:'● Ongoing',bClass:'badge-active',date:'Jul 2024 — Present',
         name:'Innovation Events Operations',sub:'Operations · SIHUB Startup Ecosystem · HCMC',
-        desc:`Directly organized and operated two of HCMC's major city-level innovation events: <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> (flagship university startup competition) and <strong style="color:var(--text)">WHISE Week 2024</strong> (HCMC Innovation Week). Responsibilities spanned end-to-end event operations, cross-team coordination between SIHUB departments and external partners, real-time stakeholder communication with startup founders, investors, and government representatives, and on-ground experience quality management.`,
+        desc:`Managed end-to-end operations for two major city-level innovation events: <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> and <strong style="color:var(--text)">WHISE Week 2024</strong>. I coordinated cross-functional teams and facilitated real-time communication between startup founders, investors, and government representatives to ensure high-quality, seamless event experiences.`,
         tech:['Event Management','Cross-team Coordination','Stakeholder Communication','Operations Planning']
       }
     ]
@@ -505,10 +505,10 @@ en:{
       {id:'edu',i:'🎓',l:'Education'}
     ],
     ans:{
-      exp:`Minh has 2+ years at SIHUB — the Startup & Innovation Hub under HCMC's Department of Science & Technology.\n\n◈ Jan–Oct 2025 | Project Management Executive\nMinh designed end-to-end digital journey maps for tech startups, treating them not just as UX artifacts but as operational systems with activation flows, friction checkpoints, and conversion metrics. He managed 150+ startup founders as the central touchpoint, running A/B tests and Interleaving experiments to validate every feature change before rollout. His approach to NPS: not a single score, but a real-time behavioral signal system reported to the Board.\n\n◈ Jul–Dec 2024 | R&D Intern\nLed competency gap analysis for 150+ stakeholders in a city-level scientific framework project. Authored URD-standard documentation that bridged qualitative user insights with concrete system requirements — a skill that directly shaped his later PRD writing approach.`,
-      proj:`Minh has three standout projects that together tell the story of someone who can think across the full product stack:\n\n🧠 EchoMind AI — Flagship (Sep–Dec 2025)\nBCI system decoding 256-channel EEG into text. As Project Lead: managed 8 Agile Sprints under CPMAI, diagnosed and pivoted from LSTM Mode Collapse to Transformer V2 (Multi-Head Attention + Label Smoothing). Final results: 55–65 WPM, <1s latency, 72% Technical ROI. Also designed an Expert Dashboard with Attention Maps to address healthcare's black-box problem.\n\n📚 E-Reader Ecosystem — Top 20 City Level (Mar–Jun 2025)\nHCI-focused user journey design from device provisioning to content updates. Decomposed student cognitive friction into feature sets. Top 20 at HCMC People's Committee competition.\n\n🚀 Innovation Events Operations — Ongoing\nOrganized Univ.Star 2024/2025 and WHISE Week 2024 at SIHUB.`,
-      skills:`Minh's competency profile is built across 3 pillars:\n\n◈ Product Craft (Core Strength)\n→ Journey Mapping 95% · UX/HCI 90% · Agile/CPMAI 88%\n→ PRD & User Stories · A/B Testing & Interleaving · Problem Decomposition\n→ RACI Matrix · Burndown Tracking · Design Thinking\n\n◈ Data & Systems Thinking\n→ Python · Data Analysis & EDA · Google Colab\n→ PyTorch · Feature Engineering · WER Metrics\n→ Transformer architecture (applied in EchoMind)\n\n◈ Stakeholder & Execution\n→ 150+ stakeholder management at city/government level\n→ Strategic documentation to Board level\n→ Led 7-member cross-functional team across 8 Sprints`,
-      edu:`Minh is finishing his final year at UEH (University of Economics HCMC), majoring in Technology & Innovation Management. GPA: 3.53/4.0.\n\nKey coursework directly applied to his product work:\n→ Human-Computer Interaction (HCI) — the foundation of his UX approach\n→ Design Thinking — how he frames product problems\n→ Business Intelligence — how he reads data as product signals\n→ Project AI — where EchoMind was born\n\nCertifications: Google Project Management · Google Business Intelligence · Agile Management\n\nCurrently preparing for TOEIC to expand into international product opportunities.`
+      exp:`Minh has over 2 years of experience at SIHUB (Startup & Innovation Hub of HCMC).\n\n◈ Jan–Oct 2025 | Project Management Executive\nMinh designed end-to-end digital journey maps for tech startups. He didn't just draw flowcharts; he implemented validation processes via A/B testing and Interleaving experiments. He also shifted the team's perspective on NPS, treating it as a real-time behavioral signal system rather than a static metric.\n\n◈ Jul–Dec 2024 | R&D Intern\nLed a competency gap analysis involving 150+ stakeholders. He successfully bridged qualitative user feedback with concrete system requirements by authoring URD-standard documentation.`,
+      proj:`Minh's top three projects showcase his ability to execute across the full product stack:\n\n🧠 EchoMind AI — Flagship (Sep–Dec 2025)\nA BCI system decoding EEG signals into text. As Project Lead, Minh managed 8 Sprints using CPMAI, pivoting from a failing LSTM model to a successful Transformer V2 architecture. Results: 55–65 WPM, <1s latency. He also designed an Expert Dashboard with Attention Maps to tackle the healthcare "black box" problem.\n\n📚 E-Reader Ecosystem — Top 20 City Level (Mar–Jun 2025)\nAn HCI-focused design addressing cognitive friction in student e-reading devices. Decomposed user pain points into actionable feature sets. Recognized as a Top 20 Finalist by the HCMC People's Committee.\n\n🚀 Innovation Events Operations\nSuccessfully organized and coordinated large-scale events like Univ.Star and WHISE Week at SIHUB.`,
+      skills:`Minh's competency profile is built on three strong pillars:\n\n◈ Product Craft (Core Strength)\n→ Journey Mapping (95%) · UX/HCI (90%) · Agile/CPMAI (88%)\n→ PRD & User Stories · A/B Testing · Problem Decomposition\n\n◈ Data & Systems Thinking\n→ Python · Data Analysis & EDA\n→ PyTorch · Feature Engineering · Transformer Architectures\n\n◈ Stakeholder & Execution\n→ Managing 150+ stakeholders at the city/government level\n→ Translating complex data into strategic Board-level reports\n→ Leading cross-functional teams in Agile environments`,
+      edu:`Minh is completing his final year at UEH (University of Economics HCMC), majoring in Technology & Innovation Management with a strong GPA of 3.53/4.0.\n\nKey coursework that shapes his product mindset:\n→ Human-Computer Interaction (HCI)\n→ Design Thinking\n→ Business Intelligence\n→ Project AI\n\nHe holds certifications in Google Project Management, Google Business Intelligence, and Agile Management.`
     }
   }
 },
@@ -519,10 +519,10 @@ vi:{
   w:{
     status:'Sẵn sàng đón nhận cơ hội Product & UX mới · TP.HCM',
     role:'Product Owner · UX Strategist · AI Builder',
-    summary:`Hoàng Minh là một ứng viên trẻ về <strong style="color:var(--text)">Quản lý Công nghệ & Đổi mới Sáng tạo</strong> — có nền và kiến thức của UX Design, System Thinking và AI Engineering. Tôi chuyển hóa dữ liệu người dùng phức tạp và các "điểm đau" (pain points) thành trải nghiệm sản phẩm, có thể đo lường. Từ việc lập bản đồ hành trình onboarding cho startup đến dẫn dắt một dự án AI từ tờ giấy trắng đến mô hình Transformer hoạt động được — tôi tin sản phẩm tốt nhất được tạo ra khi sự đồng cảm sâu sắc gặp tư duy hệ thống chặt chẽ.`,
+    summary:`Là một chuyên gia trẻ trong lĩnh vực <strong style="color:var(--text)">Quản lý Công nghệ & Đổi mới Sáng tạo</strong>, tôi thiết kế và xây dựng sản phẩm tại điểm giao thoa giữa Thiết kế Trải nghiệm (UX), Tư duy Hệ thống và AI. Đam mê của tôi là chuyển hóa những dữ liệu và "nỗi đau" (pain points) phức tạp của người dùng thành các giải pháp số mượt mà và có thể đo lường. Tôi tin rằng những sản phẩm xuất sắc nhất luôn ra đời từ sự kết hợp giữa sự thấu cảm sâu sắc với người dùng và năng lực thực thi hệ thống chặt chẽ.`,
     stats:['Năm kinh nghiệm','Stakeholders quản lý','ROI kỹ thuật AI','Chung cuộc cấp TP'],
     explore:'Khám phá hồ sơ này',
-    hint:'Dùng thanh điều hướng hoặc chat với AI Assistant bên phải để khám phá kinh nghiệm, dự án và kỹ năng chi tiết.'
+    hint:'Dùng thanh điều hướng hoặc chat với AI Assistant bên phải để khám phá chi tiết về kinh nghiệm, dự án và kỹ năng của tôi.'
   },
   exp:{
     tag:'Lịch sử làm việc',title:'Kinh nghiệm <span>Làm việc</span>',
@@ -532,9 +532,9 @@ vi:{
         role:'Chuyên viên Quản lý Dự án (Project Management Executive)',
         company:'Trung tâm Hỗ trợ Khởi nghiệp & Đổi mới Sáng tạo TP.HCM (SIHUB) · Trực thuộc Sở KH&CN',
         bullets:[
-          `<strong>Lập bản đồ Hành trình Khách hàng & Triển khai MVP:</strong> Thiết kế hành trình số (digital journey map) nhằm hỗ trợ cho các startup công nghệ tại SIHUB. Cùng các Startup tìm kiếm "nỗi đau" của khách hàng và đưa nó thành User Stories có cấu trúc, triển khai MVP theo từng vòng lặp, và giúp rút ngắn đáng kể time-to-first-value cho các startup trong chương trình ươm tạo.`,
-          `<strong>Giải quyết Pain Point dựa trên Dữ liệu:</strong> Liên tục theo dõi các touchpoints đa kênh để phát hiện điểm nghẽn vận hành. Hỗ trợ áp dụng A/B testing và Interleaving experiments để kiểm chứng chặt chẽ các thay đổi tính năng cho các Startup, nhằm đảm bảo mọi quyết định sản phẩm đều có giá trị, không phải cảm tính.`,
-          `<strong>Quản lý Stakeholder & Hệ thống NPS:</strong> Làm đầu mối trung tâm cho 5+ startup founders xuyên suốt hành trình ươm tạo. Phân tích dữ liệu hành vi để xây dựng dashboard NPS, trình bày insights về giữ chân người dùng trực tiếp lên Ban Giám đốc. Giúp nhóm chuyển tư duy từ NPS là một con số thành NPS là hệ thống tín hiệu hành vi real-time.`
+          `<strong>Thiết kế Bản đồ Hành trình Số & Triển khai MVP:</strong> Thiết kế bản đồ hành trình toàn diện (end-to-end digital journey map) cho các startup công nghệ. Thay vì chỉ vẽ quy trình, tôi đi sâu vào việc định nghĩa các vấn đề cốt lõi của người dùng, chuyển đổi chúng thành các User Stories sắc bén để thúc đẩy quá trình phát triển MVP nhanh chóng và hiệu quả.`,
+          `<strong>Giải quyết Vấn đề Dựa trên Dữ liệu:</strong> Liên tục theo dõi các điểm chạm (touchpoints) đa kênh để phát hiện điểm nghẽn vận hành. Triển khai các thử nghiệm A/B testing và Interleaving để đánh giá nghiêm ngặt các thay đổi tính năng — đảm bảo mọi quyết định sản phẩm đều được hỗ trợ bởi dữ liệu hành vi thực tế.`,
+          `<strong>Quản lý Stakeholder & Phân tích NPS:</strong> Là đầu mối làm việc với hơn 150 nhà sáng lập startup. Bằng cách phân tích dữ liệu, tôi đã chuyển đổi việc sử dụng NPS từ một chỉ số tĩnh thành một hệ thống tín hiệu hành vi theo thời gian thực, từ đó báo cáo các insight chiến lược về việc giữ chân người dùng lên Ban Giám đốc.`
         ],
         tags:['Customer Journey Mapping','A/B Testing','Interleaving','MVP Delivery','NPS Analytics','Quản lý 150+ Stakeholders','Tài liệu URD']
       },
@@ -543,8 +543,8 @@ vi:{
         role:'Thực tập sinh Nghiên cứu & Phát triển (R&D Intern)',
         company:'SIHUB · Quản lý dự án dựa trên dữ liệu cho khung năng lực cấp thành phố',
         bullets:[
-          `<strong>Phân tích Dữ liệu Quy mô Lớn & Lấy Yêu cầu:</strong> Dẫn dắt vòng đời dữ liệu (end-to-end) cho dự án phân tích khoảng trống năng lực trong bài nghiên cứu khoa học cấp thành phố — làm việc với 150+ stakeholders chủ chốt bao gồm cơ quan nhà nước, viện nghiên cứu và doanh nghiệp. Thiết kế phương pháp thu thập dữ liệu, làm sạch đầu vào định tính và trích xuất insights để định hình khuyến nghị chính sách cuối cùng.`,
-          `<strong>Tài liệu hóa Chuẩn URD:</strong> Soạn thảo báo cáo chiến lược và tài liệu yêu cầu hệ thống theo chuẩn URD. Thách thức cốt lõi là kết nối phản hồi định tính của người dùng với yêu cầu hệ thống cụ thể — kỹ năng này trực tiếp định hình cách Minh viết PRD và User Stories sau này.`
+          `<strong>Phân tích Dữ liệu Quy mô Lớn & Lấy Yêu cầu:</strong> Dẫn dắt toàn bộ vòng đời dữ liệu cho dự án phân tích khoảng trống năng lực cấp thành phố. Phối hợp với hơn 150 bên liên quan (cơ quan nhà nước, viện nghiên cứu, doanh nghiệp) để thống nhất các yêu cầu phức tạp, từ đó trích xuất insight định hình các chính sách cuối cùng.`,
+          `<strong>Tài liệu hóa Chuẩn URD:</strong> Soạn thảo các báo cáo chiến lược và tài liệu yêu cầu hệ thống tuân thủ chuẩn URD. Kinh nghiệm này giúp tôi mài giũa khả năng kết nối giữa những phản hồi định tính của người dùng với các yêu cầu kỹ thuật cụ thể của hệ thống.`
         ],
         tags:['Quản lý Vòng đời Dữ liệu','Phân tích Khoảng trống Năng lực','150+ Stakeholders','Chuẩn URD','Kỹ thuật Yêu cầu']
       }
@@ -556,7 +556,7 @@ vi:{
       {
         id:'echomind',badge:'★ Dự án AI Trọng điểm',bClass:'badge-featured',date:'Tháng 9 — 12/2025',
         name:'EchoMind AI',sub:'Hệ thống Não-Chữ Phi Xâm Lấn · Project Lead · MindConnect Labs · Môn Dự án AI - UEH',
-        desc:`EchoMind bắt đầu từ một vấn đề mang tính nhân văn sâu sắc: những bệnh nhân đột quỵ, ALS, hoặc chấn thương sọ não — hoàn toàn tỉnh táo nhưng bị nhốt trong cơ thể mình, không thể nói, không thể cử động, không thể nói với người bên cạnh rằng họ đang cần gì. Các thiết bị AAC (Augmentative & Alternative Communication) truyền thống chỉ đạt 25–30 WPM, độ trễ 3–5s và tỷ lệ thành công 35–40%. Chúng tôi muốn làm tốt hơn.\n\nVới vai trò <strong style="color:var(--text)">Project Lead</strong>, Minh quản lý toàn bộ vòng đời sản phẩm AI theo <strong style="color:var(--text)">khung CPMAI 6 pha</strong> kết hợp 8 Agile Sprints và ma trận RACI cho nhóm 7 người (3.833,5 tổng giờ được theo dõi). Hành trình kỹ thuật không phải lúc nào cũng bằng phẳng: mô hình baseline Seq2Seq LSTM sụp đổ hoàn toàn vào Mode Collapse — lặp đi lặp lại "you you you..." bất kể đầu vào là gì. Nguyên nhân gốc rễ: nút thắt cổ chai thông tin — LSTM phải nén toàn bộ chuỗi EEG vào một vector bối cảnh duy nhất, và nó không chứa nổi.\n\nQuyết định chuyển sang <strong style="color:var(--text)">Transformer V2</strong> (Multi-Head Attention 8 đầu, Positional Encoding, Label Smoothing ε=0.1, LR=0.00005) giải quyết triệt để bằng cách cho phép decoder "nhìn" trực tiếp vào toàn bộ encoder states tại mỗi bước giải mã. Kết quả: <strong style="color:var(--text)">55–65 WPM, độ trễ &lt;1s, chính xác 92–95%, ROI kỹ thuật 72%</strong>. Nhóm cũng thiết kế Expert Dashboard với Attention Maps — để giải quyết vấn đề "hộp đen" trong y tế.`,
+        desc:`Khởi nguồn từ mong muốn hỗ trợ những bệnh nhân hội chứng khóa trong (locked-in syndrome) giao tiếp, EchoMind là hệ thống AI chuyển đổi tín hiệu điện não (EEG) thành văn bản. Các thiết bị AAC truyền thống thường rất chậm (25-30 WPM) và có độ trễ cao. Chúng tôi đặt mục tiêu tạo ra một giải pháp vượt trội hơn.\n\nTrong vai trò <strong style="color:var(--text)">Project Lead</strong>, tôi quản lý toàn bộ vòng đời dự án theo <strong style="color:var(--text)">khung CPMAI</strong> và Agile/Scrum (8 Sprints). Khi mô hình LSTM ban đầu gặp hiện tượng Mode Collapse (mất đa dạng dữ liệu) do quá tải thông tin, tôi quyết đoán định hướng nhóm chuyển sang kiến trúc <strong style="color:var(--text)">Transformer V2</strong>. Để giải quyết bài toán phần cứng, tôi áp dụng lượng tử hóa (Int8 Quantization) giúp mô hình chạy mượt mà trên máy tính cá nhân không cần GPU.\n\nKết quả, hệ thống đạt <strong style="color:var(--text)">55–65 WPM, độ trễ &lt;1s và mức ROI kỹ thuật đạt 72%</strong> so với các thiết bị truyền thống. Giao diện cũng được tích hợp Expert Dashboard với Attention Maps nhằm minh bạch hóa kết quả AI (Explainable AI) cho các bác sĩ.`,
         info:[
           {l:'Kiến trúc cuối',v:'Transformer V2 · 8-head Multi-Head Attention · Positional Encoding · Label Smoothing ε=0.1'},
           {l:'Baseline vs Cuối',v:'Seq2Seq LSTM (Mode Collapse, WER ~85–90%) → Transformer V2 (Câu có cấu trúc, 6–7/10 đúng)'},
@@ -569,13 +569,13 @@ vi:{
       {
         id:'ereader',badge:'🏆 Top 20 Chung cuộc',bClass:'badge-top20',date:'Tháng 3 — 6/2025',
         name:'Hệ sinh thái E-Reader',sub:'Product Lead · Giáo dục Số TP.HCM · Chỉ đạo bởi UBND TP.HCM',
-        desc:`Bài toán ban đầu rộng: thiết kế hệ sinh thái giáo dục số cho thiết bị e-reading học sinh. Nhưng ẩn sau đó là thách thức thực sự: học sinh bỏ dở ở giai đoạn activation vì hành trình từ "tôi nhận được thiết bị này" đến "tôi đang thực sự học trên đó" đầy rào cản không cần thiết.\n\nMinh áp dụng hệ thống <strong style="color:var(--text)">nguyên tắc HCI</strong>: lập bản đồ toàn bộ hành trình học sinh từ cấp phát thiết bị, đăng ký, onboarding nội dung đến sử dụng hằng ngày và cập nhật. Tại mỗi giai đoạn, chạy phân tích pain point — xác định nơi cognitive load tăng đột biến, nơi nhầm lẫn xuất hiện, nơi học sinh bỏ cuộc. Kết quả là các bộ tính năng có cấu trúc với User Stories rõ ràng, mỗi cái gắn với một điểm ma sát cụ thể và tiêu chí thành công đo lường được.\n\nKết quả được ghi nhận là <strong style="color:var(--text)">Top 20 Chung cuộc</strong> cuộc thi giáo dục số cấp thành phố do UBND TP.HCM chỉ đạo.`,
+        desc:`Dự án lọt Top 20 cấp Thành phố. Thách thức cốt lõi là thiết kế một trải nghiệm học tập số liền mạch mà không làm học sinh bị "quá tải nhận thức", tránh việc các em bỏ dở ngay từ khâu kích hoạt thiết bị ban đầu.\n\nBằng cách áp dụng triệt để nguyên lý <strong style="color:var(--text)">Tương tác Người - Máy (HCI)</strong>, tôi đã tối ưu hóa toàn bộ bản đồ hành trình người dùng. Mọi "điểm nghẽn" (pain points) đều được phân rã một cách hệ thống thành các User Story chi tiết, đi kèm tiêu chí thành công rõ ràng để đội ngũ dễ dàng thực thi và tạo ra một hệ sinh thái đồng nhất.`,
         tech:['Nguyên tắc HCI','Thiết kế UX','Journey Mapping','Phân tích Pain Point','User Stories','Phân tích Cognitive Load','Figma Prototyping']
       },
       {
         id:'events',badge:'● Đang diễn ra',bClass:'badge-active',date:'Tháng 7/2024 — Hiện tại',
         name:'Vận hành Sự kiện Đổi mới Sáng tạo',sub:'Vận hành · Hệ sinh thái Startup SIHUB · TP.HCM',
-        desc:`Trực tiếp tổ chức và vận hành hai sự kiện đổi mới sáng tạo lớn cấp thành phố: <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> (cuộc thi startup sinh viên flagship) và <strong style="color:var(--text)">Tuần lễ WHISE 2024</strong> (Tuần lễ Đổi mới Sáng tạo TP.HCM). Phạm vi bao gồm vận hành sự kiện end-to-end, phối hợp cross-team giữa các phòng ban SIHUB và đối tác bên ngoài, giao tiếp stakeholders real-time với startup founders, nhà đầu tư và đại diện chính quyền, và quản lý chất lượng trải nghiệm tại chỗ.`,
+        desc:`Trực tiếp tổ chức và điều phối vận hành hai sự kiện đổi mới sáng tạo quy mô lớn cấp thành phố: <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> và <strong style="color:var(--text)">Tuần lễ WHISE 2024</strong>. Phối hợp nhịp nhàng giữa các phòng ban nội bộ và đối tác bên ngoài, duy trì giao tiếp liên tục với các nhà sáng lập, nhà đầu tư và chính quyền để đảm bảo trải nghiệm sự kiện hoàn hảo.`,
         tech:['Quản lý Sự kiện','Phối hợp Cross-team','Giao tiếp Stakeholder','Lập kế hoạch Vận hành']
       }
     ]
@@ -584,36 +584,36 @@ vi:{
     tag:'Năng lực Lõi',title:'Kỹ năng <span>Chuyên môn</span>',
     radarLbl:'Biểu đồ Radar Kỹ năng',certLbl:'Chứng chỉ',
     groups:[
-      {name:'Product Management',items:[
-        {n:'Customer Journey Mapping',p:95},{n:'Thiết kế UX / HCI',p:90},{n:'Agile / Scrum (CPMAI)',p:88},
-        {n:'Viết PRD & User Stories',p:85},{n:'A/B Testing & Interleaving',p:82},{n:'Problem Decomposition',p:88}
+      {name:'Product Management (Cốt lõi)',items:[
+        {n:'Bản đồ Hành trình & UX/HCI',p:95},{n:'Agile / Scrum (Khung CPMAI)',p:88},{n:'Viết PRD & User Stories',p:85},
+        {n:'A/B Testing & Phân tích Metrics',p:82},{n:'Phân rã Vấn đề (Problem Decomposition)',p:88}
       ]},
       {name:'Dữ liệu & Kỹ thuật',items:[
-        {n:'Python',p:80},{n:'Phân tích Dữ liệu & EDA',p:80},{n:'PyTorch / Deep Learning',p:72}
+        {n:'Python & Phân tích Dữ liệu',p:80},{n:'PyTorch / Kiến trúc Hệ thống',p:75}
       ]}
     ],
     radarLabels:['UX/HCI','Agile','Journey Map','Phân tích DL','Python','PyTorch/ML','A/B Testing'],
     certs:[
-      {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false},
-      {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false},
-      {i:'🔄',n:'Chứng chỉ Agile Management',org:'Chứng nhận Chuyên nghiệp',dash:false},
+      {i:'🏅',n:'Quản lý Dự án (Google Project Management)',org:'Coursera · Google',dash:false},
+      {i:'📊',n:'Trí tuệ Doanh nghiệp (Google BI)',org:'Coursera · Google',dash:false},
+      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false},
     ]
   },
   edu:{
     tag:'Nền tảng Học vấn',title:'Học vấn & <span>Thành tích</span>',
     uni:'Đại học Kinh tế TP.HCM (UEH)',major:'Cử nhân Quản lý Công nghệ và Đổi mới Sáng tạo',
-    courseTag:'Các môn học Cốt lõi',
-    courses:['Tư duy Thiết kế (Design Thinking)','Tương tác Người-Máy (HCI)','Quản trị Đổi mới Sáng tạo','Trí tuệ Doanh nghiệp (BI)','Chuyển đổi Kinh doanh Số','Dự án AI'],
+    courseTag:'Các môn học định hình Tư duy Sản phẩm',
+    courses:['Tư duy Thiết kế (Design Thinking)','Tương tác Người-Máy (HCI)','Quản trị Đổi mới Sáng tạo','Trí tuệ Doanh nghiệp (BI)','Dự án AI'],
     certTag:'Chứng chỉ',
     certs:[
-      {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false},
-      {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false},
-      {i:'🔄',n:'Chứng chỉ Agile Management',org:'Chứng nhận Chuyên nghiệp',dash:false},
+      {i:'🏅',n:'Quản lý Dự án (Google Project Management)',org:'Coursera · Google',dash:false},
+      {i:'📊',n:'Trí tuệ Doanh nghiệp (Google BI)',org:'Coursera · Google',dash:false},
+      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false},
     ]
   },
   chat:{
     name:'Trợ lý AI của Minh',sub:'● Trực tuyến · Sẵn sàng giải đáp',reset:'↺ Làm lại',logout:'⏻ Ngôn ngữ',
-    greeting:`Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh với mong muốn làm việc với vị trí Product Owner hoặc UX Strategist. Minh có kinh nghiệm xây dựng sản phẩm tại dựa trên pain points của khách hàng và thiết kế trải nghiệm người dùng, tư duy hệ thống và AI Engineering.\n\nMinh đang tích cực tìm kiếm các cơ hội Product và UX nơi mà cậu ấy muốn có sự đồng cảm với người dùng khi họ sử dụng sản phẩm. Bạn muốn biết thêm điều gì của Minh Không?`,
+    greeting:`Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh — Product Owner & UX Strategist. Minh chuyên xây dựng sản phẩm dựa trên sự kết hợp giữa thiết kế trải nghiệm người dùng, tư duy hệ thống và AI Engineering.\n\nMinh đang tìm kiếm các cơ hội Product và UX để cống hiến khả năng thiết kế hành trình người dùng và thực thi sản phẩm chuyên nghiệp. Bạn muốn tìm hiểu khía cạnh nào trong hồ sơ của Minh?`,
     prompts:[
       {id:'exp',i:'💼',l:'Kinh nghiệm'},
       {id:'proj',i:'🧠',l:'Dự án'},
@@ -621,10 +621,10 @@ vi:{
       {id:'edu',i:'🎓',l:'Học vấn'}
     ],
     ans:{
-      exp:`Minh có hơn 2 năm kinh nghiệm tại SIHUB — Trung tâm Hỗ trợ Khởi nghiệp & ĐMST thuộc Sở KH&CN TP.HCM.\n\n◈ 01–10/2025 | Project Management Executive\nMinh thiết kế end-to-end digital journey maps cho các startup công nghệ, không chỉ như artifacts UX mà như hệ thống vận hành với activation flows, điểm kiểm soát ma sát và metrics chuyển đổi. Quản lý 150+ startup founders là đầu mối trung tâm, chạy A/B tests và Interleaving experiments để kiểm chứng mọi thay đổi tính năng trước rollout. Cách tiếp cận NPS: không phải một con số, mà là hệ thống tín hiệu hành vi real-time báo cáo lên Board.\n\n◈ 07–12/2024 | R&D Intern\nDẫn dắt phân tích khoảng trống năng lực cho 150+ stakeholders trong dự án khung năng lực cấp thành phố. Soạn thảo tài liệu chuẩn URD kết nối insights định tính với yêu cầu hệ thống cụ thể — kỹ năng trực tiếp định hình cách viết PRD sau này.`,
-      proj:`Ba dự án nổi bật của Minh kể câu chuyện về người có thể tư duy xuyên suốt toàn bộ product stack:\n\n🧠 EchoMind AI — Flagship (09–12/2025)\nHệ thống BCI giải mã EEG 256 kênh thành văn bản. Với vai trò Project Lead: quản lý 8 Agile Sprints theo CPMAI, chẩn đoán và pivot từ LSTM Mode Collapse sang Transformer V2 (Multi-Head Attention + Label Smoothing). Kết quả: 55–65 WPM, độ trễ <1s, ROI kỹ thuật 72%. Thiết kế Expert Dashboard với Attention Maps để giải quyết vấn đề hộp đen trong y tế.\n\n📚 Hệ sinh thái E-Reader — Top 20 cấp TP (03–06/2025)\nThiết kế user journey HCI-focused từ device provisioning đến content updates. Phân tách cognitive friction thành feature sets. Top 20 cuộc thi UBND TP.HCM.\n\n🚀 Vận hành Sự kiện ĐMST — Đang diễn ra\nTổ chức Univ.Star 2024/2025 và Tuần lễ WHISE 2024 tại SIHUB.`,
-      skills:`Năng lực của Minh trải dài 3 trụ cột:\n\n◈ Product Craft (Thế mạnh Cốt lõi)\n→ Journey Mapping 95% · UX/HCI 90% · Agile/CPMAI 88%\n→ PRD & User Stories · A/B Testing & Interleaving · Problem Decomposition\n→ Ma trận RACI · Burndown Tracking · Design Thinking\n\n◈ Dữ liệu & Tư duy Hệ thống\n→ Python · Phân tích Dữ liệu & EDA · Google Colab\n→ PyTorch · Feature Engineering · WER Metrics\n→ Kiến trúc Transformer (ứng dụng trong EchoMind)\n\n◈ Stakeholder & Thực thi\n→ Quản lý 150+ stakeholders cấp thành phố/chính quyền\n→ Tài liệu chiến lược báo cáo lên Board\n→ Dẫn nhóm 7 người cross-functional qua 8 Sprints`,
-      edu:`Minh đang học năm cuối tại UEH, chuyên ngành Quản lý Công nghệ & Đổi mới Sáng tạo. GPA: 3.53/4.0.\n\nCác môn học cốt lõi ứng dụng trực tiếp:\n→ Human-Computer Interaction (HCI) — nền tảng tiếp cận UX\n→ Tư duy Thiết kế — cách đặt khung vấn đề sản phẩm\n→ Business Intelligence — cách đọc dữ liệu như tín hiệu sản phẩm\n→ Dự án AI — nơi EchoMind ra đời\n\nChứng chỉ: Google Project Management · Google Business Intelligence · Agile Management\n\nĐang chuẩn bị TOEIC để mở rộng cơ hội với sản phẩm quốc tế.`
+      exp:`Minh có hơn 2 năm kinh nghiệm làm việc tại SIHUB (Sở KH&CN TP.HCM).\n\n◈ 01–10/2025 | Project Management Executive\nMinh không chỉ vẽ các luồng quy trình (flowchart); Minh áp dụng A/B testing và Interleaving để kiểm chứng mọi thay đổi bằng dữ liệu thật. Minh cũng thay đổi góc nhìn của đội ngũ về NPS, coi đó là một hệ thống tín hiệu hành vi theo thời gian thực thay vì một điểm số tĩnh.\n\n◈ 07–12/2024 | R&D Intern\nDẫn dắt dự án phân tích với hơn 150 bên liên quan, thành công trong việc biên dịch các nhu cầu định tính phức tạp của người dùng thành tài liệu yêu cầu hệ thống chuẩn URD.`,
+      proj:`Ba dự án nổi bật minh chứng cho tư duy phát triển sản phẩm toàn diện của Minh:\n\n🧠 EchoMind AI — Flagship (09–12/2025)\nHệ thống giải mã sóng não (EEG) thành văn bản. Là Project Lead, Minh quản lý 8 Sprints theo khung CPMAI, quyết đoán chuyển đổi từ mô hình LSTM thất bại sang kiến trúc Transformer V2. Hệ thống đạt 55-65 WPM và tích hợp Expert Dashboard giúp minh bạch hóa AI cho y tế.\n\n📚 Hệ sinh thái E-Reader — Top 20 cấp TP (03–06/2025)\nThiết kế hành trình người dùng áp dụng nguyên lý HCI nhằm giảm tải nhận thức cho học sinh. Xuất sắc lọt Top 20 cuộc thi do UBND TP.HCM chỉ đạo.\n\n🚀 Vận hành Sự kiện ĐMST\nĐiều phối thành công các sự kiện quy mô lớn như Univ.Star và Tuần lễ WHISE.`,
+      skills:`Năng lực cốt lõi của Minh được xây dựng trên 3 trụ cột vững chắc:\n\n◈ Product Craft (Thế mạnh Cốt lõi)\n→ Lập bản đồ hành trình (95%) · UX/HCI (90%) · Agile/CPMAI (88%)\n→ Viết PRD & User Stories · Kiểm thử A/B · Phân rã Vấn đề\n\n◈ Dữ liệu & Tư duy Hệ thống\n→ Thành thạo Python & Phân tích Dữ liệu (EDA)\n→ Am hiểu PyTorch và kiến trúc Transformer (thể hiện qua EchoMind)\n\n◈ Quản lý Stakeholder & Thực thi\n→ Kinh nghiệm làm việc với 150+ đối tác cấp thành phố/chính quyền\n→ Trình bày báo cáo chiến lược cấp Ban Giám đốc\n→ Dẫn dắt đội ngũ kỹ thuật vận hành theo quy trình Agile`,
+      edu:`Minh đang là sinh viên năm cuối tại Đại học Kinh tế TP.HCM (UEH), chuyên ngành Quản lý Công nghệ & Đổi mới Sáng tạo với điểm số ấn tượng GPA 3.53/4.0.\n\nNhững môn học định hình tư duy sản phẩm của Minh gồm:\n→ Tương tác Người - Máy (HCI)\n→ Tư duy Thiết kế (Design Thinking)\n→ Trí tuệ Doanh nghiệp (BI)\n→ Dự án AI\n\nMinh cũng sở hữu các chứng chỉ chuyên nghiệp từ Google về Quản lý Dự án và Business Intelligence.`
     }
   }
 }
@@ -787,7 +787,7 @@ function renderProjects() {
           <div style="background:var(--ink3);border-radius:18px;border:1px solid var(--border);padding:22px;text-align:center;">
             <div style="font-size:40px;margin-bottom:14px;">🧠</div>
             <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);line-height:2.2;text-align:left;">
-              EEG Input (256ch)<br>↓ HDF5 → Tensor<br>↓ Positional Enc.<br>↓ Transformer V2<br>↓ Beam Search<br>→ Text Output
+              EEG Input (256ch)<br>↓ HDF5 → Tensor<br>↓ Positional Enc.<br>↓ Transformer V2<br>↓ Int8 Quantization<br>↓ Gradio Expert UI<br>→ Text Output
             </div>
             <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
               <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text2);margin-bottom:4px;" id="ec-role-lbl">Role</div>
