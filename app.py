@@ -476,9 +476,9 @@ en:{
     ],
     radarLabels:['UX/HCI','Agile','Journey Map','Data Analysis','Python','PyTorch/ML','A/B Testing'],
     certs:[
-      {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/specialization/4Q96BEP4DSWC'},
-      {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false, link:'https://www.coursera.org/account/accomplishments/verify/695T8LGAXCX2'},
+      {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
+      {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
+      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false},
     ]
   },
   edu:{
@@ -488,9 +488,9 @@ en:{
     courses:['Design Thinking','Human-Computer Interaction (HCI)','Innovation Management','Business Intelligence','Digital Business Transformation','Project AI'],
     certTag:'Certifications',
     certs:[
-      {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/specialization/4Q96BEP4DSWC'},
+      {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false, link:'https://www.coursera.org/account/accomplishments/verify/695T8LGAXCX2'},
+      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false},
     ]
   },
   chat:{
@@ -592,9 +592,9 @@ vi:{
     ],
     radarLabels:['UX/HCI','Agile','Journey Map','Phân tích DL','Python','PyTorch/ML','A/B Testing'],
     certs:[
-      {i:'🏅',n:'Quản lý Dự án (Google Project Management)',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/specialization/4Q96BEP4DSWC'},
+      {i:'🏅',n:'Quản lý Dự án (Google Project Management)',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Trí tuệ Doanh nghiệp (Google BI)',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false, link:'https://www.coursera.org/account/accomplishments/verify/695T8LGAXCX2'},
+      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false},
     ]
   },
   edu:{
@@ -604,9 +604,9 @@ vi:{
     courses:['Tư duy Thiết kế (Design Thinking)','Tương tác Người-Máy (HCI)','Quản trị Đổi mới Sáng tạo','Trí tuệ Doanh nghiệp (BI)','Chuyển đổi Kinh doanh Số','Dự án AI'],
     certTag:'Chứng chỉ',
     certs:[
-      {i:'🏅',n:'Quản lý Dự án (Google Project Management)',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/specialization/4Q96BEP4DSWC'},
+      {i:'🏅',n:'Quản lý Dự án (Google Project Management)',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Trí tuệ Doanh nghiệp (Google BI)',org:'Coursera · Google',dash:false, link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false}, link:'https://www.coursera.org/account/accomplishments/verify/695T8LGAXCX2'},
+      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false},
     ]
   },
   chat:{
