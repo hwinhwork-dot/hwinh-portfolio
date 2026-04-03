@@ -19,7 +19,7 @@ html_code = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hoang Minh | Product &amp; UX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root{
@@ -48,12 +48,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
   transition:opacity .5s ease,visibility .5s;
 }
 .lo-logo{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:var(--accent2);letter-spacing:-3px;line-height:1;}
-.lo-tagline{font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);letter-spacing:3px;text-transform:uppercase;}
+.lo-tagline{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text2);letter-spacing:3px;text-transform:uppercase;}
 .lo-question{font-family:'Syne',sans-serif;font-size:22px;font-weight:600;color:var(--text);text-align:center;line-height:1.5;}
 .lo-options{display:flex;gap:24px;}
 .lo-btn{
   background:var(--surface);border:1px solid var(--border2);color:var(--text);
-  padding:20px 48px;border-radius:12px;font-family:'Syne',sans-serif;font-size:20px;font-weight:600;
+  padding:16px 48px;border-radius:12px;font-family:'Syne',sans-serif;font-size:20px;font-weight:600;
   cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:center;
 }
 .lo-btn:hover{border-color:var(--accent);background:var(--surface2);transform:translateY(-4px);box-shadow:0 12px 30px rgba(124,106,247,.25);color:var(--accent3);}
@@ -74,10 +74,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
   position:relative;gap:4px;
 }
 .nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
-.nav-item .nav-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.3px;text-transform:uppercase;opacity:.7;white-space:nowrap;}
+.nav-item .nav-lbl{font-family:'Montserrat',sans-serif;font-weight:500;font-size:8.5px;letter-spacing:.3px;text-transform:uppercase;opacity:.7;white-space:nowrap;}
 .nav-item:hover{background:var(--surface);color:var(--text);}
 .nav-item.active{background:linear-gradient(135deg,rgba(124,106,247,.3),rgba(124,106,247,.12));color:var(--accent2);border-color:rgba(124,106,247,.35);box-shadow:0 0 18px rgba(124,106,247,.2);}
-.nav-tooltip{position:absolute;left:74px;background:var(--surface2);color:var(--text);font-size:12px;font-family:'DM Mono',monospace;padding:6px 12px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;border:1px solid var(--border2);z-index:100;}
+.nav-tooltip{position:absolute;left:74px;background:var(--surface2);color:var(--text);font-size:12px;font-family:'Montserrat',sans-serif;font-weight:500;padding:6px 12px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;border:1px solid var(--border2);z-index:100;}
 .nav-item:hover .nav-tooltip{opacity:1;}
 .nav-spacer{flex:1;}
 
@@ -97,9 +97,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .chat-header{padding:20px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;flex-shrink:0;}
 .chat-avatar{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--teal));display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 15px rgba(124,106,247,.3);}
 .chat-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;}
-.chat-sub{font-size:11px;color:var(--green);font-family:'DM Mono',monospace;margin-top:3px;}
+.chat-sub{font-size:11px;color:var(--green);font-family:'Montserrat',sans-serif;font-weight:500;margin-top:3px;}
 .chat-actions{margin-left:auto;display:flex;gap:8px;}
-.chat-btn{background:none;border:1px solid var(--border2);color:var(--text2);font-size:11px;padding:7px 13px;border-radius:8px;cursor:pointer;font-family:'DM Mono',monospace;transition:all .2s;white-space:nowrap;}
+.chat-btn{background:none;border:1px solid var(--border2);color:var(--text2);font-size:11px;padding:7px 13px;border-radius:8px;cursor:pointer;font-family:'Montserrat',sans-serif;font-weight:500;transition:all .2s;white-space:nowrap;}
 .chat-btn:hover{border-color:var(--accent);background:var(--surface2);color:var(--text);}
 .chat-btn.danger:hover{border-color:var(--coral);color:var(--coral);}
 .chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth;}
@@ -138,8 +138,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
     border-color: rgba(124,106,247,0.4); background: var(--surface2);
 }
 .prompt-btn:hover::before { transform: scaleY(1); }
-.p-icon { font-size: 22px; padding: 8px; background: rgba(124,106,247,0.1); border-radius: 10px; line-height: 1; margin-bottom: 2px; border: 1px solid rgba(124,106,247,0.2); }
-.p-lbl { font-family: 'Syne', sans-serif; font-size: 15px; letter-spacing: -0.2px; font-weight: 700; color: var(--text); }
+.p-icon { font-size: 20px; padding: 6px; background: rgba(124,106,247,0.1); border-radius: 10px; line-height: 1; margin-bottom: 2px; border: 1px solid rgba(124,106,247,0.2); }
+.p-lbl { font-family: 'Syne', sans-serif; font-size: 14.5px; letter-spacing: -0.2px; font-weight: 700; color: var(--text); }
 .prompt-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
 .prompt-btn:disabled::before { display: none; }
 
@@ -148,7 +148,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 
 /* === SHARED VIEW STYLES === */
 .view-content{padding:60px 72px;min-height:100%;position:relative;}
-.section-tag{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:20px;}
+.section-tag{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;color:var(--accent2);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:20px;}
 .section-tag::before{content:'◈';font-size:13px;}
 .view-title{font-family:'Syne',sans-serif;font-size:46px;font-weight:800;letter-spacing:-1.5px;color:var(--text);margin-bottom:52px;line-height:1;}
 .view-title span{color:var(--accent2);}
@@ -158,20 +158,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .welcome-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
 .status-dot{width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:pg 2s infinite;}
 @keyframes pg{0%,100%{box-shadow:0 0 6px var(--green);}50%{box-shadow:0 0 20px var(--green);}}
-.status-text{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--green);letter-spacing:1px;text-transform:uppercase;}
+.status-text{font-family:'Montserrat',sans-serif;font-weight:600;font-size:11.5px;color:var(--green);letter-spacing:1px;text-transform:uppercase;}
 .welcome-name{font-family:'Syne',sans-serif;font-size:clamp(46px,5vw,80px);font-weight:800;line-height:.95;letter-spacing:-2.5px;margin-bottom:14px;}
 .welcome-name .accent-word{color:var(--accent2);display:block;}
 .welcome-role{font-size:18px;color:var(--text2);font-weight:300;margin-bottom:36px;font-style:italic;letter-spacing:.3px;}
 .welcome-summary{font-size:15.5px;line-height:1.85;color:var(--text2);max-width:580px;margin-bottom:44px;border-left:3px solid var(--accent);padding-left:24px;}
 .contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px;}
-.contact-chip{display:flex;align-items:center;gap:8px;padding:9px 18px;background:var(--surface);border:1px solid var(--border2);border-radius:10px;font-size:12.5px;font-family:'DM Mono',monospace;color:var(--text2);transition:all .2s;cursor:default;}
+.contact-chip{display:flex;align-items:center;gap:8px;padding:9px 18px;background:var(--surface);border:1px solid var(--border2);border-radius:10px;font-size:12.5px;font-family:'Montserrat',sans-serif;font-weight:500;color:var(--text2);transition:all .2s;cursor:default;}
 .contact-chip:hover{border-color:var(--accent);color:var(--text);background:var(--surface2);}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:700px;margin-bottom:52px;}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px 18px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;}
 .stat-card:hover{transform:translateY(-3px);box-shadow:0 12px 25px rgba(0,0,0,.2);}
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--teal));}
 .stat-number{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:var(--text);line-height:1;}
-.stat-label{font-size:11px;color:var(--text2);margin-top:8px;text-transform:uppercase;letter-spacing:.7px;font-family:'DM Mono',monospace;}
+.stat-label{font-size:11px;color:var(--text2);margin-top:8px;text-transform:uppercase;letter-spacing:.7px;font-family:'Montserrat',sans-serif;font-weight:600;}
 
 /* === TIMELINE === */
 .timeline{position:relative;padding-left:32px;}
@@ -179,7 +179,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .timeline-item{position:relative;margin-bottom:52px;}
 .timeline-item::before{content:'';position:absolute;left:-38px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--accent2);box-shadow:0 0 14px rgba(165,148,252,.5);}
 .timeline-item.past::before{background:var(--text2);box-shadow:none;}
-.tl-period{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--accent2);letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;}
+.tl-period{font-family:'Montserrat',sans-serif;font-weight:600;font-size:11.5px;color:var(--accent2);letter-spacing:1px;margin-bottom:10px;text-transform:uppercase;}
 .tl-role{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;margin-bottom:6px;}
 .tl-company{font-size:14px;color:var(--text2);font-style:italic;margin-bottom:20px;}
 .tl-bullets{list-style:none;display:flex;flex-direction:column;gap:13px;}
@@ -187,14 +187,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .tl-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent);font-weight:700;}
 .tl-bullets li strong{color:var(--text);font-weight:500;}
 .tl-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
-.tl-tag{font-family:'DM Mono',monospace;font-size:10.5px;padding:4px 12px;border-radius:6px;background:rgba(124,106,247,.1);border:1px solid rgba(124,106,247,.25);color:var(--accent3);}
+.tl-tag{font-family:'Montserrat',sans-serif;font-weight:500;font-size:10.5px;padding:4px 12px;border-radius:6px;background:rgba(124,106,247,.1);border:1px solid rgba(124,106,247,.25);color:var(--accent3);}
 
 /* === PROJECTS === */
 .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
 .project-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:30px;transition:all .3s;position:relative;overflow:hidden;}
 .project-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 22px 44px rgba(0,0,0,.32);}
 .project-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 220px;gap:32px;align-items:start;}
-.project-badge{font-family:'DM Mono',monospace;font-size:10.5px;padding:5px 12px;border-radius:20px;text-transform:uppercase;}
+.project-badge{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10.5px;padding:5px 12px;border-radius:20px;text-transform:uppercase;}
 .badge-featured{background:rgba(240,192,96,.15);color:var(--gold);border:1px solid rgba(240,192,96,.3);}
 .badge-active{background:rgba(82,209,138,.12);color:var(--green);border:1px solid rgba(82,209,138,.3);}
 .badge-top20{background:rgba(255,123,107,.14);color:var(--coral);border:1px solid rgba(255,123,107,.3);}
@@ -203,17 +203,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .project-desc{font-size:14.5px;color:var(--text2);line-height:1.75;margin-bottom:20px;}
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;}
 .info-item{background:var(--ink3);border-radius:10px;padding:11px 15px;border:1px solid var(--border);}
-.info-lbl{font-family:'DM Mono',monospace;font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:5px;}
+.info-lbl{font-family:'Montserrat',sans-serif;font-weight:600;font-size:9px;color:var(--text2);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:5px;}
 .info-val{font-size:12.5px;color:var(--text);font-weight:500;line-height:1.45;}
 .project-metrics{display:flex;gap:22px;margin:16px 0;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .metric-val{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--accent2);}
-.metric-lbl{font-size:9.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-top:4px;font-family:'DM Mono',monospace;}
+.metric-lbl{font-size:9.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-top:4px;font-family:'Montserrat',sans-serif;font-weight:600;}
 .tech-stack{display:flex;flex-wrap:wrap;gap:7px;}
-.tech-pill{font-family:'DM Mono',monospace;font-size:10.5px;padding:4px 12px;border-radius:6px;background:var(--ink3);border:1px solid var(--border2);color:var(--text2);}
+.tech-pill{font-family:'Montserrat',sans-serif;font-weight:500;font-size:10.5px;padding:4px 12px;border-radius:6px;background:var(--ink3);border:1px solid var(--border2);color:var(--text2);}
 
 /* Chart containers in project */
 .proj-chart-wrap{background:var(--ink3);border-radius:16px;border:1px solid var(--border);padding:20px;margin:16px 0;}
-.proj-chart-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
+.proj-chart-title{font-family:'Montserrat',sans-serif;font-weight:600;font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
 
 /* === SKILLS (LinkedIn Style w/ Tooltip) === */
 .skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
@@ -228,8 +228,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 }
 .lk-skill-header { display:flex; justify-content:space-between; align-items:center; }
 .lk-skill-title { font-size:15px; font-weight:600; color:var(--text); display:flex; align-items:center; gap:10px; }
-.lk-skill-ref { font-family:'DM Mono',monospace; font-size:11px; color:var(--text2); display:flex; align-items:center; gap:6px; line-height:1.4; }
-.lk-skill-ref::before { content:'↳'; color:var(--accent2); font-weight:bold; }
+.lk-skill-ref { font-family:'Montserrat',sans-serif; font-size:11px; color:var(--text2); display:flex; align-items:center; gap:6px; line-height:1.4; font-weight:500;}
+.lk-skill-ref::before { content:'↳'; color:var(--accent2); font-weight:bold; font-family:'DM Sans', sans-serif; }
 
 /* Skill Popup Hover */
 .skill-popup {
@@ -245,7 +245,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
     content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%);
     border-width:6px; border-style:solid; border-color:var(--accent) transparent transparent transparent;
 }
-.popup-title { font-family:'DM Mono',monospace; font-size:10px; color:var(--accent2); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
+.popup-title { font-family:'Montserrat',sans-serif; font-weight:600; font-size:10px; color:var(--accent2); text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; }
 .popup-metric { font-size:13px; color:var(--text); line-height:1.5; display:flex; align-items:start; gap:8px; margin-bottom:8px; }
 .popup-metric:last-child { margin-bottom:0; }
 .popup-metric::before { content:'•'; color:var(--green); font-weight:bold; }
@@ -295,7 +295,7 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
     <div class="lo-logo">hwinh</div>
     <div class="lo-tagline" style="margin-top:10px;">AI Portfolio · Product &amp; UX</div>
   </div>
-  <div class="lo-question">Choose your language<br><span style="font-size:18px;color:var(--text2);font-weight:400;">Chọn ngôn ngữ hiển thị</span></div>
+  <div class="lo-question">Choose your language<br><span style="font-family:'Montserrat',sans-serif;font-size:16px;color:var(--text2);font-weight:400;margin-top:8px;display:inline-block;">Chọn ngôn ngữ hiển thị</span></div>
   <div class="lo-options">
     <button class="lo-btn" onclick="selectLang('en')">English</button>
     <button class="lo-btn" onclick="selectLang('vi')">Tiếng Việt</button>
@@ -359,7 +359,7 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
       </div>
       <div class="subtle-div fade-up"></div>
       <div class="section-tag fade-up d6" id="w-explore">Explore this portfolio</div>
-      <p class="fade-up d6" style="font-size:14px;color:var(--text2);line-height:1.8;max-width:500px;margin-top:8px;" id="w-hint"></p>
+      <p class="fade-up d6" style="font-family:'Montserrat',sans-serif;font-size:13px;color:var(--text2);line-height:1.8;max-width:500px;margin-top:8px;" id="w-hint"></p>
     </div>
 
     <div id="view-experience" class="view-content" style="display:none">
@@ -394,13 +394,13 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
       <div class="section-tag" id="ed-tag">Academic Background</div>
       <h2 class="view-title" id="ed-title">Education &amp; <span>Awards</span></h2>
       <div class="edu-hero">
-        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:1px;margin-bottom:14px;">AUG 2022 — AUG 2026</div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;color:var(--accent2);letter-spacing:1px;margin-bottom:14px;">AUG 2022 — AUG 2026</div>
         <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--text);margin-bottom:6px;" id="ed-uni">University of Economics HCMC (UEH)</h3>
-        <p style="color:var(--text2);font-size:15px;margin-bottom:20px;" id="ed-major">Bachelor of Technology &amp; Innovation Management</p>
+        <p style="font-family:'Montserrat',sans-serif;color:var(--text2);font-size:14px;margin-bottom:20px;" id="ed-major">Bachelor of Technology &amp; Innovation Management</p>
         <div class="gpa-badge">
           <span style="font-size:26px;">🏆</span>
           <div>
-            <div style="font-size:11px;color:var(--text2);margin-bottom:3px;">Grade Point Average</div>
+            <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;color:var(--text2);margin-bottom:3px;">Grade Point Average</div>
             <div class="gpa-val">3.53 / 4.0</div>
           </div>
         </div>
@@ -511,7 +511,7 @@ en:{
       {n:'A/B Testing & Interleaving',ref:'Validated by: Human-Computer Interaction (UEH)', m:['Designed & ran 10+ feature experiments','Validated hypotheses with 95% significance','Prevented 3 major UX flaws before rollout']},
       {n:'Problem Decomposition',ref:'Validated by: Innovation Management (UEH)', m:['Broke down 5+ high-level Epics','Diagnosed LSTM Mode Collapse root cause','Structured 150+ stakeholder requirements']},
       {n:'PRD & User Stories Writing',ref:'Validated by: Entrepreneurship Innovation (UEH)', m:['Authored 10+ standardized PRDs','Maintained backlog of 200+ User Stories','Met city-level URD documentation standards']},
-      {n:'Python & PyTorch (Familiar)',ref:'Applied in: Advanced Programming & EchoMind Project', m:['Optimized Transformer V2 architecture','Applied Int8 Quantization to reduce size','Decreased model inference latency to <1s']}
+      {n:'Python & PyTorch (Familiar)',ref:'Applied in: Advanced Programming & EchoMind Project', m:['Optimized Transformer V2 architecture','Applied Int8 Quantization to reduce model size','Decreased model inference latency to <1s']}
     ],
     radarLabels:['UX/HCI','Agile','Journey Map','Data Analysis','Python','PyTorch/ML','A/B Testing'],
     certs:[
@@ -556,10 +556,10 @@ vi:{
   w:{
     status:'Sẵn sàng đón nhận cơ hội Product & UX mới · TP.HCM',
     role:'Product Owner · UX Strategist · AI Builder',
-    summary:`Là một chuyên gia trẻ trong lĩnh vực <strong style="color:var(--text)">Quản lý Công nghệ & Đổi mới Sáng tạo</strong>, tôi xây dựng sản phẩm tại điểm giao thoa giữa Thiết kế Trải nghiệm (UX), Tư duy Hệ thống và AI. Đam mê của tôi là chuyển hóa những dữ liệu phức tạp và "nỗi đau" (pain points) của người dùng thành các giải pháp số mượt mà và có thể đo lường. Tôi tin rằng những sản phẩm xuất sắc nhất luôn ra đời từ sự kết hợp giữa việc thấu cảm người dùng sâu sắc với năng lực thực thi hệ thống chặt chẽ.`,
+    summary:`Hoàng Minh là một ứng viên trẻ về <strong style="color:var(--text)">Quản lý Công nghệ & Đổi mới Sáng tạo</strong> — có nền tảng vững chắc về UX Design, System Thinking và AI Engineering. Tôi chuyển hóa dữ liệu người dùng phức tạp và các "điểm đau" (pain points) thành trải nghiệm sản phẩm tối ưu, có thể đo lường. Từ việc lập bản đồ hành trình onboarding cho startup đến dẫn dắt một dự án AI từ tờ giấy trắng đến mô hình Transformer hoàn thiện — tôi tin sản phẩm tốt nhất được tạo ra khi sự thấu cảm người dùng kết hợp cùng tư duy hệ thống chặt chẽ.`,
     stats:['Năm kinh nghiệm','Stakeholders quản lý','KPI kỹ thuật AI','Chung cuộc cấp TP'],
     explore:'Khám phá hồ sơ này',
-    hint:'Dùng thanh điều hướng hoặc trò chuyện với AI Assistant bên phải để khám phá chi tiết về kinh nghiệm, dự án và kỹ năng của tôi.'
+    hint:'Dùng thanh điều hướng hoặc chat với AI Assistant bên phải để khám phá kinh nghiệm, dự án và kỹ năng chi tiết.'
   },
   exp:{
     tag:'Lịch sử làm việc',title:'Kinh nghiệm <span>Làm việc</span>',
@@ -569,9 +569,9 @@ vi:{
         role:'Chuyên viên Quản lý Dự án (Project Management Executive)',
         company:'Trung tâm Hỗ trợ Khởi nghiệp & Đổi mới Sáng tạo TP.HCM (SIHUB) · Trực thuộc Sở KH&CN',
         bullets:[
-          `<strong>Thiết kế Bản đồ Hành trình Số & Triển khai MVP:</strong> Thiết kế bản đồ hành trình toàn diện (end-to-end digital journey map) cho các startup công nghệ. Thay vì chỉ vẽ quy trình, tôi đi sâu vào việc định nghĩa các vấn đề cốt lõi của người dùng, chuyển đổi chúng thành các User Stories sắc bén để thúc đẩy quá trình phát triển MVP nhanh chóng và hiệu quả.`,
-          `<strong>Giải quyết Vấn đề Dựa trên Dữ liệu:</strong> Liên tục theo dõi các điểm chạm (touchpoints) đa kênh để phát hiện điểm nghẽn vận hành. Triển khai các thử nghiệm A/B testing và Interleaving để đánh giá nghiêm ngặt các thay đổi tính năng — đảm bảo mọi quyết định sản phẩm đều được hỗ trợ bởi dữ liệu hành vi thực tế thay vì cảm tính.`,
-          `<strong>Quản lý Stakeholder & Phân tích NPS:</strong> Là đầu mối làm việc với hơn 150 nhà sáng lập startup. Bằng cách phân tích dữ liệu, tôi đã chuyển đổi việc sử dụng NPS từ một chỉ số tĩnh thành một hệ thống tín hiệu hành vi theo thời gian thực, từ đó báo cáo các insight chiến lược về việc giữ chân người dùng lên Ban Giám đốc.`
+          `<strong>Thiết kế Bản đồ Hành trình Số & Triển khai MVP:</strong> Thiết kế hành trình số (digital journey map) nhằm hỗ trợ các startup công nghệ tại SIHUB. Tôi làm việc sát sao cùng các Startup để tìm ra "nỗi đau" thực sự của khách hàng, cấu trúc chúng thành User Stories rõ ràng, triển khai MVP theo từng vòng lặp và giúp rút ngắn đáng kể time-to-first-value trong chương trình ươm tạo.`,
+          `<strong>Giải quyết Pain Point dựa trên Dữ liệu:</strong> Liên tục theo dõi các touchpoints đa kênh để phát hiện điểm nghẽn vận hành. Triển khai A/B testing và Interleaving experiments để kiểm chứng chặt chẽ các thay đổi tính năng, đảm bảo mọi quyết định sản phẩm đều được chứng minh bằng dữ liệu hành vi, thay vì cảm tính.`,
+          `<strong>Quản lý Stakeholder & Hệ thống NPS:</strong> Làm đầu mối trung tâm cho hơn 150 startup founders xuyên suốt hành trình ươm tạo. Phân tích dữ liệu hành vi để xây dựng dashboard NPS, báo cáo trực tiếp insight về tỷ lệ giữ chân người dùng lên Ban Giám đốc. Giúp đội ngũ chuyển đổi tư duy: nhìn nhận NPS như một hệ thống cảnh báo hành vi real-time thay vì một điểm số tĩnh.`
         ],
         tags:['Customer Journey Mapping','A/B Testing','Interleaving','MVP Delivery','NPS Analytics','Quản lý 150+ Stakeholders','Tài liệu URD']
       },
@@ -580,8 +580,8 @@ vi:{
         role:'Thực tập sinh Nghiên cứu & Phát triển (R&D Intern)',
         company:'SIHUB · Quản lý dự án dựa trên dữ liệu cho khung năng lực cấp thành phố',
         bullets:[
-          `<strong>Phân tích Dữ liệu Quy mô Lớn & Lấy Yêu cầu:</strong> Dẫn dắt vòng đời dữ liệu (end-to-end) cho dự án phân tích khoảng trống năng lực cấp thành phố. Phối hợp với hơn 150 bên liên quan (cơ quan nhà nước, viện nghiên cứu, doanh nghiệp) để thống nhất các yêu cầu phức tạp, từ đó trích xuất insight định hình các chính sách cuối cùng.`,
-          `<strong>Tài liệu hóa Chuẩn URD:</strong> Soạn thảo các báo cáo chiến lược và tài liệu yêu cầu hệ thống tuân thủ chuẩn URD. Kinh nghiệm này giúp tôi mài giũa khả năng kết nối giữa những phản hồi định tính của người dùng với các yêu cầu kỹ thuật cụ thể của hệ thống.`
+          `<strong>Phân tích Dữ liệu Quy mô Lớn & Lấy Yêu cầu:</strong> Dẫn dắt vòng đời dữ liệu (end-to-end) cho dự án phân tích khoảng trống năng lực trong bài nghiên cứu khoa học cấp thành phố — làm việc với 150+ stakeholders chủ chốt từ cơ quan nhà nước, viện nghiên cứu và doanh nghiệp. Thiết kế phương pháp thu thập, làm sạch đầu vào định tính và trích xuất insights để định hình chính sách.`,
+          `<strong>Tài liệu hóa Chuẩn URD:</strong> Soạn thảo báo cáo chiến lược và tài liệu yêu cầu hệ thống theo chuẩn URD. Thách thức lớn nhất là làm thế nào để kết nối phản hồi định tính của người dùng với các yêu cầu hệ thống cụ thể — một kỹ năng đã trực tiếp mài giũa cách tôi viết PRD và User Stories sau này.`
         ],
         tags:['Quản lý Vòng đời Dữ liệu','Phân tích Khoảng trống Năng lực','150+ Stakeholders','Chuẩn URD','Kỹ thuật Yêu cầu']
       }
@@ -593,7 +593,7 @@ vi:{
       {
         id:'echomind',badge:'★ Dự án AI Trọng điểm',bClass:'badge-featured',date:'Tháng 9 — 12/2025',
         name:'EchoMind AI',sub:'Hệ thống Não-Chữ Phi Xâm Lấn · Project Lead · MindConnect Labs · Môn Dự án AI - UEH',
-        desc:`Khởi nguồn từ bài toán nhân văn: giúp bệnh nhân hội chứng khóa trong (locked-in syndrome) giao tiếp qua sóng não. Các thiết bị AAC truyền thống thường rất chậm (25-30 WPM) và có độ trễ cao. Nhưng rào cản thực sự là dẫn dắt một nhóm đa chuyên môn đi từ số 0 đến sản phẩm hoàn thiện.\n\nTrong vai trò <strong style="color:var(--text)">Project Lead</strong>, tôi quản lý toàn bộ dự án theo <strong style="color:var(--text)">khung CPMAI</strong> và 8 Agile Sprints. Khi mô hình LSTM ban đầu gặp hiện tượng Mode Collapse (lặp từ liên tục) do nút thắt thông tin, tôi quyết đoán định hướng nhóm chuyển sang kiến trúc <strong style="color:var(--text)">Transformer V2</strong>. Để giải quyết giới hạn phần cứng, tôi áp dụng lượng tử hóa (Int8 Quantization) giúp mô hình chạy mượt trên máy tính cá nhân không cần GPU.\n\nKết quả: hệ thống đạt <strong style="color:var(--text)">55–65 WPM, độ trễ &lt;1s và hoàn thành 100% KPI kỹ thuật</strong> (ROI 72% so với thiết bị truyền thống). Nhóm cũng thiết kế Expert Dashboard với Attention Maps nhằm minh bạch hóa kết quả AI (Explainable AI) cho các bác sĩ.`,
+        desc:`EchoMind khởi nguồn từ bài toán giúp bệnh nhân hội chứng khóa trong (locked-in syndrome) giao tiếp qua sóng não. Tuy nhiên, rào cản lớn nhất không chỉ nằm ở công nghệ mà ở việc dẫn dắt một nhóm đa chuyên môn đi từ số 0 đến sản phẩm hoàn thiện.\n\nTrong vai trò <strong style="color:var(--text)">Project Lead</strong>, tôi áp dụng khung CPMAI và quản lý 8 Sprints Agile. Khi mô hình LSTM ban đầu gặp 'Mode Collapse' (lặp từ liên tục) do nút thắt thông tin, tôi đã đánh giá các rủi ro và quyết đoán định hướng nhóm chuyển sang kiến trúc <strong style="color:var(--text)">Transformer V2</strong>. Đồng thời, để giải quyết giới hạn phần cứng khi Demo, tôi đưa ra giải pháp lượng tử hóa (Int8 Quantization) giúp mô hình chạy mượt trên laptop cá nhân không cần GPU.\n\nKết quả: hệ thống đạt <strong style="color:var(--text)">55-65 WPM, độ trễ &lt;1s và hoàn thành 100% KPI kỹ thuật</strong> (ROI 72% so với thiết bị truyền thống). Nhóm cũng thiết kế Expert Dashboard với Attention Maps để giải quyết bài toán "hộp đen" trong y tế, giúp bác sĩ hiểu rõ AI đang tập trung vào vùng não nào.`,
         info:[
           {l:'Kiến trúc cuối',v:'Transformer V2 · 8-head Multi-Head Attention · Positional Encoding · Label Smoothing ε=0.1'},
           {l:'Baseline vs Cuối',v:'Seq2Seq LSTM (Mode Collapse, WER ~85–90%) → Transformer V2 (Câu có cấu trúc, 6–7/10 đúng)'},
@@ -606,13 +606,13 @@ vi:{
       {
         id:'ereader',badge:'🏆 Top 20 Chung cuộc',bClass:'badge-top20',date:'Tháng 3 — 6/2025',
         name:'Hệ sinh thái E-Reader',sub:'User Researcher · Giáo dục Số TP.HCM · Chỉ đạo bởi UBND TP.HCM',
-        desc:`Dự án thiết kế hệ sinh thái giáo dục số cho thiết bị e-reading của học sinh. Thách thức lớn nhất là thiết kế trải nghiệm liền mạch mà không làm học sinh bị "quá tải nhận thức", tránh việc các em bỏ dở ngay ở khâu kích hoạt ban đầu.\n\nTrong vai trò <strong style="color:var(--text)">User Researcher</strong>, tôi áp dụng triệt để nguyên lý <strong style="color:var(--text)">Tương tác Người - Máy (HCI)</strong> để thiết lập bản đồ hành trình chi tiết. Tại mỗi điểm chạm, tôi phân tích để xác định các yếu tố gây "quá tải nhận thức" (cognitive load). Từ những quan sát hành vi thô, tôi phân rã thành các insight cốt lõi và chuyển giao chúng thành các User Stories rõ ràng, có tiêu chí đo lường cụ thể cho đội ngũ phát triển. Kết quả, dự án đã xuất sắc lọt <strong style="color:var(--text)">Top 20 Chung cuộc</strong> tại cuộc thi giáo dục số cấp thành phố do UBND TP.HCM chỉ đạo.`,
+        desc:`Với vai trò <strong style="color:var(--text)">User Researcher</strong>, nhiệm vụ của tôi là đào sâu vào hành vi của học sinh để tìm ra lý do khiến các em từ bỏ thiết bị E-reader ngay ở khâu kích hoạt ban đầu. \n\nTôi đã thực hiện nghiên cứu người dùng và áp dụng nguyên lý Tương tác Người - Máy (HCI) để lập bản đồ hành trình chi tiết từ lúc mở hộp đến khi đồng bộ nội dung. Bằng cách phân rã các "điểm nghẽn" gây quá tải nhận thức, tôi đã đúc kết thành các insight cốt lõi và chuyển giao thành User Stories rõ ràng, dễ đo lường cho đội ngũ phát triển. Kết quả, dự án đã tạo ra một luồng trải nghiệm liền mạch và xuất sắc lọt Top 20 Chung cuộc cấp Thành phố.`,
         tech:['Nguyên tắc HCI','Thiết kế UX','Journey Mapping','Phân tích Pain Point','User Stories','Phân tích Cognitive Load','Figma Prototyping']
       },
       {
         id:'events',badge:'● Đang diễn ra',bClass:'badge-active',date:'Tháng 7/2024 — Hiện tại',
         name:'Vận hành Sự kiện Đổi mới Sáng tạo',sub:'Vận hành · Hệ sinh thái Startup SIHUB · TP.HCM',
-        desc:`Trực tiếp tổ chức và điều phối vận hành hai sự kiện đổi mới sáng tạo quy mô lớn cấp thành phố: <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> (cuộc thi startup sinh viên flagship) và <strong style="color:var(--text)">Tuần lễ WHISE 2024</strong>. Phối hợp nhịp nhàng giữa các phòng ban nội bộ và đối tác bên ngoài, duy trì giao tiếp liên tục với các nhà sáng lập, nhà đầu tư và chính quyền để đảm bảo trải nghiệm sự kiện hoàn hảo.`,
+        desc:`Trực tiếp tổ chức và điều phối vận hành hai sự kiện đổi mới sáng tạo quy mô lớn cấp thành phố: <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> (cuộc thi startup sinh viên flagship) và <strong style="color:var(--text)">Tuần lễ WHISE 2024</strong>. Công việc bao gồm vận hành sự kiện end-to-end, phối hợp cross-team giữa các phòng ban SIHUB và đối tác, duy trì giao tiếp liên tục với các nhà sáng lập, nhà đầu tư và chính quyền để đảm bảo trải nghiệm sự kiện hoàn hảo.`,
         tech:['Quản lý Sự kiện','Phối hợp Cross-team','Giao tiếp Stakeholder','Lập kế hoạch Vận hành']
       }
     ]
@@ -625,7 +625,7 @@ vi:{
       {n:'Thiết kế UX / HCI',ref:'Minh chứng qua: Human-Computer Interaction (UEH)', m:['Ứng dụng thành công vào 3 dự án thực tế','Giảm tải nhận thức (cognitive load) hệ thống E-Reader','Thiết kế giao diện Gradio đạt chuẩn Heuristic']},
       {n:'Agile / Scrum (CPMAI)',ref:'Minh chứng qua: Google Project Management & Dự án EchoMind', m:['Quản lý mượt mà 8 Sprints liên tục','Dẫn dắt đội ngũ 7 thành viên cross-functional','Hoàn thành 100% milestone dự án đúng hạn']},
       {n:'A/B Testing & Interleaving',ref:'Minh chứng qua: Human-Computer Interaction (UEH)', m:['Thiết kế và chạy 10+ thử nghiệm tính năng','Xác thực giả thuyết với độ tin cậy 95%','Ngăn chặn 3 lỗi thiết kế UX trước khi ra mắt']},
-      {n:'Phân rã Vấn đề',ref:'Minh chứng qua: Innovation Management (UEH)', m:['Phân rã 5+ Epics cấp cao thành các task thực thi','Chẩn đoán root-cause lỗi Mode Collapse','Cấu trúc hóa 150+ yêu cầu từ các stakeholders']},
+      {n:'Phân rã Vấn đề (Problem Decomposition)',ref:'Minh chứng qua: Innovation Management (UEH)', m:['Phân rã 5+ Epics cấp cao thành các task thực thi','Chẩn đoán root-cause lỗi Mode Collapse','Cấu trúc hóa 150+ yêu cầu từ các stakeholders']},
       {n:'Viết PRD & User Stories',ref:'Minh chứng qua: Entrepreneurship Innovation (UEH)', m:['Soạn thảo 10+ PRD chuẩn hóa','Quản lý backlog với 200+ User Stories','Đạt chuẩn tài liệu URD cấp thành phố']},
       {n:'Python & PyTorch (Có nền tảng)',ref:'Ứng dụng qua: Lập trình cơ bản, Nâng cao & EchoMind', m:['Tối ưu kiến trúc mô hình Transformer V2','Áp dụng lượng tử hóa Int8 giảm dung lượng','Giảm độ trễ suy luận AI xuống dưới 1s']}
     ],
@@ -650,7 +650,7 @@ vi:{
   },
   chat:{
     name:'Trợ lý AI của Minh',sub:'● Trực tuyến · Sẵn sàng giải đáp',reset:'↺ Làm lại',logout:'⏻ Ngôn ngữ',
-    greeting:`Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh — Product Owner & UX Strategist. Minh chuyên xây dựng sản phẩm dựa trên sự kết hợp giữa thiết kế trải nghiệm người dùng, tư duy hệ thống và AI Engineering.\n\nMinh đang tìm kiếm các cơ hội Product và UX để cống hiến khả năng thiết kế hành trình người dùng và thực thi sản phẩm chuyên nghiệp. Bạn muốn tìm hiểu khía cạnh nào trong hồ sơ của Minh?`,
+    greeting:`Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh — Product Owner & UX Strategist xây dựng sản phẩm tại giao điểm của thiết kế trải nghiệm người dùng, tư duy hệ thống và AI Engineering.\n\nMinh đang tìm kiếm các cơ hội Product và UX để cống hiến khả năng thiết kế hành trình người dùng và thực thi sản phẩm chuyên nghiệp. Bạn muốn tìm hiểu khía cạnh nào trong hồ sơ của Minh?`,
     prompts:[
       {id:'exp',i:'💼',l:'Kinh nghiệm'},
       {id:'proj',i:'🧠',l:'Dự án'},
@@ -659,7 +659,7 @@ vi:{
     ],
     ans:{
       exp:`Minh có hơn 2 năm kinh nghiệm làm việc tại SIHUB (Sở KH&CN TP.HCM).\n\n◈ 01–10/2025 | Project Management Executive\nMinh không chỉ vẽ các luồng quy trình (flowchart); Minh áp dụng A/B testing và Interleaving để kiểm chứng mọi thay đổi bằng dữ liệu thật. Minh cũng thay đổi góc nhìn của đội ngũ về NPS, coi đó là một hệ thống tín hiệu hành vi theo thời gian thực thay vì một điểm số tĩnh.\n\n◈ 07–12/2024 | R&D Intern\nDẫn dắt dự án phân tích với hơn 150 bên liên quan, thành công trong việc biên dịch các nhu cầu định tính phức tạp của người dùng thành tài liệu yêu cầu hệ thống chuẩn URD.`,
-      proj:`Ba dự án nổi bật minh chứng cho tư duy phát triển sản phẩm toàn diện của Minh:\n\n🧠 EchoMind AI — Flagship (09–12/2025)\nHệ thống giải mã sóng não (EEG) thành văn bản. Là Project Lead, Minh quản lý 8 Sprints theo khung CPMAI, quyết đoán chuyển đổi từ mô hình LSTM thất bại sang kiến trúc Transformer V2. Hệ thống đạt 55-65 WPM, KPI kỹ thuật 72% và tích hợp Expert Dashboard giúp minh bạch hóa AI cho y tế.\n\n📚 Hệ sinh thái E-Reader — Top 20 cấp TP (03–06/2025)\nTrong vai trò User Researcher, Minh thiết kế hành trình người dùng áp dụng nguyên lý HCI nhằm giảm tải nhận thức cho học sinh. Xuất sắc lọt Top 20 cuộc thi do UBND TP.HCM chỉ đạo.\n\n🚀 Vận hành Sự kiện ĐMST\nĐiều phối thành công các sự kiện quy mô lớn như Univ.Star và Tuần lễ WHISE.`,
+      proj:`Ba dự án nổi bật minh chứng cho tư duy phát triển sản phẩm toàn diện của Minh:\n\n🧠 EchoMind AI — Flagship (09–12/2025)\nHệ thống giải mã sóng não (EEG) thành văn bản. Là Project Lead, Minh quản lý 8 Sprints theo khung CPMAI, quyết đoán chuyển đổi từ mô hình LSTM thất bại sang kiến trúc Transformer V2. Áp dụng lượng tử hóa (Int8) để chạy mượt không cần GPU. Kết quả: 55–65 WPM, KPI kỹ thuật 72%. Thiết kế Expert Dashboard với Attention Maps.\n\n📚 Hệ sinh thái E-Reader — Top 20 cấp TP (03–06/2025)\nTrong vai trò User Researcher, Minh thiết kế hành trình người dùng áp dụng nguyên lý HCI nhằm giảm tải nhận thức cho học sinh. Xuất sắc lọt Top 20 cuộc thi do UBND TP.HCM chỉ đạo.\n\n🚀 Vận hành Sự kiện ĐMST\nĐiều phối thành công các sự kiện quy mô lớn như Univ.Star và Tuần lễ WHISE.`,
       skills:`Năng lực cốt lõi của Minh được xây dựng trên 3 trụ cột vững chắc:\n\n◈ Product Craft (Thế mạnh Cốt lõi)\n→ Lập bản đồ hành trình (95%) · UX/HCI (90%) · Agile/CPMAI (88%)\n→ Viết PRD & User Stories · Kiểm thử A/B · Phân rã Vấn đề\n\n◈ Dữ liệu & Tư duy Hệ thống\n→ Python (Có nền tảng) · Phân tích Dữ liệu (EDA)\n→ Am hiểu PyTorch và kiến trúc Transformer (thể hiện qua EchoMind)\n\n◈ Quản lý Stakeholder & Thực thi\n→ Kinh nghiệm làm việc với 150+ đối tác cấp thành phố/chính quyền\n→ Trình bày báo cáo chiến lược cấp Ban Giám đốc\n→ Dẫn dắt đội ngũ kỹ thuật vận hành theo quy trình Agile`,
       edu:`Minh đang là sinh viên năm cuối tại Đại học Kinh tế TP.HCM (UEH), chuyên ngành Quản lý Công nghệ & Đổi mới Sáng tạo với điểm số ấn tượng GPA 3.53/4.0.\n\nNhững môn học định hình tư duy sản phẩm của Minh gồm:\n→ Tương tác Người - Máy (HCI)\n→ Tư duy Thiết kế (Design Thinking)\n→ Trí tuệ Doanh nghiệp (BI)\n→ Dự án AI\n\nMinh cũng sở hữu các chứng chỉ chuyên nghiệp từ Google về Quản lý Dự án và Business Intelligence.`
     }
@@ -770,7 +770,7 @@ function renderUI() {
   document.getElementById('ed-major').textContent = t.edu.major;
   document.getElementById('ed-courses').innerHTML = `
     <div class="proj-chart-title" style="margin-bottom:14px;">${t.edu.courseTag}</div>
-    <div style="display:flex;flex-wrap:wrap;gap:10px;">${t.edu.courses.map(c => `<span style="font-size:13px;padding:7px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:9px;color:var(--text2);">${c}</span>`).join('')}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;">${t.edu.courses.map(c => `<span style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:12px;padding:7px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:9px;color:var(--text2);">${c}</span>`).join('')}</div>
   `;
   document.getElementById('ed-cert-lbl').textContent = t.edu.certTag;
   document.getElementById('ed-certs').innerHTML = renderCerts(t.edu.certs);
@@ -792,10 +792,10 @@ function renderCerts(certs) {
     <${tag} class="cert-card" style="${c.dash ? 'border-style:dashed;border-color:rgba(240,192,96,.3);' : ''} text-decoration:none;"${href}>
       <span style="font-size:22px;flex-shrink:0;">${c.i}</span>
       <div style="flex:1;">
-        <div style="color:var(--text);font-size:14px;font-weight:500;">${c.n}</div>
-        <div style="font-size:11.5px;color:var(--text2);margin-top:2px;">${c.org}</div>
+        <div style="color:var(--text);font-family:'Montserrat',sans-serif;font-size:13px;font-weight:600;">${c.n}</div>
+        <div style="font-family:'Montserrat',sans-serif;font-size:11px;color:var(--text2);margin-top:4px;">${c.org}</div>
       </div>
-      ${c.prog ? `<span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--gold);padding:4px 12px;background:rgba(240,192,96,.1);border-radius:20px;white-space:nowrap;">${c.prog}</span>` : ''}
+      ${c.prog ? `<span style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:9.5px;color:var(--gold);padding:4px 12px;background:rgba(240,192,96,.1);border-radius:20px;white-space:nowrap;">${c.prog}</span>` : ''}
       ${hoverIcon}
     </${tag}>
     `;
@@ -834,19 +834,19 @@ function renderProjects() {
           </div>
           <div style="background:var(--ink3);border-radius:18px;border:1px solid var(--border);padding:22px;text-align:center;">
             <div style="font-size:40px;margin-bottom:14px;">🧠</div>
-            <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);line-height:2.2;text-align:left;">
+            <div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;color:var(--accent2);line-height:2.2;text-align:left;">
               EEG Input (256ch)<br>↓ HDF5 → Tensor<br>↓ Positional Enc.<br>↓ Transformer V2<br>↓ Int8 Quantization<br>↓ Gradio Expert UI<br>→ Text Output
             </div>
             <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
-              <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text2);margin-bottom:4px;" id="ec-role-lbl">Role</div>
-              <div style="font-size:13px;color:var(--text);font-weight:600;">Project Lead</div>
-              <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text2);margin:10px 0 4px;" id="ec-team-lbl">Team</div>
-              <div style="font-size:12px;color:var(--text);">7 members · 8 sprints</div>
-              <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text2);margin:10px 0 4px;" id="ec-adv-lbl">Advisor</div>
-              <div style="font-size:11px;color:var(--text2);">ThS. Tạ Việt Phương</div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:9px;color:var(--text2);margin-bottom:4px;" id="ec-role-lbl">Role</div>
+              <div style="font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text);font-weight:600;">Project Lead</div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:9px;color:var(--text2);margin:10px 0 4px;" id="ec-team-lbl">Team</div>
+              <div style="font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text);">7 members · 8 sprints</div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:9px;color:var(--text2);margin:10px 0 4px;" id="ec-adv-lbl">Advisor</div>
+              <div style="font-family:'Montserrat',sans-serif;font-size:11px;color:var(--text2);">ThS. Tạ Việt Phương</div>
             </div>
             <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
-              <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--accent2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;" id="ec-sprint-lbl">Sprint Burndown</div>
+              <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:9px;color:var(--accent2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;" id="ec-sprint-lbl">Sprint Burndown</div>
               <div style="height:140px;position:relative;"><canvas id="burndownChart"></canvas></div>
             </div>
           </div>
@@ -856,7 +856,7 @@ function renderProjects() {
         <div class="project-card">
           <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:12px;">
             <span class="project-badge ${p.bClass}">${p.badge}</span>
-            <span style="font-family:'DM Mono',monospace;font-size:10.5px;color:var(--text2);">${p.date}</span>
+            <span style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:10px;color:var(--text2);">${p.date}</span>
           </div>
           <div class="project-name" style="font-size:22px;">${p.name}</div>
           <div class="project-sub">${p.sub}</div>
@@ -908,11 +908,11 @@ function renderKPIChart() {
       responsive: true, maintainAspectRatio: false,
       scales: {
         x: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: '#9898b0', font: { family: "'DM Sans',sans-serif", size: 11 } } },
-        y: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: '#9898b0', font: { family: "'DM Mono',monospace", size: 10 } }, max: 100, min: 0 }
+        y: { grid: { color: 'rgba(255,255,255,.05)' }, ticks: { color: '#9898b0', font: { family: "'Montserrat',sans-serif", size: 10, weight: '500' } }, max: 100, min: 0 }
       },
       plugins: {
         legend: { labels: { color: '#9898b0', font: { family: "'DM Sans',sans-serif", size: 11 }, boxWidth: 12 } },
-        tooltip: { backgroundColor: '#252538', titleFont: { family: "'DM Mono',monospace" }, bodyFont: { family: "'DM Sans',sans-serif" }, borderColor: 'rgba(255,255,255,.1)', borderWidth: 1,
+        tooltip: { backgroundColor: '#252538', titleFont: { family: "'Montserrat',sans-serif" }, bodyFont: { family: "'DM Sans',sans-serif" }, borderColor: 'rgba(255,255,255,.1)', borderWidth: 1,
           callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}${ctx.dataIndex === 2 ? '% ' + (isVI ? 'giảm' : 'reduction') : '%'}` }
         }
       }
@@ -938,8 +938,8 @@ function renderModelChart() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      scales: { r: { min: 0, max: 100, ticks: { display: false }, angleLines: { color: 'rgba(255,255,255,.07)' }, grid: { color: 'rgba(255,255,255,.07)' }, pointLabels: { color: '#9898b0', font: { size: 10, family: "'DM Sans',sans-serif" } } } },
-      plugins: { legend: { labels: { color: '#9898b0', font: { family: "'DM Sans',sans-serif", size: 11 }, boxWidth: 12, padding: 14 } }, tooltip: { backgroundColor: '#252538', titleFont: { family: "'DM Mono',monospace" }, bodyFont: { family: "'DM Sans',sans-serif" }, borderColor: 'rgba(255,255,255,.1)', borderWidth: 1 } }
+      scales: { r: { min: 0, max: 100, ticks: { display: false }, angleLines: { color: 'rgba(255,255,255,.07)' }, grid: { color: 'rgba(255,255,255,.07)' }, pointLabels: { color: '#9898b0', font: { size: 10, family: "'DM Sans',sans-serif", weight: '500' } } } },
+      plugins: { legend: { labels: { color: '#9898b0', font: { family: "'DM Sans',sans-serif", size: 11 }, boxWidth: 12, padding: 14 } }, tooltip: { backgroundColor: '#252538', titleFont: { family: "'Montserrat',sans-serif" }, bodyFont: { family: "'DM Sans',sans-serif" }, borderColor: 'rgba(255,255,255,.1)', borderWidth: 1 } }
     }
   });
 }
@@ -961,10 +961,10 @@ function renderBurndownChart() {
     options: {
       responsive: true, maintainAspectRatio: false,
       scales: {
-        x: { grid: { display: false }, ticks: { color: '#5a5a78', font: { family: "'DM Mono',monospace", size: 9 } } },
-        y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#5a5a78', font: { family: "'DM Mono',monospace", size: 9 }, callback: v => (v/1000).toFixed(1)+'k' } }
+        x: { grid: { display: false }, ticks: { color: '#5a5a78', font: { family: "'Montserrat',sans-serif", size: 9, weight: '500' } } },
+        y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#5a5a78', font: { family: "'Montserrat',sans-serif", size: 9, weight: '500' }, callback: v => (v/1000).toFixed(1)+'k' } }
       },
-      plugins: { legend: { labels: { color: '#9898b0', font: { family: "'DM Sans',sans-serif", size: 10 }, boxWidth: 10, padding: 10 } }, tooltip: { backgroundColor: '#252538', titleFont: { family: "'DM Mono',monospace" }, bodyFont: { family: "'DM Sans',sans-serif" }, borderColor: 'rgba(255,255,255,.1)', borderWidth: 1 } }
+      plugins: { legend: { labels: { color: '#9898b0', font: { family: "'DM Sans',sans-serif", size: 10 }, boxWidth: 10, padding: 10 } }, tooltip: { backgroundColor: '#252538', titleFont: { family: "'Montserrat',sans-serif" }, bodyFont: { family: "'DM Sans',sans-serif" }, borderColor: 'rgba(255,255,255,.1)', borderWidth: 1 } }
     }
   });
 }
@@ -1021,7 +1021,7 @@ function initSkillsChart() {
     },
     options: {
       responsive: true, maintainAspectRatio: false,
-      scales: { r: { min: 0, max: 100, ticks: { display: false }, angleLines: { color: 'rgba(255,255,255,.07)' }, grid: { color: 'rgba(255,255,255,.07)' }, pointLabels: { font: { size: 12, family: "'DM Sans',sans-serif", weight: '500' }, color: '#9898b0' } } },
+      scales: { r: { min: 0, max: 100, ticks: { display: false }, angleLines: { color: 'rgba(255,255,255,.07)' }, grid: { color: 'rgba(255,255,255,.07)' }, pointLabels: { font: { size: 11, family: "'Montserrat',sans-serif", weight: '600' }, color: '#9898b0' } } },
       plugins: { legend: { display: false }, tooltip: { backgroundColor: '#252538', borderColor: 'rgba(255,255,255,.1)', borderWidth: 1, padding: 12, callbacks: { label: c => { const v = c.raw; if (lang === 'vi') return v >= 90 ? ' Chuyên gia' : v >= 80 ? ' Cao cấp' : v >= 70 ? ' Thành thạo' : ' Có nền tảng'; return v >= 90 ? ' Expert' : v >= 80 ? ' Advanced' : v >= 70 ? ' Proficient' : ' Familiar'; } } } }
     }
   });
