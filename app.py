@@ -78,7 +78,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
   position:relative;gap:4px;
 }
 .nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
-.nav-item .nav-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.3px;text-transform:uppercase;opacity:.7;}
+.nav-item .nav-lbl{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.3px;text-transform:uppercase;opacity:.7;white-space:nowrap;}
 .nav-item:hover{background:var(--surface);color:var(--text);}
 .nav-item.active{background:linear-gradient(135deg,rgba(124,106,247,.3),rgba(124,106,247,.12));color:var(--accent2);border-color:rgba(124,106,247,.35);box-shadow:0 0 18px rgba(124,106,247,.2);}
 .nav-tooltip{position:absolute;left:74px;background:var(--surface2);color:var(--text);font-size:12px;font-family:'DM Mono',monospace;padding:6px 12px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;border:1px solid var(--border2);z-index:100;}
@@ -247,7 +247,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 <div class="noise"></div>
 <div id="scroll-progress"></div>
 
-<!-- ======== LANGUAGE OVERLAY ======== -->
 <div id="lang-overlay">
   <div style="text-align:center;">
     <div class="lo-logo">hwinh</div>
@@ -266,10 +265,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
   </div>
 </div>
 
-<!-- ======== MAIN APP ======== -->
 <div class="app" id="main-app">
 
-  <!-- SIDENAV -->
   <nav class="sidenav">
     <div class="nav-logo">HM</div>
     <div class="nav-item active" data-view="welcome" onclick="go('welcome',this)">
@@ -300,11 +297,9 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
     <div class="nav-spacer"></div>
   </nav>
 
-  <!-- VISUAL PANEL -->
   <main class="visual-panel" id="visual-panel">
     <div class="view-tr" id="view-tr"><div class="spinner"></div></div>
 
-    <!-- ===== WELCOME ===== -->
     <div id="view-welcome" class="view-content">
       <div class="welcome-eyebrow fade-up">
         <div class="status-dot"></div>
@@ -330,21 +325,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
       <p class="fade-up d6" style="font-size:14px;color:var(--text2);line-height:1.8;max-width:500px;margin-top:8px;" id="w-hint"></p>
     </div>
 
-    <!-- ===== EXPERIENCE ===== -->
     <div id="view-experience" class="view-content" style="display:none">
       <div class="section-tag" id="e-tag">Work History</div>
       <h2 class="view-title" id="e-title">Work <span>Experience</span></h2>
       <div class="timeline" id="e-timeline"></div>
     </div>
 
-    <!-- ===== PROJECTS ===== -->
     <div id="view-projects" class="view-content" style="display:none">
       <div class="section-tag" id="p-tag">Product Experience</div>
       <h2 class="view-title" id="p-title">Featured <span>Projects</span></h2>
       <div class="projects-grid" id="p-grid"></div>
     </div>
 
-    <!-- ===== SKILLS ===== -->
     <div id="view-skills" class="view-content" style="display:none">
       <div class="section-tag" id="s-tag">Competencies</div>
       <h2 class="view-title" id="s-title">Professional <span>Skills</span></h2>
@@ -361,7 +353,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
       </div>
     </div>
 
-    <!-- ===== EDUCATION ===== -->
     <div id="view-education" class="view-content" style="display:none">
       <div class="section-tag" id="ed-tag">Academic Background</div>
       <h2 class="view-title" id="ed-title">Education &amp; <span>Awards</span></h2>
@@ -384,7 +375,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
     </div>
   </main>
 
-  <!-- CHAT PANEL -->
   <aside class="chat-panel">
     <div class="chat-header">
       <div class="chat-avatar">🤖</div>
@@ -784,12 +774,10 @@ function renderProjects() {
             <p class="project-desc">${p.desc.replace(/\n/g,'<br>')}</p>
             <div class="info-grid">${p.info.map(i => `<div class="info-item"><div class="info-lbl">${i.l}</div><div class="info-val">${i.v}</div></div>`).join('')}</div>
             <div class="project-metrics">${p.metrics.map(m => `<div class="metric"><div class="metric-val">${m.v}</div><div class="metric-lbl">${m.l}</div></div>`).join('')}</div>
-            <!-- ROI CHART -->
             <div class="proj-chart-wrap">
               <div class="proj-chart-title" id="roi-chart-title">Technical ROI Breakdown — vs Traditional AAC</div>
               <div style="height:200px;position:relative;"><canvas id="roiChart"></canvas></div>
             </div>
-            <!-- MODEL COMPARISON CHART -->
             <div class="proj-chart-wrap">
               <div class="proj-chart-title" id="model-chart-title">Model Comparison: LSTM V1 vs Transformer V2</div>
               <div style="height:180px;position:relative;"><canvas id="modelChart"></canvas></div>
@@ -809,7 +797,6 @@ function renderProjects() {
               <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text2);margin:10px 0 4px;" id="ec-adv-lbl">Advisor</div>
               <div style="font-size:11px;color:var(--text2);">ThS. Tạ Việt Phương</div>
             </div>
-            <!-- SPRINT CHART -->
             <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
               <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--accent2);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;" id="ec-sprint-lbl">Sprint Burndown</div>
               <div style="height:140px;position:relative;"><canvas id="burndownChart"></canvas></div>
