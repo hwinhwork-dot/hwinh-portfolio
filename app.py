@@ -613,7 +613,7 @@ vi:{
   },
   chat:{
     name:'Trợ lý AI của Minh',sub:'● Trực tuyến · Sẵn sàng giải đáp',reset:'↺ Làm lại',logout:'⏻ Ngôn ngữ',
-    greeting:`Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh — Product Owner & UX Strategist xây dựng sản phẩm tại giao điểm của thiết kế trải nghiệm người dùng, tư duy hệ thống và AI Engineering.\n\nMinh đang tích cực tìm kiếm các cơ hội Product và UX nơi sự đồng cảm sâu sắc với người dùng gặp khả năng thực thi sản phẩm chặt chẽ. Bạn muốn biết thêm điều gì?`,
+    greeting:`Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh với mong muốn làm việc với vị trí Product Owner hoặc UX Strategist. Minh có kinh nghiệm xây dựng sản phẩm tại dựa trên pain points của khách hàng và thiết kế trải nghiệm người dùng, tư duy hệ thống và AI Engineering.\n\nMinh đang tích cực tìm kiếm các cơ hội Product và UX nơi mà cậu ấy muốn có sự đồng cảm với người dùng khi họ sử dụng sản phẩm. Bạn muốn biết thêm điều gì của Minh Không?`,
     prompts:[
       {id:'exp',i:'💼',l:'Kinh nghiệm'},
       {id:'proj',i:'🧠',l:'Dự án'},
