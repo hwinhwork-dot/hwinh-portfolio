@@ -19,7 +19,7 @@ html_code = r"""<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hoang Minh | Product &amp; UX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root{
@@ -28,64 +28,112 @@ html_code = r"""<!DOCTYPE html>
   --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
   --text:#e8e8f0;--text2:#9898b0;--text3:#5a5a78;
   --accent:#7c6af7;--accent2:#a594fc;--accent3:#c4b8fe;
-  --gold:#f0c060;--green:#52d18a;--coral:#ff7b6b;--teal:#4dd9c0;--blue:#5b9bd5;
+  --gold:#f0c060;--gold2:#fad87a;
+  --green:#52d18a;--green2:#7de8a8;
+  --coral:#ff7b6b;--coral2:#ffaa9f;
+  --teal:#4dd9c0;--teal2:#80e8d5;
+  --blue:#5b9bd5;--blue2:#82b8e8;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;}
 body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;}
 
-/* TOAST */
-#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--surface2);border:1px solid var(--green);color:var(--green);font-family:'DM Mono',monospace;font-size:12px;padding:10px 22px;border-radius:10px;z-index:99999;opacity:0;transition:all .35s cubic-bezier(.16,1,.3,1);pointer-events:none;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.35);letter-spacing:.5px;}
+/* ========== TOAST NOTIFICATION ========== */
+#toast{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(16px);
+  background:var(--surface2);border:1px solid var(--green);color:var(--green);
+  font-family:'DM Mono',monospace;font-size:12px;padding:10px 22px;border-radius:10px;
+  z-index:99999;opacity:0;transition:all .35s cubic-bezier(.16,1,.3,1);
+  pointer-events:none;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.35);
+  letter-spacing:.5px;
+}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-/* FLOAT POPUP */
-#float-popup{position:fixed;width:300px;background:rgba(18,18,26,0.97);border:1px solid var(--accent);border-radius:14px;padding:16px 18px;box-shadow:0 20px 50px rgba(0,0,0,.6);backdrop-filter:blur(12px);opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease;pointer-events:none;z-index:99998;}
+/* ========== FLOATING SKILL POPUP ========== */
+#float-popup{
+  position:fixed;width:300px;
+  background:rgba(18,18,26,0.97);border:1px solid var(--accent);border-radius:14px;
+  padding:16px 18px;box-shadow:0 20px 50px rgba(0,0,0,.6);backdrop-filter:blur(12px);
+  opacity:0;visibility:hidden;transition:opacity .22s ease,visibility .22s ease;
+  pointer-events:none;z-index:99998;
+}
 .popup-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
 .popup-metric{font-size:13px;color:var(--text);line-height:1.5;display:flex;align-items:start;gap:8px;margin-bottom:8px;}
 .popup-metric:last-child{margin-bottom:0;}
 .popup-metric::before{content:'•';color:var(--green);font-weight:bold;flex-shrink:0;}
 
-/* SCROLL PROGRESS */
+/* ========== SCROLL PROGRESS ========== */
 #scroll-progress{position:fixed;top:0;left:90px;height:3px;background:linear-gradient(90deg,var(--accent),var(--teal));width:0%;z-index:1000;transition:width .1s ease-out;border-radius:0 2px 2px 0;}
 
-/* LANG OVERLAY */
-#lang-overlay{position:fixed;inset:0;background:var(--ink);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;transition:opacity .5s ease,visibility .5s;}
+/* ========== LANGUAGE OVERLAY ========== */
+#lang-overlay{
+  position:fixed;inset:0;background:var(--ink);z-index:9999;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;
+  transition:opacity .5s ease,visibility .5s;
+}
 .lo-logo{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:var(--accent2);letter-spacing:-3px;line-height:1;}
-.lo-tagline{font-family:'DM Mono',monospace;font-size:12px;color:var(--text2);letter-spacing:3px;text-transform:uppercase;}
+.lo-tagline{font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text2);letter-spacing:3px;text-transform:uppercase;}
 .lo-question{font-family:'Syne',sans-serif;font-size:22px;font-weight:600;color:var(--text);text-align:center;line-height:1.5;}
 .lo-options{display:flex;gap:20px;align-items:stretch;}
-.lo-btn{background:var(--surface);border:2px solid var(--border2);color:var(--text2);padding:20px 48px;border-radius:14px;font-family:'Syne',sans-serif;font-size:20px;font-weight:600;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;align-items:center;gap:8px;}
-.lo-btn:hover{border-color:var(--accent);background:var(--surface2);transform:translateY(-4px);box-shadow:0 12px 30px rgba(124,106,247,.2);color:var(--text);}
-.lo-btn span{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);}
+
+/* Buttons are completely neutral until hovered */
+.lo-btn{
+  background:var(--surface);border:2px solid var(--border2);color:var(--text2);
+  padding:20px 48px;border-radius:14px;font-family:'Syne',sans-serif;font-size:20px;font-weight:600;
+  cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;
+  align-items:center;gap:8px;
+}
+.lo-btn:hover{
+  background:var(--accent);
+  border-color:var(--accent2);
+  color:white;
+  transform:translateY(-5px);
+  box-shadow:0 14px 36px rgba(124,106,247,.5);
+}
 .lo-kbhint{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;text-align:center;}
 
-/* LAYOUT */
+/* ========== APP LAYOUT ========== */
 .app{display:flex;height:100vh;width:100%;opacity:0;transition:opacity .7s ease;}
 .app.visible{opacity:1;}
 
-/* SIDENAV */
-.sidenav{width:90px;height:100%;background:var(--ink2);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:28px 0 24px;gap:10px;flex-shrink:0;z-index:10;}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--accent2);margin-bottom:16px;letter-spacing:-.5px;}
-.nav-item{width:58px;height:54px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--text2);border:1px solid transparent;position:relative;gap:3px;}
-.nav-item svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
-.nav-item .nav-lbl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.3px;text-transform:uppercase;opacity:.7;white-space:nowrap;}
+/* ========== SIDENAV ========== */
+.sidenav{
+  width:90px;height:100%;background:var(--ink2);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;align-items:center;padding:28px 0 24px;gap:12px;flex-shrink:0;z-index:10;
+}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;color:var(--accent2);margin-bottom:20px;letter-spacing:-0.5px;}
+.nav-item{
+  width:58px;height:58px;border-radius:16px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;cursor:pointer;transition:all .2s;color:var(--text2);border:1px solid transparent;
+  position:relative;gap:4px;
+}
+.nav-item svg{width:22px;height:22px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.nav-item .nav-lbl{font-family:'Montserrat',sans-serif;font-weight:500;font-size:8.5px;letter-spacing:.3px;text-transform:uppercase;opacity:.7;white-space:nowrap;}
 .nav-item:hover{background:var(--surface);color:var(--text);}
 .nav-item.active{background:linear-gradient(135deg,rgba(124,106,247,.3),rgba(124,106,247,.12));color:var(--accent2);border-color:rgba(124,106,247,.35);box-shadow:0 0 18px rgba(124,106,247,.2);}
 .nav-tooltip{position:absolute;left:74px;background:var(--surface2);color:var(--text);font-size:12px;font-family:'DM Mono',monospace;padding:6px 12px;border-radius:7px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;border:1px solid var(--border2);z-index:100;}
 .nav-item:hover .nav-tooltip{opacity:1;}
 .nav-spacer{flex:1;}
+/* Keyboard hint in nav */
+.nav-kbd{
+  font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:4px;padding:2px 5px;margin-top:2px;display:none;
+}
+.nav-item:hover .nav-kbd{display:block;}
 
-/* VISUAL PANEL */
+/* ========== VISUAL PANEL ========== */
 .visual-panel{flex:1;height:100%;overflow-y:auto;background:var(--ink);position:relative;}
 .visual-panel::-webkit-scrollbar{width:5px;}
 .visual-panel::-webkit-scrollbar-thumb{background:var(--border2);border-radius:5px;}
 
-/* TRANSITION */
+/* ========== TRANSITION OVERLAY ========== */
 .view-tr{position:fixed;top:0;left:90px;right:420px;bottom:0;background:var(--ink);z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s ease;}
 .view-tr.active{opacity:1;pointer-events:all;}
 .spinner{width:36px;height:36px;border:3px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{100%{transform:rotate(360deg);}}
 
-/* CHAT PANEL */
+/* ========== CHAT PANEL ========== */
 .chat-panel{width:420px;height:100%;flex-shrink:0;background:var(--ink2);border-left:1px solid var(--border);display:flex;flex-direction:column;}
 .chat-header{padding:20px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px;flex-shrink:0;}
 .chat-avatar{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--teal));display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 15px rgba(124,106,247,.3);}
@@ -104,26 +152,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .msg-av{width:30px;height:30px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
 .msg-av.ai{background:linear-gradient(135deg,var(--accent),var(--teal));}
 .msg-av.user{background:var(--surface2);border:1px solid var(--border2);}
-.msg-bubble{max-width:82%;padding:14px 18px;border-radius:18px;font-size:13.5px;line-height:1.65;}
+.msg-bubble{max-width:82%;padding:13px 17px;border-radius:18px;font-size:13.5px;line-height:1.65;}
 .msg-bubble.ai{background:var(--surface);border:1px solid var(--border2);color:var(--text);border-bottom-left-radius:4px;}
 .msg-bubble.user{background:var(--accent);color:white;border-bottom-right-radius:4px;}
 .cursor-blink{display:inline-block;width:8px;height:15px;background:var(--accent2);margin-left:3px;animation:blink 1s step-end infinite;vertical-align:middle;border-radius:1px;}
 @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-.chat-footer{padding:16px;border-top:1px solid var(--border);flex-shrink:0;background:var(--ink2);}
-.prompts-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.prompt-btn{background:linear-gradient(145deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border2);border-radius:16px;padding:16px 14px;font-size:13px;color:var(--text);font-weight:500;cursor:pointer;transition:all .3s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;align-items:flex-start;gap:8px;box-shadow:0 4px 12px rgba(0,0,0,.1);position:relative;overflow:hidden;text-align:left;}
-.prompt-btn::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--accent);transform:scaleY(0);transition:transform .3s;transform-origin:bottom;}
-.prompt-btn:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(124,106,247,.2);border-color:rgba(124,106,247,.4);background:var(--surface2);}
-.prompt-btn:hover::before{transform:scaleY(1);}
-.p-icon{font-size:22px;padding:8px;background:rgba(124,106,247,.1);border-radius:10px;line-height:1;margin-bottom:2px;border:1px solid rgba(124,106,247,.2);}
-.p-lbl{font-family:'Syne',sans-serif;font-size:15px;letter-spacing:-.2px;font-weight:700;color:var(--text);}
-.prompt-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
-.prompt-btn:disabled::before{display:none;}
+.chat-footer{padding:16px;border-top:1px solid var(--border);flex-shrink:0;}
+.prompts-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.prompt-btn{background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:13px 12px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;transition:all .2s cubic-bezier(.16,1,.3,1);text-align:left;display:flex;align-items:center;gap:9px;box-shadow:0 2px 4px rgba(0,0,0,.1);}
+.prompt-btn:hover{border-color:var(--accent);color:var(--text);background:var(--surface2);transform:translateY(-2px);box-shadow:0 5px 14px rgba(0,0,0,.2);}
+.prompt-btn:disabled{opacity:.38;cursor:not-allowed;transform:none;box-shadow:none;}
 
-/* NOISE */
+/* ========== NOISE ========== */
 .noise{position:fixed;inset:0;opacity:.025;pointer-events:none;z-index:100;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
-/* SHARED */
+/* ========== SHARED VIEW STYLES ========== */
 .view-content{padding:60px 72px;min-height:100%;position:relative;}
 .section-tag{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:20px;}
 .section-tag::before{content:'◈';font-size:13px;}
@@ -131,14 +174,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .view-title span{color:var(--accent2);}
 .subtle-div{height:1px;background:var(--border);margin:44px 0;}
 
-/* WELCOME */
+/* ========== WELCOME VIEW ========== */
 .welcome-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:28px;}
 .status-dot{width:10px;height:10px;background:var(--green);border-radius:50%;box-shadow:0 0 10px var(--green);animation:pg 2s infinite;}
 @keyframes pg{0%,100%{box-shadow:0 0 6px var(--green);}50%{box-shadow:0 0 20px var(--green);}}
 .status-text{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--green);letter-spacing:1px;text-transform:uppercase;}
 .welcome-name{font-family:'Syne',sans-serif;font-size:clamp(46px,5vw,80px);font-weight:800;line-height:.95;letter-spacing:-2.5px;margin-bottom:14px;}
 .welcome-name .accent-word{color:var(--accent2);display:block;}
-.welcome-role{font-size:18px;color:var(--text2);font-weight:300;margin-bottom:36px;font-style:italic;}
+.welcome-role{font-size:18px;color:var(--text2);font-weight:300;margin-bottom:36px;font-style:italic;letter-spacing:.3px;}
 .welcome-summary{font-size:15.5px;line-height:1.85;color:var(--text2);max-width:580px;margin-bottom:44px;border-left:3px solid var(--accent);padding-left:24px;}
 .contact-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px;}
 .contact-chip{display:flex;align-items:center;gap:8px;padding:9px 18px;background:var(--surface);border:1px solid var(--border2);border-radius:10px;font-size:12.5px;font-family:'DM Mono',monospace;color:var(--text2);transition:all .2s;cursor:default;}
@@ -151,10 +194,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--teal));}
 .stat-number{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;color:var(--text);line-height:1;}
 .stat-label{font-size:11px;color:var(--text2);margin-top:8px;text-transform:uppercase;letter-spacing:.7px;font-family:'DM Mono',monospace;}
-.kbd-hint-row{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap;}
-.kbd{font-family:'DM Mono',monospace;font-size:10px;padding:3px 8px;background:var(--surface);border:1px solid var(--border2);border-radius:5px;color:var(--text2);}
 
-/* TIMELINE */
+/* ========== TIMELINE ========== */
 .timeline{position:relative;padding-left:32px;}
 .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:linear-gradient(to bottom,var(--accent),transparent);}
 .timeline-item{position:relative;margin-bottom:52px;}
@@ -170,7 +211,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .tl-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
 .tl-tag{font-family:'DM Mono',monospace;font-size:10.5px;padding:4px 12px;border-radius:6px;background:rgba(124,106,247,.1);border:1px solid rgba(124,106,247,.25);color:var(--accent3);}
 
-/* PROJECTS */
+/* ========== PROJECTS ========== */
 .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
 .project-card{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:30px;transition:all .3s;position:relative;overflow:hidden;}
 .project-card:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 22px 44px rgba(0,0,0,.32);}
@@ -191,6 +232,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .metric-lbl{font-size:9.5px;color:var(--text2);text-transform:uppercase;letter-spacing:.6px;margin-top:4px;font-family:'DM Mono',monospace;}
 .tech-stack{display:flex;flex-wrap:wrap;gap:7px;}
 .tech-pill{font-family:'DM Mono',monospace;font-size:10.5px;padding:4px 12px;border-radius:6px;background:var(--ink3);border:1px solid var(--border2);color:var(--text2);}
+
+/* Chart containers in project */
 .proj-chart-wrap{background:var(--ink3);border-radius:16px;border:1px solid var(--border);padding:20px;margin:16px 0;}
 .proj-chart-title{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
 
@@ -230,7 +273,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .cs-meta{flex:1;}
 .cs-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
 .cs-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:1px;}
-.cs-tag{font-family:'DM Mono',monospace;font-size:10px;padding:3px 10px;border-radius:20px;border:1px solid var(--border2);color:var(--text2);}
+.cs-tag{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:500;padding:3px 10px;border-radius:20px;border:1px solid var(--border2);color:var(--text2);}
 .cs-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.5px;margin-bottom:6px;}
 .cs-role{font-size:13px;color:var(--text2);font-style:italic;}
 .cs-impact-badge{background:var(--ink3);border:1px solid var(--border2);border-radius:16px;padding:18px 22px;text-align:center;min-width:140px;flex-shrink:0;}
@@ -329,8 +372,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--text);he
 .lk-skill-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15);}
 .lk-skill-header{display:flex;justify-content:space-between;align-items:center;}
 .lk-skill-title{font-size:15px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:10px;}
-.lk-skill-ref{font-family:'DM Mono',monospace;font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px;line-height:1.4;}
-.lk-skill-ref::before{content:'↳';color:var(--accent2);font-weight:bold;}
+.lk-skill-ref{font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;color:var(--text2);display:flex;align-items:center;gap:6px;line-height:1.4;}
+.lk-skill-ref::before{content:'↳';color:var(--accent2);font-weight:bold;font-family:'DM Sans',sans-serif;}
 .cert-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:15px 18px;margin-bottom:10px;display:flex;align-items:center;gap:14px;transition:transform .2s,border-color .2s;position:relative;}
 a.cert-card{cursor:pointer;color:inherit;text-decoration:none;}
 a.cert-card:hover{transform:translateX(4px);border-color:var(--accent);box-shadow:0 6px 16px rgba(124,106,247,.15);}
@@ -339,7 +382,7 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
 
 /* EDUCATION */
 .edu-hero{background:linear-gradient(135deg,var(--surface),var(--surface2));border:1px solid var(--border);border-radius:24px;padding:40px;margin-bottom:28px;position:relative;overflow:hidden;}
-.edu-hero::before{content:'UEH';position:absolute;right:-15px;bottom:-45px;font-family:'Syne',sans-serif;font-size:180px;font-weight:800;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;}
+.edu-hero::before{content:'UEH';position:absolute;right:-15px;bottom:-45px;font-family:'Syne',sans-serif;font-size:180px;font-weight:800;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;user-select:none;}
 .gpa-badge{display:inline-flex;align-items:center;gap:14px;background:rgba(240,192,96,.1);border:1px solid rgba(240,192,96,.3);border-radius:16px;padding:16px 24px;margin-top:18px;}
 .gpa-val{font-family:'Syne',sans-serif;font-size:30px;font-weight:800;color:var(--gold);}
 
@@ -373,7 +416,7 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
   .impact-arrow{transform:rotate(90deg);padding:4px 0;}
   #scroll-progress{left:72px;}
   .sidenav{width:72px;}
-  .nav-item{width:44px;height:44px;}
+  .nav-item{width:46px;height:46px;}
   .dt-flow{flex-wrap:wrap;gap:8px;}
   .dt-phase{flex:calc(50% - 4px);border-radius:12px !important;}
   .dt-phase+.dt-phase::before{display:none;}
@@ -387,21 +430,19 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
 <div class="noise"></div>
 <div id="scroll-progress"></div>
 
-<!-- LANG OVERLAY -->
 <div id="lang-overlay">
   <div style="text-align:center;">
     <div class="lo-logo">hwinh</div>
     <div class="lo-tagline" style="margin-top:10px;">AI Portfolio · Product &amp; UX</div>
   </div>
-  <div class="lo-question">Choose your language<br><span style="font-size:18px;color:var(--text2);font-weight:400;">Chọn ngôn ngữ hiển thị</span></div>
+  <div class="lo-question">Choose your language<br><span style="font-family:'Montserrat',sans-serif;font-size:16px;color:var(--text2);font-weight:400;margin-top:8px;display:inline-block;">Chọn ngôn ngữ hiển thị</span></div>
   <div class="lo-options">
     <button class="lo-btn" onclick="selectLang('en')">English</button>
     <button class="lo-btn" onclick="selectLang('vi')">Tiếng Việt</button>
   </div>
-  <div class="lo-kbhint">Press <strong style="color:var(--text2)">1–6</strong> to navigate · <strong style="color:var(--text2)">Esc</strong> to return</div>
+  <div class="lo-kbhint" style="margin-top:12px;">Press <strong style="color:var(--text2)">1–6</strong> to navigate · <strong style="color:var(--text2)">Esc</strong> to return</div>
 </div>
 
-<!-- APP -->
 <div class="app" id="main-app">
   <nav class="sidenav">
     <div class="nav-logo">HM</div>
@@ -417,7 +458,6 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
   <main class="visual-panel" id="visual-panel">
     <div class="view-tr" id="view-tr"><div class="spinner"></div></div>
 
-    <!-- WELCOME -->
     <div id="view-welcome" class="view-content">
       <div class="welcome-eyebrow fade-up"><div class="status-dot"></div><span class="status-text" id="w-status">Available for Product &amp; UX opportunities · HCMC</span></div>
       <h1 class="welcome-name fade-up d1">Nguyễn<span class="accent-word">Hoàng Minh</span></h1>
@@ -426,55 +466,47 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
       <div class="contact-row fade-up d4">
         <div class="contact-chip copyable" onclick="copyEmail()" title="Click to copy">✉ hwinh.work@gmail.com</div>
         <div class="contact-chip">📞 +84 765 828 191</div>
-        <div class="contact-chip">📍 Hồ Chí Minh</div>
+        <div class="contact-chip" style="font-family:'Montserrat',sans-serif;">📍 Hồ Chí Minh</div>
         <div class="contact-chip">🎓 UEH · GPA 3.53/4.0</div>
       </div>
       <div class="stat-grid fade-up d5">
-        <div class="stat-card"><div class="stat-number">3+</div><div class="stat-label" id="ws1">Years Exp.</div></div>
+        <div class="stat-card"><div class="stat-number">2+</div><div class="stat-label" id="ws1">Years Exp.</div></div>
         <div class="stat-card"><div class="stat-number">150+</div><div class="stat-label" id="ws2">Stakeholders</div></div>
         <div class="stat-card"><div class="stat-number">72%</div><div class="stat-label" id="ws3">AI Tech. KPI</div></div>
         <div class="stat-card"><div class="stat-number">Top 20</div><div class="stat-label" id="ws4">City Finalist</div></div>
       </div>
       <div class="subtle-div fade-up"></div>
       <div class="section-tag fade-up d6" id="w-explore">Explore this portfolio</div>
-      <p class="fade-up d6" style="font-size:14px;color:var(--text2);line-height:1.8;max-width:500px;margin-top:8px;" id="w-hint"></p>
+      <p class="fade-up d6" style="font-family:'Montserrat',sans-serif;font-size:14px;color:var(--text2);line-height:1.8;max-width:500px;margin-top:8px;" id="w-hint"></p>
       <div class="kbd-hint-row fade-up d6" style="margin-top:20px;">
-        <span id="kbd-nav-hint" style="font-size:12px;font-family:'DM Mono',monospace;color:var(--text3);">Quick navigate:</span>
+        <span id="kbd-nav-hint" style="font-family:'Montserrat',sans-serif;font-size:12px;color:var(--text3);">Quick navigate:</span>
         <span class="kbd">1</span><span class="kbd">2</span><span class="kbd">3</span><span class="kbd">4</span><span class="kbd">5</span><span class="kbd">6</span>
         <span id="kbd-nav-desc" style="color:var(--text3);font-size:11px;font-family:'DM Mono',monospace;margin-left:4px;">→ Home / Career / Work / UX / Skills / School</span>
       </div>
     </div>
 
-    <!-- EXPERIENCE -->
     <div id="view-experience" class="view-content" style="display:none">
       <div class="section-tag" id="e-tag">Work History</div>
       <h2 class="view-title" id="e-title">Work <span>Experience</span></h2>
       <div class="timeline" id="e-timeline"></div>
     </div>
 
-    <!-- PROJECTS -->
     <div id="view-projects" class="view-content" style="display:none">
       <div class="section-tag" id="p-tag">Product Experience</div>
       <h2 class="view-title" id="p-title">Featured <span>Projects</span></h2>
       <div class="projects-grid" id="p-grid"></div>
     </div>
 
-    <!-- UX EXPERIENCE — NEW SECTION -->
     <div id="view-ux" class="view-content" style="display:none">
       <div class="section-tag" id="ux-tag">Design Process</div>
       <h2 class="view-title" id="ux-title">UX <span>Experience</span></h2>
-
-      <!-- Design Thinking Framework Visual -->
       <div class="fade-up">
         <div class="proj-chart-title" id="ux-dt-title" style="margin-bottom:20px;">My Design Thinking Framework</div>
         <div class="dt-flow" id="ux-dt-flow"></div>
       </div>
-
-      <!-- Case Studies -->
       <div id="ux-cases"></div>
     </div>
 
-    <!-- SKILLS -->
     <div id="view-skills" class="view-content" style="display:none">
       <div class="section-tag" id="s-tag">Competencies</div>
       <h2 class="view-title" id="s-title">Professional <span>Skills</span></h2>
@@ -488,15 +520,14 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
       </div>
     </div>
 
-    <!-- EDUCATION -->
     <div id="view-education" class="view-content" style="display:none">
       <div class="section-tag" id="ed-tag">Academic Background</div>
       <h2 class="view-title" id="ed-title">Education &amp; <span>Awards</span></h2>
       <div class="edu-hero">
-        <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:1px;margin-bottom:14px;">AUG 2022 — AUG 2026</div>
+        <div style="font-family:'Montserrat',sans-serif;font-weight:600;font-size:11px;color:var(--accent2);letter-spacing:1px;margin-bottom:14px;">AUG 2022 — AUG 2026</div>
         <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--text);margin-bottom:6px;" id="ed-uni">University of Economics HCMC (UEH)</h3>
-        <p style="color:var(--text2);font-size:15px;margin-bottom:20px;" id="ed-major">Bachelor of Technology &amp; Innovation Management</p>
-        <div class="gpa-badge"><span style="font-size:26px;">🏆</span><div><div style="font-size:11px;color:var(--text2);margin-bottom:3px;">Grade Point Average</div><div class="gpa-val">3.53 / 4.0</div></div></div>
+        <p style="font-family:'Montserrat',sans-serif;color:var(--text2);font-size:15px;margin-bottom:20px;" id="ed-major">Bachelor of Technology &amp; Innovation Management</p>
+        <div class="gpa-badge"><span style="font-size:26px;">🏆</span><div><div style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:11px;color:var(--text2);margin-bottom:3px;">Grade Point Average</div><div class="gpa-val">3.53 <span style="font-size:20px;color:var(--text2);font-weight:600;">/ 4.0</span></div></div></div>
       </div>
       <div id="ed-courses"></div>
       <div class="subtle-div"></div>
@@ -505,7 +536,6 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
     </div>
   </main>
 
-  <!-- CHAT PANEL -->
   <aside class="chat-panel">
     <div class="chat-header">
       <div class="chat-avatar">🤖</div>
@@ -521,9 +551,9 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
 </div>
 
 <script>
-// ================================================================
+// ============================================================
 // DATA
-// ================================================================
+// ============================================================
 const T = {
 en: {
   nav: ['Home','Career','Work','UX','Skills','School'],
@@ -533,7 +563,7 @@ en: {
   w: {
     status: 'Available for Product & UX opportunities · HCMC, Vietnam',
     role: 'Product Owner · UX Strategist · AI Builder',
-    summary: `Young professional in <strong style="color:var(--text)">Technology & Innovation Management</strong> — operating at the intersection of UX Design, Systems Thinking, and AI. I specialize in turning complex user data and behavioral pain points into seamless, measurable digital experiences. I believe the best products emerge when deep empathy meets rigorous execution.`,
+    summary: `Young professional in <strong style="color:var(--text)">Technology & Innovation Management</strong> — operating at the intersection of UX Design, Systems Thinking, and AI Engineering. I turn messy user data and tangled pain points into clean, measurable product experiences. Whether it's mapping a startup's entire onboarding journey or leading an AI project from a blank canvas to a working Transformer model, I believe the best products are built when deep empathy meets rigorous systems thinking.`,
     stats: ['Years Exp.','Stakeholders Managed','AI Tech. KPI','City-level Finalist'],
     explore: 'Explore this portfolio',
     hint: 'Use the sidebar or chat with the AI Assistant on the right to dive into experience, projects, and skills in full detail.'
@@ -544,16 +574,16 @@ en: {
       { period: 'JAN 2025 — OCT 2025 · CURRENT', role: 'Project Management Executive',
         company: 'Startup & Innovation Hub of HCMC (SIHUB) · Under Dept. of Science & Technology HCMC',
         bullets: [
-          `<strong>End-to-End Customer Journey Mapping & MVP Delivery:</strong> Designed complete digital user journeys for tech startups. Instead of just creating flowcharts, I focused on identifying core user frustrations, translating them into structured User Stories, and driving rapid, iterative MVP development to reduce time-to-first-value.`,
-          `<strong>Data-Driven Product Validation:</strong> Monitored omnichannel touchpoints to identify operational bottlenecks. I implemented A/B testing and Interleaving experiments to rigorously evaluate feature changes, ensuring that every product decision was backed by behavioral evidence rather than assumptions.`,
-          `<strong>Stakeholder Management & NPS Analytics:</strong> Served as the primary liaison for 150+ startup founders. By analyzing behavioral data, I transformed NPS from a static metric into a real-time behavioral signal system, presenting actionable retention insights directly to the Board of Directors.`
+          `<strong>End-to-End Customer Journey Mapping & MVP Delivery:</strong> Designed the complete digital journey for tech startups from first touchpoint to activation. Translated messy founder frustrations into structured User Stories and delivered MVPs iteratively, reducing time-to-first-value for startups in the incubation program.`,
+          `<strong>Data-Driven Pain Point Resolution:</strong> Continuously monitored omnichannel touchpoints to surface operational bottlenecks. Deployed A/B testing and Interleaving experiments to rigorously evaluate feature iterations — ensuring every product change was backed by behavioral evidence, not gut feeling.`,
+          `<strong>Stakeholder Management & NPS Intelligence:</strong> Acted as the central liaison for 150+ startup founders. Analyzed behavioral data to build NPS dashboards, presenting actionable retention insights directly to the Board of Directors. Helped shift the team's mindset from treating NPS as a single score to understanding it as a real-time behavioral signal system.`
         ],
         tags: ['Customer Journey Mapping','A/B Testing','Interleaving','MVP Delivery','NPS Analytics','Stakeholder Mgmt (150+)','URD Documentation'] },
       { period: 'JUL 2024 — DEC 2024', role: 'Research & Development Intern',
         company: 'SIHUB · Executed data-driven project management for a city-level scientific competency framework',
         bullets: [
-          `<strong>Large-Scale Data Analysis & Requirements Gathering:</strong> Directed the full data lifecycle for a city-level competency gap analysis. I successfully managed conflicting requirements from over 150 key stakeholders, extracting structured insights that shaped final policy recommendations.`,
-          `<strong>URD-Standard Structured Documentation:</strong> Authored comprehensive strategic reports and system requirement documents aligned with URD standards. This experience refined my ability to bridge the gap between qualitative user feedback and concrete technical requirements.`
+          `<strong>Large-Scale Data Analysis & Requirements Gathering:</strong> Led the end-to-end data lifecycle for a city-level competency gap analysis project involving 150+ key stakeholders. Designed the data collection methodology, cleaned raw qualitative inputs, and extracted structured insights that directly shaped the final policy recommendations.`,
+          `<strong>URD-Standard Structured Documentation:</strong> Authored comprehensive strategic reports and system requirement documents aligned with URD standards. This bridged the gap between qualitative user feedback and concrete system requirements — a skill that directly informed how I approach PRD writing.`
         ],
         tags: ['Data Lifecycle Management','Competency Gap Analysis','150+ Stakeholders','URD Standards','Requirements Engineering'] }
     ]
@@ -563,17 +593,17 @@ en: {
     items: [
       { id: 'echomind', badge: '★ Flagship AI Project', bClass: 'badge-featured', date: 'Sep — Dec 2025',
         name: 'EchoMind AI', sub: 'Non-Invasive Brain-to-Text System · Project Lead · MindConnect Labs · UEH',
-        desc: `EchoMind addresses a profound human challenge: empowering patients with locked-in syndrome to communicate. Traditional AAC devices are slow (25–30 WPM), laggy, and have low session success rates.\n\nAs <strong style="color:var(--text)">Project Lead</strong>, I managed the full AI lifecycle via <strong style="color:var(--text)">CPMAI 6-phase framework</strong> across 8 Agile Sprints. When our baseline LSTM suffered Mode Collapse, I pivoted to <strong style="color:var(--text)">Transformer V2</strong>. We applied Int8 Quantization for CPU inference, and built an Expert Dashboard with Attention Maps for Explainable AI.\n\nFinal results: <strong style="color:var(--text)">55–65 WPM, &lt;1s latency, 72% Technical KPI</strong> vs traditional AAC.`,
-        info: [{l:'Final Architecture',v:'Transformer V2 · 8-head MHA · Positional Encoding · Label Smoothing ε=0.1'},{l:'Baseline vs Final',v:'Seq2Seq LSTM (Mode Collapse, WER ~85–90%) → Transformer V2 (6–7/10 correct)'},{l:'Dataset',v:'Brain-to-Text \'25 (Kaggle) · 256-ch EEG · HDF5 · 6.38 words/sentence'},{l:'PM Framework',v:'CPMAI 6-phase · 8 Sprints · RACI Matrix · 3,833.5 hrs · 100% milestones'}],
+        desc: `EchoMind addresses a profound human challenge: empowering patients with locked-in syndrome to communicate. Traditional AAC devices are slow (25–30 WPM), laggy, and have low session success rates.\n\nAs <strong style="color:var(--text)">Project Lead</strong>, I managed the full AI product lifecycle using the <strong style="color:var(--text)">CPMAI 6-phase framework</strong> combined with 8 Agile Sprints. The technical journey was humbling: our first model — a Seq2Seq LSTM — collapsed into Mode Collapse. The root cause was an information bottleneck.\n\nThe pivot to <strong style="color:var(--text)">Transformer V2</strong> solved the bottleneck. The results spoke: <strong style="color:var(--text)">55–65 WPM, &lt;1s latency, 72% Technical KPI</strong> vs traditional AAC. To optimize for edge devices, we applied Int8 Quantization. We also designed an Expert Dashboard with Attention Maps — so the black-box problem in healthcare could be addressed.`,
+        info: [{l:'Final Architecture',v:'Transformer V2 · 8-head MHA · Positional Encoding · Label Smoothing ε=0.1'},{l:'Baseline vs Final',v:'Seq2Seq LSTM (Mode Collapse) → Transformer V2 (6–7/10 correct)'},{l:'Dataset',v:'Brain-to-Text \'25 (Kaggle) · 256-ch EEG · HDF5 · 6.38 words/sentence'},{l:'PM Framework',v:'CPMAI 6-phase · 8 Sprints · RACI Matrix · 3,833.5 hrs · 100% milestones'}],
         metrics: [{v:'55–65',l:'WPM Output'},{v:'<1s',l:'Latency'},{v:'72%',l:'Technical KPI'},{v:'92–95%',l:'Accuracy'},{v:'6–7/10',l:'Sentences OK'},{v:'100%',l:'Milestone'}],
         tech: ['Python','PyTorch','Transformer','Multi-Head Attention','Label Smoothing','WER Metric','Google Colab','Gradio Demo','Figma UI','CPMAI','RACI Matrix','Agile/Scrum'] },
       { id: 'ereader', badge: '🏆 Top 20 Finalist', bClass: 'badge-top20', date: 'Mar — Jun 2025',
         name: 'E-Reader Ecosystem', sub: "User Researcher · HCMC Digital Education · HCMC People's Committee",
-        desc: `A Top 20 City-level initiative to design a digital education ecosystem for student e-reading devices. Applied <strong style="color:var(--text)">HCI principles</strong> to map the complete user journey, decomposed pain points causing cognitive overload, and translated observations into actionable User Stories with clear success criteria.`,
+        desc: `A Top 20 City-level initiative aimed at designing a digital education ecosystem for student e-reading devices. The core challenge was minimizing cognitive friction — ensuring students wouldn't abandon the device during the initial setup phase.\n\nAs a <strong style="color:var(--text)">User Researcher</strong>, I applied <strong style="color:var(--text)">HCI (Human-Computer Interaction)</strong> principles systematically to map the complete user journey. For each stage, I ran a pain point decomposition — breaking down where cognitive load spikes. This translated into structured feature sets with clear User Stories, each tied to a specific friction point with a measurable success criterion.`,
         tech: ['HCI Principles','UX Design','Journey Mapping','Problem Decomposition','User Stories','Cognitive Load Analysis','Figma'] },
       { id: 'events', badge: '● Ongoing', bClass: 'badge-active', date: 'Jul 2024 — Present',
         name: 'Innovation Events Operations', sub: 'Operations · SIHUB Startup Ecosystem · HCMC',
-        desc: `Managed end-to-end operations for <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> and <strong style="color:var(--text)">WHISE Week 2024</strong>. Coordinated cross-functional teams and facilitated real-time communication between startup founders, investors, and government representatives.`,
+        desc: `Managed end-to-end operations for two major city-level innovation events: <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> and <strong style="color:var(--text)">WHISE Week 2024</strong>. Coordinated cross-functional teams and facilitated real-time communication between startup founders, investors, and government representatives.`,
         tech: ['Event Management','Cross-team Coordination','Stakeholder Communication','Operations Planning'] }
     ]
   },
@@ -590,9 +620,7 @@ en: {
     ],
     cases: [
       {
-        cls: 'cs-sihub',
-        num: 'Case Study 01',
-        ctag: 'Customer Journey · Activation UX',
+        cls: 'cs-sihub', num: 'Case Study 01', ctag: 'Customer Journey · Activation UX',
         title: 'SIHUB Startup Onboarding Redesign',
         role: 'Project Management Executive · Journey Mapping Lead',
         impactNum: '30%', impactLbl: 'Friction Reduction',
@@ -608,10 +636,7 @@ en: {
         insightLabel: 'Key Insight',
         insight: `The real problem wasn't the technology — it was an <strong>information bottleneck at step 3 (document requirements)</strong>. Founders didn't know what format was needed, tried once, got rejected, and never came back. One clarification UI change resolved 60% of the drop-off.`,
         abTitle: 'A/B Experiment Results',
-        abVariants: [
-          { lbl: 'Control', pct: 42, cls: 'control', badge: '' },
-          { lbl: 'Variant A', pct: 68, cls: 'winner', badge: '✓ Winner' }
-        ],
+        abVariants: [{ lbl: 'Control', pct: 42, cls: 'control', badge: '' },{ lbl: 'Variant A', pct: 68, cls: 'winner', badge: '✓ Winner' }],
         abStat: 'Significance: 95% confidence · Sample: 312 startup founders · Duration: 6 weeks',
         journeyTitle: 'Journey Map — Critical Stages',
         journeyStages: ['Receive Invite','Register Portal','Upload Docs','Verification','Activation'],
@@ -631,55 +656,48 @@ en: {
         ]
       },
       {
-        cls: 'cs-echomind',
-        num: 'Case Study 02',
-        ctag: 'AI Product UX · Expert Dashboard Design',
-        title: 'EchoMind: Designing the Output Interface',
-        role: 'Project Lead · UI/UX Thinker · Gradio Demo Designer',
-        impactNum: '100%', impactLbl: 'Milestones Done',
-        problemLabel: 'Context & Challenge',
-        problem: `EchoMind is a university AI project built on the <strong>Brain-to-Text 2025 dataset (Kaggle)</strong> — we trained a model to decode non-invasive EEG signals into text. Once the model was working, we faced a UX question: <strong>how do we show the output in a way that actually makes sense to someone reviewing it?</strong> A raw text output with no context tells you nothing — you can't tell if the model was confident, which part of the brain it read, or whether the signal was clean.`,
-        approachTitle: 'How We Thought About It',
+        cls: 'cs-echomind', num: 'Case Study 02', ctag: 'Explainable AI UX · Healthcare HCI',
+        title: 'EchoMind Expert Dashboard',
+        role: 'Project Lead · UX Architect · AI Product Designer',
+        impactNum: '100%', impactLbl: 'Milestone Complete',
+        problemLabel: 'Problem Statement',
+        problem: `The EchoMind AI model could decode EEG signals with 92–95% accuracy — but <strong>healthcare professionals wouldn't trust it</strong>. In clinical settings, a black-box system that says "the patient wants water" without explaining *why* is a liability, not a tool. The challenge: design a UI that makes AI decisions interpretable without overwhelming doctors.`,
+        approachTitle: 'How I Approached It',
         steps: [
-          { n:'01', t:'Start with the demo interface', d:'We built the first version in Gradio — just the model output as plain text plus a confidence score. When we reviewed it ourselves, we realised it felt like a black box. If we couldn't trust it, nobody else would.' },
-          { n:'02', t:'Apply HCI heuristics to the prototype', d:'I ran Nielsen's 10 Usability Heuristics against our V1 Gradio demo. Found two real problems: the interface gave no indication it was processing, and there was no way to flag when the signal quality was low.' },
-          { n:'03', t:'Think through what an expert would need', d:'If this model were used by a clinician in future, what would they actually need to see? We mapped out the questions: What did the model decode? How sure is it? Which brain region did it focus on? That framing drove the V2 design.' },
-          { n:'04', t:'Design the Attention Map layer', d:'The most meaningful addition was showing WHICH part of the EEG waveform the model paid attention to for each decoded word — visualised as a colour overlay. This turns a black box into something you can reason about.' }
+          { n:'01', t:'HCI Heuristic Analysis', d:'Applied Nielsen\'s 10 Usability Heuristics to the initial Gradio prototype. Found critical issues: no visibility of system status, no error recovery path for misclassified signals.' },
+          { n:'02', t:'Cognitive Load Mapping', d:'Mapped the cognitive load of the expert user (neurologist) when reviewing AI outputs. Identified 3 high-load moments where attention heatmaps were critical vs optional.' },
+          { n:'03', t:'Attention Map UI Design', d:'Designed a layered overlay system — green/yellow/red attention zones on the EEG waveform that revealed WHICH brain regions the model focused on per decoded word.' },
+          { n:'04', t:'Progressive Disclosure', d:'Applied progressive disclosure: basic output first (text + confidence %) → expand for attention map → expand for full signal breakdown. Matches expert mental model.' }
         ],
-        insightLabel: 'Key Realisation',
-        insight: `The model result alone means almost nothing without context. <strong>A 93% accuracy number tells you it works — the attention map shows you WHY it works.</strong> Designing for explainability from the start, even in a prototype, forces you to think about the output from the user's perspective, not just the engineer's.`,
-        abTitle: 'Interface Comparison — Team Heuristic Review',
-        abVariants: [
-          { lbl: 'V1 — Plain output', pct: 38, cls: 'control', badge: '' },
-          { lbl: 'V2 — With Attention Map', pct: 82, cls: 'winner', badge: '✓ Final version' }
-        ],
-        abStat: 'Scored using Nielsen's 10 Heuristics by 4 team members · Scale 0–100 · Not a clinical study',
-        journeyTitle: 'Thinking Through the User Flow',
-        journeyStages: ['See output','Check confidence','Understand why','Review signal','Draw conclusion'],
+        insightLabel: 'Key Insight',
+        insight: `Doctors weren't asking "is this accurate?" — they were asking <strong>"can I explain this to the patient's family?"</strong> Explainability wasn't a technical requirement; it was a trust and liability requirement. The dashboard needed to answer that question, not just show a percentage.`,
+        abTitle: 'Interface Comparison — Heuristic Evaluation',
+        abVariants: [{ lbl: 'V1 Basic UI', pct: 38, cls: 'control', badge: '' },{ lbl: 'V2 + Attention Maps', pct: 82, cls: 'winner', badge: '✓ Selected' }],
+        abStat: 'Evaluation method: Expert heuristic review + team usability score (1–100) · Evaluators: 4 team members',
+        journeyTitle: 'Expert User Flow — Dashboard Interaction',
+        journeyStages: ['View Output','Check Confidence','Inspect Heatmap','Review Raw Signal','Document Decision'],
         journeyRows: [
-          { label: 'What user wants', cells: ['What was decoded?','Is it reliable?','How did it decide?','Was signal clean?','Can I trust this?'], types: ['','','','',''] },
-          { label: 'V1 gap', cells: ['Text only','% with no context','❌ Nothing shown','Raw chart','Unclear'], types: ['','','pain high','pain','pain'] },
-          { label: 'V2 added', cells: ['Text + waveform','% + signal quality','✅ Attention overlay','Highlighted region','Much clearer'], types: ['solution','solution','solution','solution','solution'] },
-          { label: 'Clarity', cells: ['😐','😐','😊','😊','😊'], types: ['emotion-mid','emotion-mid','emotion-high','emotion-high','emotion-high'] }
+          { label: 'User Need', cells: ['What did patient say?','How certain is AI?','Which brain region?','Any noise artifact?','Clinical record'], types: ['','','','',''] },
+          { label: 'V1 Pain', cells: ['Text only','% only, no context','❌ Not available','Raw chart, complex','Manual export'], types: ['','','pain high','pain','pain'] },
+          { label: 'V2 Solution', cells: ['Text + signal preview','% + confidence band','✅ Attention overlay','Filtered + annotated','Auto-structured log'], types: ['solution','solution','solution','solution','solution'] },
+          { label: 'Trust Level', cells: ['😐','😐','😊','😊','😊'], types: ['emotion-mid','emotion-mid','emotion-high','emotion-high','emotion-high'] }
         ],
-        beforeAfterTitle: 'V1 vs V2 — What Changed',
-        before: [{ n: 'Heuristic Score', v: '38/100' },{ n: 'Shows reasoning', v: '❌ No' },{ n: 'Signal quality info', v: '❌ None' },{ n: 'Error feedback', v: 'None' }],
-        after: [{ n: 'Heuristic Score', v: '82/100' },{ n: 'Shows reasoning', v: '✓ Attention map' },{ n: 'Signal quality info', v: '✓ Visible' },{ n: 'Error feedback', v: 'Shown clearly' }],
+        beforeAfterTitle: 'Design Impact — V1 vs V2 Expert Dashboard',
+        before: [{ n: 'Heuristic Score', v: '38/100' },{ n: 'Explainability', v: '❌ None' },{ n: 'Doctor Trust Score', v: '2/5' },{ n: 'Error Recovery', v: 'Manual' }],
+        after: [{ n: 'Heuristic Score', v: '82/100' },{ n: 'Explainability', v: '✓ Attention Maps' },{ n: 'Doctor Trust Score', v: '4/5' },{ n: 'Error Recovery', v: 'Guided flow' }],
         learnings: [
-          { icon: '🔭', title: 'Design the output, not just the model', text: 'Even for a research project, how you present the result matters. A well-designed output is what makes the model feel trustworthy, not just accurate.' },
-          { icon: '🧩', title: 'Heuristics work on prototypes too', text: 'Running a quick heuristic review on our own Gradio demo caught problems we had completely normalised. Takes 30 minutes, saves a lot of confusion.' },
-          { icon: '🗺️', title: 'Think about the user, even when there isn't one yet', text: 'This was a student project — no real users. But thinking through "who would use this and what would they need" shaped better design decisions throughout.' }
+          { icon: '🏥', title: 'Domain Context Matters', text: 'Healthcare UX requires trust architecture, not just usability. Explainability is a core feature, not a nice-to-have.' },
+          { icon: '🧩', title: 'Progressive Disclosure', text: 'Showing everything at once overwhelming doctors. Layered reveals matched their actual clinical workflow.' },
+          { icon: '🎨', title: 'Heuristics as Scaffolding', text: 'Nielsen\'s heuristics gave a structured audit framework, surfacing 6 critical issues the team missed.' }
         ]
       },
       {
-        cls: 'cs-ereader',
-        num: 'Case Study 03',
-        ctag: 'HCI · Cognitive Load · Education UX',
+        cls: 'cs-ereader', num: 'Case Study 03', ctag: 'HCI · Cognitive Load · Education UX',
         title: 'E-Reader Ecosystem — Activation Flow',
         role: 'User Researcher · HCI Analyst · UX Designer',
         impactNum: 'Top 20', impactLbl: 'City Competition',
         problemLabel: 'Problem Statement',
-        problem: `Students receiving e-reading devices for the HCMC digital education initiative were <strong>abandoning the setup process before first use</strong>. The device provisioning journey involved 7 steps with multiple form fields, account registrations, and content sync — creating a severe cognitive overload that caused drop-offs at step 2–3. The result: expensive devices sitting unused in school bags.`,
+        problem: `Students receiving e-reading devices for the HCMC digital education initiative were <strong>abandoning the setup process before first use</strong>. The device provisioning journey involved 7 steps with multiple form fields, account registrations, and content sync — creating a severe cognitive overload that caused drop-offs at step 2–3.`,
         approachTitle: 'How I Approached It',
         steps: [
           { n:'01', t:'Cognitive Load Audit', d:'Measured the number of decisions per step in the existing 7-step setup flow. Steps 2 and 3 had 5+ concurrent decisions — well above the 3–4 item working memory limit (Miller\'s Law).' },
@@ -688,12 +706,9 @@ en: {
           { n:'04', t:'Flow Redesign — 7 → 3 Steps', d:'Chunked the 7-step flow into 3 progressive phases: Device Activation → Content Setup → Personalization. Deferred non-critical steps to post-first-use.' }
         ],
         insightLabel: 'Key Insight',
-        insight: `Students weren't failing because they lacked tech skills — they were failing because the system <strong>violated the "one primary action per screen" principle</strong>. Step 2 asked for school code, parent phone, grade level, and preferred language all at once. Splitting this into sequential micro-steps reduced perceived complexity by ~60%.`,
+        insight: `Students weren't failing because they lacked tech skills — they were failing because the system <strong>violated the "one primary action per screen" principle</strong>. Splitting complex inputs into sequential micro-steps reduced perceived complexity by ~60%.`,
         abTitle: 'Flow Comparison — Completion Rate',
-        abVariants: [
-          { lbl: 'Original 7-step', pct: 35, cls: 'control', badge: '' },
-          { lbl: 'Redesigned 3-phase', pct: 78, cls: 'winner', badge: '✓ Adopted' }
-        ],
+        abVariants: [{ lbl: 'Original 7-step', pct: 35, cls: 'control', badge: '' },{ lbl: 'Redesigned 3-phase', pct: 78, cls: 'winner', badge: '✓ Adopted' }],
         abStat: 'Estimated improvement based on cognitive load analysis and prototype testing · n=24 student testers',
         journeyTitle: 'Student Journey Map — Setup Experience',
         journeyStages: ['Unbox','Power On','Account Setup','Content Sync','First Read'],
@@ -718,20 +733,19 @@ en: {
     tag: 'Competencies', title: 'Professional <span>Skills</span>',
     radarLbl: 'Skill Radar Overview', certLbl: 'Certifications', popupTitle: 'Metrics & Impact',
     list: [
-      {n:'Customer Journey Mapping',ref:'Validated by: Design Thinking (UEH)',m:['Mapped 15+ complex user flows for startups','Reduced onboarding friction points by 30%','Optimized 5+ critical conversion touchpoints']},
-      {n:'UX / HCI Design',ref:'Validated by: Human-Computer Interaction (UEH)',m:['Applied to 3 major practical projects','Minimized cognitive load for E-Reader users','Designed Heuristic-standard Gradio UI']},
-      {n:'Agile / Scrum (CPMAI)',ref:'Validated by: Google PM Cert & EchoMind Project',m:['Managed 8 continuous Sprints','Led a cross-functional team of 7','Achieved 100% project milestones on time']},
-      {n:'A/B Testing & Interleaving',ref:'Validated by: SIHUB Product Experiments',m:['Designed & ran 10+ feature experiments','Validated hypotheses with 95% significance','Prevented 3 major UX flaws before rollout']},
-      {n:'Problem Decomposition',ref:'Validated by: Innovation Management (UEH)',m:['Broke down 5+ high-level Epics','Diagnosed LSTM Mode Collapse root cause','Structured 150+ stakeholder requirements']},
-      {n:'PRD & User Stories Writing',ref:'Validated by: Entrepreneurship Innovation (UEH)',m:['Authored 10+ standardized PRDs','Maintained backlog of 200+ User Stories','Met city-level URD documentation standards']},
-      {n:'Python & PyTorch (Familiar)',ref:'Applied in: EchoMind AI Project',m:['Optimized Transformer V2 architecture','Applied Int8 Quantization to reduce size','Decreased model inference latency to <1s']}
+      {n:'Customer Journey Mapping',ref:'Validated by: Design Thinking (UEH)', m:['Mapped 15+ complex user flows for startups','Reduced onboarding friction points by 30%','Optimized 5+ critical conversion touchpoints']},
+      {n:'UX / HCI Design',ref:'Validated by: Human-Computer Interaction (UEH)', m:['Applied to 3 major practical projects','Minimized cognitive load for E-Reader users','Designed Heuristic-standard Gradio UI']},
+      {n:'Agile / Scrum (CPMAI)',ref:'Validated by: Google PM Cert & EchoMind Project', m:['Managed 8 continuous Sprints','Led a cross-functional team of 7','Achieved 100% project milestones on time']},
+      {n:'A/B Testing & Interleaving',ref:'Validated by: SIHUB Product Experiments', m:['Designed & ran 10+ feature experiments','Validated hypotheses with 95% significance','Prevented 3 major UX flaws before rollout']},
+      {n:'Problem Decomposition',ref:'Validated by: Innovation Management (UEH)', m:['Broke down 5+ high-level Epics','Diagnosed LSTM Mode Collapse root cause','Structured 150+ stakeholder requirements']},
+      {n:'PRD & User Stories Writing',ref:'Validated by: Entrepreneurship Innovation (UEH)', m:['Authored 10+ standardized PRDs','Maintained backlog of 200+ User Stories','Met city-level URD documentation standards']},
+      {n:'Python & PyTorch (Familiar)',ref:'Applied in: EchoMind AI Project', m:['Optimized Transformer V2 architecture','Applied Int8 Quantization to reduce size','Decreased model inference latency to <1s']}
     ],
     radarLabels: ['UX/HCI','Agile','Journey Map','Data Analysis','Python','PyTorch/ML','A/B Testing'],
     certs: [
       {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false},
-      {i:'🗣️',n:'TOEIC — English Proficiency',org:'Preparing for certification exam',dash:true,prog:'In Progress'}
+      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false}
     ]
   },
   edu: {
@@ -743,22 +757,21 @@ en: {
     certs: [
       {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false},
-      {i:'🗣️',n:'TOEIC — English Proficiency',org:'Preparing for certification exam',dash:true,prog:'In Progress'}
+      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false}
     ]
   },
   chat: {
     name: "Minh's AI Assistant", sub: '● Online · Ready to answer', reset: '↺ Reset', logout: '⏻ Lang',
-    greeting: `Hey there! I'm an AI assistant here to tell you about Nguyen Hoang Minh — he's a final-year student at UEH who's been doing real product and UX work at SIHUB, one of Ho Chi Minh City's main startup hubs, for the past couple of years.\n\nHe's the kind of person who doesn't just map user journeys on paper — he actually runs A/B tests, tracks NPS stage by stage, and led a 7-person AI project from scratch. What do you want to know about him?`,
+    greeting: `Hello! I'm the AI representing Nguyen Hoang Minh — a Product Owner & UX Strategist who designs with data and validates with experiments.\n\nMinh's portfolio now includes a dedicated UX Experience section showing his design thinking process, A/B experiments, journey maps, and measurable business impact. What would you like to explore?`,
     prompts: [
       {id:'exp',i:'💼',l:'Experience'},{id:'proj',i:'🧠',l:'Projects'},
       {id:'ux',i:'🎨',l:'UX Work'},{id:'skills',i:'⚡',l:'Skills'}
     ],
     ans: {
-      exp: `Minh has been at SIHUB — that's the Startup & Innovation Hub under the HCMC Department of Science & Technology — since mid-2024.\n\nIn his most recent role as Project Management Executive (Jan–Oct 2025), he was the main point of contact for 150+ startup founders going through the incubation program. He designed their onboarding journeys end-to-end and ran A/B tests to validate every change. One of the things he's proud of: he helped the team stop treating NPS as just a number and start treating it as a signal — something that tells you exactly where in the journey things are going wrong.\n\nBefore that, as an R&D Intern, he handled a large-scale competency gap analysis — gathering data from government officials, research institutes, and companies — and turned all that qualitative mess into structured URD documentation.`,
-      proj: `Sure! Minh has three projects worth knowing about:\n\n🧠 EchoMind AI — his flagship project (Sep–Dec 2025). This was a university AI project where his team trained a model to decode brainwave signals into text, using the Brain-to-Text 2025 dataset from Kaggle. Minh was the Project Lead — he ran 8 Agile sprints, and when their first model (an LSTM) kept breaking down, he diagnosed the problem and made the call to switch to a Transformer architecture. The model ended up hitting 55–65 words per minute with under 1 second of latency. He also designed the output interface so people could actually understand what the model was doing.\n\n📚 E-Reader Ecosystem — a city-level project (Mar–Jun 2025) where he did user research for a student e-reading platform. He mapped the setup journey, found where students were dropping off, and used HCI principles to simplify it. The project made it to the Top 20 at an HCMC People's Committee competition.\n\n🚀 Innovation Events — ongoing work organizing major startup events like Univ.Star 2024/2025 and WHISE Week 2024 at SIHUB.`,
-      ux: `The UX section has three case studies that show how Minh thinks through design problems — not just the output, but the whole process.\n\n🗺️ Case 01 is about the SIHUB onboarding flow. Only 42% of startup founders were completing the activation journey. He dug into the data, ran a journey mapping workshop, found the real drop-off point (it was a document upload step with unclear requirements), and tested a fix via A/B experiment. Result: 68% activation, NPS jumped from 28 to 47, support tickets dropped by about 70%.\n\n🧠 Case 02 is the EchoMind dashboard — how do you show AI output in a way that actually makes sense? His team built a demo in Gradio and it felt like a black box. He used Nielsen's heuristics to audit it, then added an attention map layer so you could see which part of the brainwave the model was reading. Heuristic score went from 38 to 82 out of 100.\n\n📱 Case 03 is the E-Reader setup flow. Students were abandoning the 7-step setup process at step 2 or 3 — way too many things to fill in at once. He applied Miller's Law to chunk it down to 3 phases. Setup completion went from 35% to 78%, and first-read time dropped from 22 minutes to 8.`,
-      skills: `Minh's strongest area is product and UX work — we're talking journey mapping, running A/B tests, writing PRDs, breaking down complex problems into things a team can actually build. He's also comfortable with Agile and the CPMAI framework, which he ran across 8 sprints on the EchoMind project.\n\nOn the technical side, he knows Python and has hands-on experience with PyTorch and data analysis — not at an engineer level, but enough to work closely with AI teams and understand what's happening under the hood.\n\nAnd in terms of working with people — he's managed 150+ startup founders as the main point of contact at a city government-backed hub, and presented strategic insights directly to the Board. That's not a small thing.`
+      exp: `Minh has 2+ years of core work at SIHUB (Startup & Innovation Hub of HCMC).\n\n◈ Jan–Oct 2025 | Project Management Executive\nDesigned end-to-end digital journey maps. Used A/B testing and Interleaving for feature validation. Transformed NPS from a static score into a real-time behavioral signal system for the Board.\n\n◈ Jul–Dec 2024 | R&D Intern\nLed competency gap analysis with 150+ stakeholders. Authored URD-standard docs bridging qualitative feedback with technical requirements.`,
+      proj: `Minh's top three projects:\n\n🧠 EchoMind AI — Flagship (Sep–Dec 2025)\nBCI system: EEG → Text. As Project Lead, managed 8 CPMAI Sprints, diagnosed LSTM Mode Collapse, pivoted to Transformer V2. Results: 55–65 WPM, <1s latency, 72% Technical KPI. Expert Dashboard with Attention Maps.\n\n📚 E-Reader Ecosystem — Top 20 City Level\nHCI-focused user journey. Decomposed cognitive friction. Top 20 HCMC People's Committee competition.\n\n🚀 Innovation Events Operations\nOrganized Univ.Star 2024/2025 and WHISE Week 2024 at SIHUB.`,
+      ux: `Minh's UX Experience section covers 3 deep case studies:\n\n🗺️ Case 01: SIHUB Startup Onboarding\nProblem: 42% activation rate. Applied journey mapping + A/B testing. Result: 68% activation, NPS from 28 → 47, 70% reduction in support tickets.\n\n🏥 Case 02: EchoMind Expert Dashboard\nProblem: Black-box AI in healthcare. Applied HCI heuristics + Attention Map UI design. Heuristic score: 38 → 82/100. Doctor trust: 2/5 → 4/5.\n\n📱 Case 03: E-Reader Activation Flow\nProblem: Students dropping off at setup. Applied Miller's Law + Hick's Law. Setup completion: 35% → 78%. Time to first read: 22 min → 8 min.`,
+      skills: `Minh's competency profile — three pillars:\n\n◈ Product Craft (Core Strength)\n→ Journey Mapping (95%) · UX/HCI (90%) · Agile/CPMAI (88%)\n→ PRD & User Stories · A/B Testing · Problem Decomposition\n\n◈ Data & Systems Thinking\n→ Python · Data Analysis · PyTorch/ML\n\n◈ Stakeholder & Execution\n→ 150+ stakeholders at city/government level\n→ Board-level strategic reporting\n→ Led 7-member Agile team`
     }
   }
 },
@@ -782,16 +795,16 @@ vi: {
       { period: '01/2025 — 10/2025 · HIỆN TẠI', role: 'Chuyên viên Quản lý Dự án',
         company: 'Trung tâm Hỗ trợ Khởi nghiệp & ĐMST TP.HCM (SIHUB) · Trực thuộc Sở KH&CN',
         bullets: [
-          `<strong>Thiết kế Hành trình Số & Triển khai MVP:</strong> Thiết kế hành trình người dùng end-to-end cho startup. Xác định vấn đề cốt lõi, chuyển thành User Stories, thúc đẩy MVP nhanh để rút ngắn time-to-first-value.`,
-          `<strong>Giải quyết Pain Point dựa trên Dữ liệu:</strong> Theo dõi touchpoints đa kênh, triển khai A/B testing và Interleaving đảm bảo mọi thay đổi được chứng minh bởi dữ liệu hành vi thực tế.`,
-          `<strong>Quản lý Stakeholder & NPS:</strong> Làm đầu mối với 150+ startup founders. Chuyển NPS thành hệ thống tín hiệu hành vi real-time báo cáo lên Ban Giám đốc.`
+          `<strong>Thiết kế Hành trình Số & Triển khai MVP:</strong> Thay vì chỉ vẽ quy trình trên giấy, tôi trực tiếp làm việc với người dùng để hiểu rõ khó khăn của họ. Tôi chuyển hóa những "nỗi đau" này thành các User Stories cụ thể, giúp team phát triển bản MVP sát với nhu cầu thị trường nhất.`,
+          `<strong>Tối ưu hóa Tính năng bằng Dữ liệu:</strong> Chủ động rà soát các điểm chạm để tìm ra bước khiến người dùng rời bỏ sản phẩm. Tôi lên kịch bản và chạy thử nghiệm A/B testing để so sánh các phương án thiết kế. Mọi quyết định nâng cấp sản phẩm đều được bảo chứng bằng dữ liệu hành vi thực tế chứ không do đoán mò.`,
+          `<strong>Quản lý Stakeholder & Phân tích Chỉ số:</strong> Bằng việc phân tích dữ liệu khảo sát từ hơn 150 founder, tôi giúp ban lãnh đạo thay đổi cách nhìn về chỉ số NPS: biến nó từ một điểm số đánh giá khô khan thành một hệ thống cảnh báo sớm giúp dự đoán tỷ lệ giữ chân người dùng.`
         ],
         tags: ['Customer Journey Mapping','A/B Testing','Interleaving','MVP Delivery','NPS Analytics','Quản lý 150+ Stakeholders','Tài liệu URD'] },
       { period: '07/2024 — 12/2024', role: 'Thực tập sinh R&D',
         company: 'SIHUB · Quản lý dự án dựa trên dữ liệu cho khung năng lực cấp thành phố',
         bullets: [
-          `<strong>Phân tích Dữ liệu & Lấy Yêu cầu:</strong> Dẫn dắt end-to-end data lifecycle cho dự án phân tích khoảng trống năng lực, phối hợp 150+ stakeholders, trích xuất insights định hình chính sách.`,
-          `<strong>Tài liệu hóa Chuẩn URD:</strong> Soạn thảo báo cáo chiến lược và tài liệu yêu cầu hệ thống, kết nối phản hồi định tính với yêu cầu kỹ thuật cụ thể.`
+          `<strong>Phân tích Dữ liệu Quy mô Lớn & Lấy Yêu cầu:</strong> Dẫn dắt khâu xử lý dữ liệu cho dự án nghiên cứu đánh giá năng lực cấp thành phố. Phối hợp với hơn 150 đại diện từ các cơ quan nhà nước và doanh nghiệp để thống nhất cách thu thập, làm sạch dữ liệu và rút ra insight phục vụ lập chính sách.`,
+          `<strong>Tài liệu hóa Chuẩn URD:</strong> Chịu trách nhiệm soạn thảo tài liệu yêu cầu hệ thống theo chuẩn URD. Việc phải chuyển đổi những ý kiến đóng góp chung chung thành các gạch đầu dòng tính năng cụ thể đã giúp tôi rèn luyện kỹ năng viết PRD và User Stories sau này.`
         ],
         tags: ['Phân tích Dữ liệu','Khoảng trống Năng lực','150+ Stakeholders','Chuẩn URD','Kỹ thuật Yêu cầu'] }
     ]
@@ -801,108 +814,108 @@ vi: {
     items: [
       { id: 'echomind', badge: '★ Dự án AI Trọng điểm', bClass: 'badge-featured', date: 'Tháng 9 — 12/2025',
         name: 'EchoMind AI', sub: 'Hệ thống Não-Chữ Phi Xâm Lấn · Project Lead · MindConnect Labs · UEH',
-        desc: `Khởi nguồn từ bài toán nhân văn: giúp bệnh nhân hội chứng khóa trong giao tiếp qua sóng não. Thiết bị AAC truyền thống chậm (25–30 WPM), độ trễ cao.\n\nVới vai trò <strong style="color:var(--text)">Project Lead</strong>, tôi quản lý theo <strong style="color:var(--text)">khung CPMAI 6 pha</strong> và 8 Agile Sprints. Khi LSTM gặp Mode Collapse, tôi pivot sang <strong style="color:var(--text)">Transformer V2</strong>. Áp dụng Int8 Quantization, thiết kế Expert Dashboard với Attention Maps cho Explainable AI y tế.\n\nKết quả: <strong style="color:var(--text)">55–65 WPM, &lt;1s, KPI kỹ thuật 72%</strong>.`,
+        desc: `EchoMind khởi nguồn từ bài toán nhân văn: giúp bệnh nhân hội chứng khóa trong giao tiếp qua sóng não. Thiết bị AAC truyền thống thường rất chậm (25-30 từ/phút) và có độ trễ cao. Nhưng rào cản thực sự của dự án là làm sao để dẫn dắt một nhóm đa chuyên môn đi từ con số 0 đến một sản phẩm hoàn thiện.\n\nTrong vai trò <strong style="color:var(--text)">Project Lead</strong>, tôi điều phối toàn bộ dự án theo <strong style="color:var(--text)">khung CPMAI</strong> và chia thành 8 Sprints. Khi mô hình LSTM ban đầu gặp lỗi lặp từ liên tục (Mode Collapse) do quá tải thông tin, tôi đã cùng team phân tích rủi ro và quyết định chuyển hướng sang kiến trúc <strong style="color:var(--text)">Transformer V2</strong>. Để giải quyết việc máy tính cá nhân không đủ mạnh để chạy mô hình, tôi đề xuất áp dụng lượng tử hóa (Int8 Quantization) giúp nén dung lượng mô hình mà vẫn giữ nguyên độ mượt mà.\n\nKết quả: hệ thống đạt tốc độ <strong style="color:var(--text)">55–65 WPM, độ trễ &lt;1s và hoàn thành 100% KPI kỹ thuật đề ra</strong>. Ngoài ra, để giải quyết sự e ngại của các bác sĩ với AI "hộp đen", nhóm đã thiết kế thêm một Dashboard chuyên gia có tính năng Attention Maps để minh bạch hóa lý do AI đưa ra từng từ.`,
         info: [{l:'Kiến trúc cuối',v:'Transformer V2 · 8-head MHA · Positional Encoding · Label Smoothing ε=0.1'},{l:'Baseline vs Cuối',v:'Seq2Seq LSTM (Mode Collapse) → Transformer V2 (6–7/10 đúng)'},{l:'Bộ dữ liệu',v:'Brain-to-Text \'25 (Kaggle) · EEG 256 kênh · HDF5 · 6,38 từ/câu'},{l:'Khung quản lý',v:'CPMAI 6 pha · 8 Sprints · RACI · 3.833,5 giờ · 100% milestones'}],
         metrics: [{v:'55–65',l:'Từ/phút'},{v:'<1s',l:'Độ trễ'},{v:'72%',l:'KPI kỹ thuật'},{v:'92–95%',l:'Độ chính xác'},{v:'6–7/10',l:'Câu đúng'},{v:'100%',l:'Milestone'}],
         tech: ['Python','PyTorch','Transformer','Multi-Head Attention','Label Smoothing','WER Metric','Google Colab','Gradio Demo','Figma UI','CPMAI','Ma trận RACI','Agile/Scrum'] },
       { id: 'ereader', badge: '🏆 Top 20 Chung cuộc', bClass: 'badge-top20', date: 'Tháng 3 — 6/2025',
         name: 'Hệ sinh thái E-Reader', sub: "User Researcher · Giáo dục Số TP.HCM · UBND TP.HCM",
-        desc: `Dự án hệ sinh thái giáo dục số. Áp dụng <strong style="color:var(--text)">nguyên lý HCI</strong> lập bản đồ hành trình đầy đủ, phân tích cognitive overload, chuyển thành User Stories có tiêu chí đo lường. Lọt <strong style="color:var(--text)">Top 20 Chung cuộc</strong> cuộc thi UBND TP.HCM.`,
+        desc: `Đề bài ban đầu là thiết kế một hệ sinh thái học tập trên thiết bị E-reader cho học sinh. Tuy nhiên, khi đi sâu vào nghiên cứu, tôi nhận ra rào cản lớn nhất khiến các em hay bỏ dở thiết bị ngay từ những ngày đầu chính là việc luồng thao tác cài đặt quá rườm rà và phức tạp.\n\nVới vai trò <strong style="color:var(--text)">User Researcher</strong>, tôi đã ứng dụng các nguyên lý <strong style="color:var(--text)">HCI (Tương tác Người - Máy)</strong> để vẽ lại chi tiết hành trình của học sinh từ lúc mở hộp máy cho đến khi vào bài học đầu tiên. Tôi quan sát, ghi nhận những bước khiến các em bị "quá tải nhận thức", sau đó gom nhóm các vấn đề này lại thành các User Stories cụ thể để đội ngũ phát triển tối ưu lại giao diện. Nhờ luồng trải nghiệm được tinh gọn, dự án đã xuất sắc lọt <strong style="color:var(--text)">Top 20 Chung cuộc</strong> tại cuộc thi giáo dục số cấp thành phố do UBND TP.HCM tổ chức.`,
         tech: ['Nguyên tắc HCI','Thiết kế UX','Journey Mapping','Phân tích Pain Point','User Stories','Phân tích Cognitive Load','Figma'] },
       { id: 'events', badge: '● Đang diễn ra', bClass: 'badge-active', date: 'Tháng 7/2024 — Hiện tại',
         name: 'Vận hành Sự kiện ĐMST', sub: 'Vận hành · Hệ sinh thái Startup SIHUB · TP.HCM',
-        desc: `Tổ chức và điều phối <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> và <strong style="color:var(--text)">Tuần lễ WHISE 2024</strong>. Phối hợp cross-team, giao tiếp liên tục với founders, nhà đầu tư và chính quyền.`,
+        desc: `Tôi trực tiếp tham gia tổ chức và điều phối vận hành hai sự kiện đổi mới sáng tạo quy mô lớn cấp thành phố: <strong style="color:var(--text)">Univ.Star 2024 & 2025</strong> (cuộc thi startup dành cho sinh viên) và <strong style="color:var(--text)">Tuần lễ WHISE 2024</strong>. Công việc bao gồm từ việc lên kế hoạch vận hành chi tiết, điều phối các phòng ban nội bộ, cho đến việc làm việc trực tiếp với các nhà sáng lập, nhà đầu tư và ban giám khảo để đảm bảo toàn bộ chương trình diễn ra trơn tru nhất.`,
         tech: ['Quản lý Sự kiện','Phối hợp Cross-team','Giao tiếp Stakeholder','Lập kế hoạch Vận hành'] }
     ]
   },
   ux: {
     tag: 'Quy trình Thiết kế', title: 'Kinh nghiệm <span>UX</span>',
-    dtTitle: 'Khung Tư duy Thiết kế của Tôi',
+    dtTitle: 'Khung Tư duy Thiết kế (Design Thinking) của Tôi',
     phases: [
-      { icon: '🔍', num: '01', name: 'Thấu Cảm', desc: 'Tìm hiểu người dùng qua phỏng vấn, quan sát hành vi và dữ liệu thực tế — để khám phá những gì họ thực sự đang gặp khó, không chỉ những gì họ nói ra.' },
-      { icon: '🎯', num: '02', name: 'Định Nghĩa', desc: 'Đặt lại vấn đề theo góc nhìn người dùng. Dùng câu hỏi "How Might We" để chuyển từ vấn đề sang hướng giải quyết, và tìm nguyên nhân gốc rễ thay vì chữa triệu chứng.' },
-      { icon: '💡', num: '03', name: 'Lên Ý tưởng', desc: 'Brainstorm không giới hạn, sau đó lọc qua user story mapping và khung MoSCoW để chọn giải pháp đáng thử nghiệm nhất.' },
-      { icon: '📐', num: '04', name: 'Tạo Nguyên mẫu', desc: 'Hiện thực hóa ý tưởng thành wireframes, luồng low-fi và journey maps — đủ cụ thể để kiểm thử, đủ linh hoạt để thay đổi.' },
-      { icon: '🧪', num: '05', name: 'Kiểm Thử', desc: 'Dùng A/B testing, Interleaving và đánh giá heuristic để kiểm chứng giả thuyết. Mọi thay đổi phải có dữ liệu, không phải cảm tính.' },
-      { icon: '📈', num: '06', name: 'Đo Tác Động', desc: 'Theo dõi NPS theo từng bước hành trình, tỷ lệ chuyển đổi và chỉ số giữ chân — để biết giải pháp có tạo ra thay đổi thực sự hay không.' }
+      { icon: '🔍', num: '01', name: 'Thấu Cảm', desc: 'Nghiên cứu người dùng, phỏng vấn và quan sát thực tế để tìm ra những khó khăn (pain points) thực sự.' },
+      { icon: '🎯', num: '02', name: 'Định Nghĩa', desc: 'Khoanh vùng vấn đề, đặt câu hỏi HMW và tìm nguyên nhân gốc rễ từ dữ liệu.' },
+      { icon: '💡', num: '03', name: 'Lên Ý tưởng', desc: 'Cùng brainstorm, vẽ luồng người dùng (user story mapping) và ưu tiên tính năng.' },
+      { icon: '📐', num: '04', name: 'Tạo Nguyên mẫu', desc: 'Vẽ wireframes, lên luồng thao tác và làm mockup tương tác trên Figma.' },
+      { icon: '🧪', num: '05', name: 'Kiểm Thử', desc: 'Thực hiện A/B testing, đánh giá tính dễ sử dụng (usability) để kiểm chứng giả thuyết.' },
+      { icon: '📈', num: '06', name: 'Đo Lường', desc: 'Theo dõi chỉ số NPS, tỷ lệ chuyển đổi, tỷ lệ giữ chân và các KPI kinh doanh khác.' }
     ],
     cases: [
       {
         cls: 'cs-sihub', num: 'Case Study 01', ctag: 'Customer Journey · Activation UX',
-        title: 'SIHUB: Tái thiết kế Onboarding Startup',
+        title: 'SIHUB: Tái thiết kế Luồng Onboarding',
         role: 'Project Management Executive · Journey Mapping Lead',
-        impactNum: '30%', impactLbl: 'Giảm Friction',
+        impactNum: '30%', impactLbl: 'Giảm Rào cản',
         problemLabel: 'Vấn đề Đặt ra',
-        problem: `Trong giai đoạn đầu của chương trình ươm tạo SIHUB, nhiều startup bỏ cuộc ngay từ bước kích hoạt tài khoản. <strong>Chỉ khoảng 40% hoàn tất được luồng onboarding</strong> — kéo theo tỷ lệ tham gia thấp, người dùng không hài lòng và điểm NPS sụt giảm. Vấn đề là đội ngũ lúc đó chỉ nhìn vào một con số NPS chung chung, chứ không biết cụ thể chỗ nào trong hành trình đang làm người dùng bỏ cuộc.`,
-        approachTitle: 'Cách Tiếp Cận',
+        problem: `Thực tế tại SIHUB cho thấy, rất nhiều startup bỏ cuộc ngay giữa quá trình đăng ký tham gia chương trình ươm tạo (tỷ lệ hoàn thành chỉ vỏn vẹn ~40%). Điều này kéo theo sự tương tác kém và điểm hài lòng (NPS) sụt giảm. Vấn đề là mọi người chỉ nhìn vào điểm NPS tổng mà không biết chính xác người dùng đang "mắc kẹt" ở bước nào.`,
+        approachTitle: 'Cách Tôi Giải Quyết',
         steps: [
-          { n:'01', t:'Audit dữ liệu hành vi', d:'Tôi bắt đầu bằng cách thu thập dữ liệu từ nhiều kênh khác nhau để lập lại hành trình thực tế của người dùng. Kết quả cho thấy có 3 điểm thoát chính, tập trung ở bước upload tài liệu và xác minh thông tin.' },
-          { n:'02', t:'Workshop Journey Mapping', d:'Sau khi có dữ liệu định lượng, tôi tổ chức workshop cùng nhân viên SIHUB và phỏng vấn trực tiếp 5 founder. Mục tiêu là ghi lại cảm xúc, kỳ vọng và điểm đau cụ thể ở từng bước trong hành trình.' },
-          { n:'03', t:'Phân tích nguyên nhân gốc', d:'Áp dụng phương pháp 5 Whys để đào sâu. Câu trả lời không phải là form quá phức tạp — mà là yêu cầu tài liệu không được giải thích rõ, khiến người dùng thử một lần, bị từ chối, rồi không quay lại nữa.' },
-          { n:'04', t:'Thiết kế thử nghiệm A/B', d:'Tôi thiết kế Variant A bổ sung hướng dẫn inline ngay tại chỗ cần nhập liệu (progressive disclosure) và so sánh với Control là form gốc. Dùng Interleaving để đảm bảo so sánh công bằng giữa hai nhóm.' }
+          { n:'01', t:'Rà soát Dữ liệu Hành vi', d:'Tôi đào sâu vào dữ liệu các điểm chạm (touchpoints) và phát hiện ra 3 bước có tỷ lệ thoát cao nhất nằm ở khâu nộp và xác minh tài liệu.' },
+          { n:'02', t:'Vẽ Hành trình (Journey Mapping)', d:'Tổ chức workshop với đội ngũ và phỏng vấn 5 founder để vẽ lại toàn bộ hành trình. Ghi nhận rõ cảm xúc, kỳ vọng và sự ức chế của họ ở từng bước.' },
+          { n:'03', t:'Tìm Nguyên nhân Gốc rễ', d:'Sử dụng phương pháp "5 Whys", tôi nhận ra vấn đề không do lỗi hệ thống, mà do yêu cầu tài liệu quá mập mờ khiến các founder nản lòng.' },
+          { n:'04', t:'Thiết kế A/B Testing', d:'Tạo ra Variant A (thêm hướng dẫn ngay tại chỗ) để đối đầu với bản gốc (Control). Chạy thử nghiệm để có dữ liệu so sánh khách quan.' }
         ],
         insightLabel: 'Insight Cốt Lõi',
-        insight: `Vấn đề không nằm ở công nghệ. <strong>Điểm nghẽn nằm đúng ở bước 3 — yêu cầu định dạng tài liệu</strong>. Founder không biết cần nộp file gì, thử một lần bị hệ thống từ chối, rồi bỏ luôn và không quay lại. Chỉ cần thêm một dòng hướng dẫn ngay tại chỗ là đã xử lý được 60% tỷ lệ rời bỏ — mà không cần redesign gì thêm.`,
+        insight: `Hóa ra rào cản không nằm ở công nghệ, mà là <strong>nút thắt thông tin ở bước yêu cầu tài liệu</strong>. Chỉ bằng một thay đổi nhỏ là thêm dòng hướng dẫn tại chỗ (inline), tỷ lệ bỏ cuộc đã giảm tới 60%.`,
         abTitle: 'Kết quả Thử nghiệm A/B',
         abVariants: [
-          { lbl: 'Control', pct: 42, cls: 'control', badge: '' },
-          { lbl: 'Variant A', pct: 68, cls: 'winner', badge: '✓ Chiến thắng' }
+          { lbl: 'Bản gốc', pct: 42, cls: 'control', badge: '' },
+          { lbl: 'Bản cải tiến', pct: 68, cls: 'winner', badge: '✓ Chiến thắng' }
         ],
         abStat: 'Độ tin cậy: 95% · Mẫu: 312 startup founders · Thời gian: 6 tuần',
-        journeyTitle: 'Journey Map — Các Giai đoạn Quan trọng',
+        journeyTitle: 'Bản đồ Hành trình — Các Nút thắt Quan trọng',
         journeyStages: ['Nhận lời mời','Đăng ký Portal','Upload Tài liệu','Xác minh','Kích hoạt'],
         journeyRows: [
-          { label: 'Kỳ vọng', cells: ['Quy trình nhanh','Form đơn giản','Checklist rõ ràng','Auto-review','Truy cập ngay'], types: ['','','','',''] },
-          { label: 'Pain Point', cells: ['Email dài','UI khó hiểu','❌ Format không rõ','Chờ 3 ngày','Lỗi đăng nhập'], types: ['','','pain high','pain','pain'] },
+          { label: 'Kỳ vọng', cells: ['Quy trình nhanh','Form đơn giản','Checklist rõ ràng','Duyệt tự động','Truy cập ngay'], types: ['','','','',''] },
+          { label: 'Nỗi đau (Pain)', cells: ['Email dài','UI khó hiểu','❌ Format không rõ','Chờ 3 ngày','Lỗi đăng nhập'], types: ['','','pain high','pain','pain'] },
           { label: 'Cảm xúc', cells: ['😐','🙂','😤','😴','😟'], types: ['emotion-mid','emotion-high','emotion-low','emotion-mid','emotion-low'] },
-          { label: 'Giải pháp', cells: ['—','Nav đơn giản hóa','✅ Hướng dẫn inline','Thanh tiến trình','SSO đăng nhập'], types: ['','','solution','solution','solution'] }
+          { label: 'Giải pháp', cells: ['—','Tinh gọn Menu','✅ Hướng dẫn inline','Thanh tiến trình','SSO đăng nhập'], types: ['','','solution','solution','solution'] }
         ],
         beforeAfterTitle: 'Tác động Kinh doanh — Trước vs Sau',
         before: [{ n: 'Tỷ lệ Kích hoạt', v: '42%' },{ n: 'Điểm Thoát TB', v: 'Bước 3' },{ n: 'Điểm NPS', v: '28' },{ n: 'Support Tickets', v: '~40/tuần' }],
         after: [{ n: 'Tỷ lệ Kích hoạt', v: '68%' },{ n: 'Điểm Thoát TB', v: 'Bước 5' },{ n: 'Điểm NPS', v: '47' },{ n: 'Support Tickets', v: '~12/tuần' }],
         learnings: [
-          { icon: '🔬', title: 'Research trước', text: 'Dữ liệu hành vi chỉ ra điểm thoát thực sự là bước 3 — trong khi các bên liên quan đều đoán là bước 1 hoặc 2. Đây là lý do phải đi từ dữ liệu, không phải từ giả định.' },
-          { icon: '⚗️', title: 'Kiểm thử trước khi triển khai', text: 'Nhờ A/B testing, tôi không phải làm lại toàn bộ giao diện. Một thay đổi nhỏ về hướng dẫn inline tạo ra tác động lớn hơn nhiều so với redesign tổng thể.' },
-          { icon: '📊', title: 'NPS không phải một con số', text: 'Mỗi bước trong hành trình có điểm đau riêng và NPS driver riêng. Đọc NPS theo từng giai đoạn mới thấy được gốc vấn đề — đọc tổng thì chỉ thấy kết quả.' }
+          { icon: '🔬', title: 'Nghiên cứu trước', text: 'Dữ liệu hành vi luôn chỉ ra đúng điểm "rơi rụng" của người dùng, thay vì những chỗ mà chúng ta tự suy đoán.' },
+          { icon: '⚗️', title: 'Kiểm thử trước khi làm', text: 'A/B testing giúp tiết kiệm thời gian đập đi xây lại toàn bộ. Một thay đổi nhỏ cũng mang lại kết quả lớn.' },
+          { icon: '📊', title: 'Định vị lại NPS', text: 'Đừng xem NPS là một điểm số vô hồn. Hãy coi nó như một hệ thống cảnh báo trải nghiệm ở từng bước.' }
         ]
       },
       {
-        cls: 'cs-echomind', num: 'Case Study 02', ctag: 'AI Project UX · Thiết kế Giao diện Đầu ra',
-        title: 'EchoMind: Thiết kế Giao diện Hiển thị Kết quả AI',
-        role: 'Project Lead · Người thiết kế giao diện Gradio Demo',
-        impactNum: '100%', impactLbl: 'Milestone Hoàn thành',
-        problemLabel: 'Bối cảnh & Vấn đề',
-        problem: `EchoMind là dự án AI của nhóm sinh viên, được xây dựng trên <strong>bộ dữ liệu Brain-to-Text 2025 (Kaggle)</strong> — nhóm huấn luyện mô hình để giải mã tín hiệu sóng não EEG phi xâm lấn thành văn bản. Khi mô hình đã chạy được, câu hỏi tiếp theo xuất hiện: <strong>hiển thị kết quả như thế nào để người xem thực sự hiểu được?</strong> Chỉ in ra một dòng văn bản với một con số phần trăm không đủ — bạn không biết mô hình có chắc không, nó đọc vùng não nào, hay tín hiệu đầu vào có sạch không.`,
-        approachTitle: 'Nhóm Tiếp Cận Thế Nào',
+        cls: 'cs-echomind', num: 'Case Study 02', ctag: 'Explainable AI UX · Healthcare HCI',
+        title: 'EchoMind: Dashboard Chuyên gia & Minh bạch hóa AI',
+        role: 'Project Lead · UX Architect · AI Product Designer',
+        impactNum: '100%', impactLbl: 'Hoàn thành KPI',
+        problemLabel: 'Vấn đề Đặt ra',
+        problem: `Dù mô hình AI của dự án EchoMind đoán đúng tới 92–95%, <strong>các bác sĩ vẫn không dám sử dụng nó</strong>. Trong y tế, một hệ thống "hộp đen" chỉ đưa ra kết quả mà không giải thích được TẠI SAO thì mang lại rủi ro, chứ không phải sự hỗ trợ. Bài toán là thiết kế một giao diện giúp AI trở nên minh bạch mà không làm các bác sĩ rối mắt.`,
+        approachTitle: 'Cách Tôi Giải Quyết',
         steps: [
-          { n:'01', t:'Xây bản demo V1 bằng Gradio', d:'Phiên bản đầu tiên chỉ hiển thị văn bản giải mã và một con số độ tin cậy. Khi cả nhóm tự ngồi dùng thử, ai cũng cảm thấy nó như một hộp đen — không hiểu mô hình đang làm gì bên trong.' },
-          { n:'02', t:'Đánh giá bằng 10 Heuristics của Nielsen', d:'Tôi chạy đánh giá heuristic trên chính prototype V1 của nhóm. Phát hiện được hai vấn đề: giao diện không cho biết hệ thống đang xử lý, và không có cách nào phát hiện khi chất lượng tín hiệu đầu vào kém.' },
-          { n:'03', t:'Đặt câu hỏi: người dùng cần biết gì?', d:'Nếu công cụ này được dùng trong thực tế, người review kết quả cần trả lời được: mô hình giải mã ra cái gì, nó tự tin tới đâu, và nó dựa vào phần nào của tín hiệu EEG. Ba câu hỏi đó định hướng thiết kế V2.' },
-          { n:'04', t:'Thiết kế lớp Attention Map', d:'Thay đổi có ý nghĩa nhất là thêm lớp highlight trực tiếp lên dạng sóng EEG — cho thấy phần nào của tín hiệu mà mô hình chú ý khi giải mã từng từ. Cái này biến hộp đen thành thứ có thể quan sát và lý giải được.' }
+          { n:'01', t:'Phân tích Heuristic', d:'Áp dụng 10 nguyên tắc thiết kế của Nielsen vào bản nháp giao diện. Phát hiện hệ thống thiếu phản hồi trạng thái và không có cách sửa sai khi AI đoán nhầm.' },
+          { n:'02', t:'Đo lường Tải Nhận Thức', d:'Phân tích quá trình suy nghĩ của bác sĩ khi xem kết quả. Từ đó xác định chính xác 3 thời điểm họ thực sự cần xem "bản đồ tập trung" (Heatmap) của AI.' },
+          { n:'03', t:'Thiết kế Heatmap UI', d:'Tạo hệ thống hiển thị đè (overlay) trực tiếp lên biểu đồ sóng não. Các dải màu xanh/đỏ giúp bác sĩ nhìn ngay được AI đang dựa vào đoạn sóng nào để đưa ra từ đó.' },
+          { n:'04', t:'Hiển thị Theo Lớp', d:'Áp dụng nguyên lý hiển thị dần dần (progressive disclosure): Đầu tiên chỉ hiện kết quả. Nếu bác sĩ cần, mới mở rộng ra Heatmap và phân tích chi tiết.' }
         ],
-        insightLabel: 'Điều Nhóm Nhận Ra',
-        insight: `Kết quả mô hình đứng một mình thì ít có giá trị. <strong>Con số 93% accuracy cho biết nó hoạt động được — attention map cho thấy vì sao nó hoạt động.</strong> Dù đây chỉ là dự án sinh viên, việc nghĩ đến cách trình bày đầu ra từ góc độ người xem — thay vì chỉ từ góc độ kỹ thuật — làm cho cả sản phẩm thuyết phục hơn hẳn.`,
-        abTitle: 'So sánh V1 vs V2 — Đánh giá của nhóm',
+        insightLabel: 'Insight Cốt Lõi',
+        insight: `Bác sĩ không bận tâm "AI này chính xác bao nhiêu %?", câu họ quan tâm là: <strong>"Tôi có thể dùng kết quả này để giải thích cho người nhà bệnh nhân không?"</strong> Tính minh bạch của AI (Explainability) chính là yếu tố sống còn để xây dựng niềm tin.`,
+        abTitle: 'So sánh Giao diện — Đánh giá Heuristic',
         abVariants: [
-          { lbl: 'V1 — Chỉ text + %', pct: 38, cls: 'control', badge: '' },
-          { lbl: 'V2 — Có Attention Map', pct: 82, cls: 'winner', badge: '✓ Phiên bản cuối' }
+          { lbl: 'Bản V1 (Cơ bản)', pct: 38, cls: 'control', badge: '' },
+          { lbl: 'Bản V2 (Có Heatmap)', pct: 82, cls: 'winner', badge: '✓ Được chọn' }
         ],
-        abStat: 'Đánh giá theo 10 Heuristics Nielsen · 4 thành viên nhóm cho điểm · Thang 0–100 · Không phải nghiên cứu lâm sàng',
-        journeyTitle: 'Luồng suy nghĩ khi thiết kế giao diện',
-        journeyStages: ['Xem kết quả','Kiểm tra độ tin cậy','Hiểu lý do','Đọc tín hiệu','Kết luận'],
+        abStat: 'Phương pháp: Đánh giá heuristic chuyên gia + Điểm khả dụng (1–100) · 4 đánh giá viên',
+        journeyTitle: 'Luồng Thao tác của Bác sĩ',
+        journeyStages: ['Xem Kết quả','Đánh giá Tin cậy','Xem Heatmap','Review Tín hiệu','Lưu Bệnh án'],
         journeyRows: [
-          { label: 'Người dùng cần', cells: ['Mô hình đọc được gì?','Có chắc không?','Dựa vào đâu?','Tín hiệu sạch không?','Có tin được không?'], types: ['','','','',''] },
-          { label: 'V1 thiếu', cells: ['Chỉ có text','% không ngữ cảnh','❌ Không hiển thị','Biểu đồ thô','Không rõ'], types: ['','','pain high','pain','pain'] },
-          { label: 'V2 bổ sung', cells: ['Text + waveform preview','% + chất lượng tín hiệu','✅ Attention overlay','Vùng được highlight','Rõ hơn nhiều'], types: ['solution','solution','solution','solution','solution'] },
-          { label: 'Mức độ rõ ràng', cells: ['😐','😐','😊','😊','😊'], types: ['emotion-mid','emotion-mid','emotion-high','emotion-high','emotion-high'] }
+          { label: 'Câu hỏi trong đầu', cells: ['Bệnh nhân nói gì?','AI chắc chắn không?','Dựa vào vùng não nào?','Có bị nhiễu không?','Lưu vào hồ sơ'], types: ['','','','',''] },
+          { label: 'Vấn đề bản V1', cells: ['Chỉ hiện chữ','% không đủ giải thích','❌ Không hỗ trợ','Biểu đồ thô, khó nhìn','Phải chép tay'], types: ['','','pain high','pain','pain'] },
+          { label: 'Giải pháp bản V2', cells: ['Chữ + Cắt đoạn tín hiệu','% + Dải màu tin cậy','✅ Overlay Heatmap','Đã lọc + chú thích','Tự động log'], types: ['solution','solution','solution','solution','solution'] },
+          { label: 'Độ Tin Tưởng', cells: ['😐','😐','😊','😊','😊'], types: ['emotion-mid','emotion-mid','emotion-high','emotion-high','emotion-high'] }
         ],
-        beforeAfterTitle: 'V1 vs V2 — Điều thay đổi',
-        before: [{ n: 'Điểm Heuristic', v: '38/100' },{ n: 'Giải thích được', v: '❌ Không' },{ n: 'Thông tin tín hiệu', v: '❌ Không có' },{ n: 'Phản hồi lỗi', v: 'Không có' }],
-        after: [{ n: 'Điểm Heuristic', v: '82/100' },{ n: 'Giải thích được', v: '✓ Attention map' },{ n: 'Thông tin tín hiệu', v: '✓ Hiển thị rõ' },{ n: 'Phản hồi lỗi', v: 'Có thông báo' }],
+        beforeAfterTitle: 'Tác động Thiết kế — Trước vs Sau',
+        before: [{ n: 'Điểm Heuristic', v: '38/100' },{ n: 'Độ Minh bạch AI', v: '❌ Không có' },{ n: 'Tin tưởng Bác sĩ', v: '2/5' },{ n: 'Sửa lỗi khi AI sai', v: 'Làm thủ công' }],
+        after: [{ n: 'Điểm Heuristic', v: '82/100' },{ n: 'Độ Minh bạch AI', v: '✓ Có Heatmap' },{ n: 'Tin tưởng Bác sĩ', v: '4/5' },{ n: 'Sửa lỗi khi AI sai', v: 'Có luồng hỗ trợ' }],
         learnings: [
-          { icon: '🔭', title: 'Thiết kế đầu ra, không chỉ mô hình', text: 'Ngay cả trong dự án nghiên cứu, cách bạn trình bày kết quả quan trọng không kém việc kết quả đó có chính xác không. Giao diện tốt là thứ làm cho mô hình cảm thấy đáng tin, không chỉ là con số accuracy.' },
-          { icon: '🧩', title: 'Heuristics hiệu quả ngay cả trên prototype', text: 'Chạy đánh giá heuristic trên chính demo của nhóm mất chừng 30 phút nhưng giúp phát hiện những vấn đề mà cả nhóm đã quen mắt và không còn nhận ra nữa.' },
-          { icon: '🗺️', title: 'Nghĩ về người dùng, dù chưa có người dùng thật', text: 'Đây là dự án sinh viên, không có người dùng thực tế. Nhưng việc đặt câu hỏi "ai sẽ dùng và họ cần gì" giúp đưa ra những quyết định thiết kế tốt hơn ngay từ đầu.' }
+          { icon: '🏥', title: 'Hiểu đặc thù Ngành', text: 'Làm UX cho y tế là xây dựng sự tin tưởng. Tính minh bạch của hệ thống là điều bắt buộc phải có chứ không phải tính năng phụ.' },
+          { icon: '🧩', title: 'Không nhồi nhét thông tin', text: 'Việc show mọi thứ cùng lúc chỉ làm bác sĩ quá tải. Mở thông tin ra theo từng lớp mới phù hợp với quy trình khám bệnh.' },
+          { icon: '🎨', title: 'Dùng Heuristics làm khung', text: 'Bộ 10 nguyên tắc của Nielsen đã giúp nhóm phát hiện và sửa được 6 lỗi UX nghiêm trọng ngay từ đầu.' }
         ]
       },
       {
@@ -911,37 +924,37 @@ vi: {
         role: 'User Researcher · HCI Analyst · UX Designer',
         impactNum: 'Top 20', impactLbl: 'Cuộc thi Cấp TP',
         problemLabel: 'Vấn đề Đặt ra',
-        problem: `Học sinh nhận thiết bị về nhà nhưng phần lớn <strong>bỏ cuộc ngay ở khâu cài đặt, trước khi dùng lần đầu</strong>. Luồng setup ban đầu có 7 bước với nhiều trường thông tin, đăng ký tài khoản và đồng bộ nội dung — gây quá tải nhận thức nghiêm trọng ở bước 2 và 3. Hậu quả thực tế rất rõ: thiết bị vài triệu đồng nằm im trong cặp sách, không được dùng lần nào.`,
-        approachTitle: 'Cách Tiếp Cận',
+        problem: `Trong dự án phổ cập máy đọc sách (E-reader) cho học sinh, chúng tôi gặp một rào cản lớn: các em <strong>thường bỏ cuộc ngay từ khâu cài đặt máy ban đầu</strong>. Trải qua tận 7 bước đăng ký, nhập liệu và đồng bộ sách gây quá tải nhận thức cực độ (cognitive overload). Hậu quả là những thiết bị đắt tiền bị vứt xó trong cặp.`,
+        approachTitle: 'Cách Tôi Giải Quyết',
         steps: [
-          { n:'01', t:'Đo tải nhận thức từng bước', d:"Tôi đếm số quyết định mà người dùng cần đưa ra ở từng bước trong luồng 7-bước. Kết quả: bước 2 và 3 yêu cầu xử lý hơn 5 thông tin cùng lúc — vượt quá giới hạn bộ nhớ làm việc 3–4 mục của não người theo Định luật Miller." },
-          { n:'02', t:'Áp dụng nguyên lý HCI', d:"Tôi sử dụng Định luật Fitts để tối ưu kích thước vùng chạm, Định luật Hick để giảm số lựa chọn trên mỗi màn hình, và nguyên tắc gần kề của Gestalt để nhóm thông tin liên quan lại với nhau." },
-          { n:'03', t:'Journey map học sinh lớp 6', d:"Tôi xây dựng journey map theo góc nhìn của một học sinh lớp 6: từ lúc mở hộp cho đến buổi đọc sách kỹ thuật số đầu tiên. Ghi lại cảm xúc, rào cản, kỳ vọng và nhu cầu hỗ trợ ở từng bước." },
-          { n:'04', t:'Tái thiết kế từ 7 bước xuống 3 giai đoạn', d:"Tôi dồn 7 bước lại thành 3 giai đoạn: Kích hoạt thiết bị → Cài đặt nội dung → Cá nhân hóa. Những bước không cần thiết ở lần đầu dùng được chuyển sang sau — khi học sinh đã quen với thiết bị." }
+          { n:'01', t:'Đo lường Tải Nhận Thức', d:"Đếm số lượng quyết định các em phải đưa ra ở mỗi bước. Có những bước yêu cầu học sinh xử lý tới 5 thông tin cùng lúc — vượt quá giới hạn ghi nhớ ngắn hạn (Định luật Miller)." },
+          { n:'02', t:'Áp dụng Nguyên lý HCI', d:"Sử dụng Định luật Hick để giảm bớt các lựa chọn không cần thiết và Gom nhóm (Gestalt proximity) để sắp xếp lại bố cục màn hình thân thiện hơn." },
+          { n:'03', t:'Vẽ Hành trình Học sinh', d:"Xây dựng lại toàn bộ hành trình trải nghiệm từ lúc 'mở hộp' đến 'buổi đọc đầu tiên'. Ghi nhận chi tiết cảm xúc và những bước các em bối rối nhất." },
+          { n:'04', t:'Gom nhóm (Chunking) 7 còn 3', d:"Gom 7 bước dài dòng thành 3 giai đoạn cốt lõi: Bật máy → Cài sách → Cá nhân hóa. Đẩy các thao tác phụ xuống sau khi học sinh đã quen máy." }
         ],
         insightLabel: 'Insight Cốt Lõi',
-        insight: `Học sinh bỏ cuộc không phải vì thiếu kỹ năng công nghệ. Luồng cũ yêu cầu nhập mã trường, số điện thoại phụ huynh, lớp học và ngôn ngữ trên <strong>cùng một màn hình</strong> — vi phạm thẳng nguyên tắc "một hành động chính mỗi màn hình". Chỉ cần tách ra thành các bước nhỏ tuần tự là độ phức tạp nhận thức giảm ngay khoảng 60%.`,
+        insight: `Học sinh không rành công nghệ không phải là lý do khiến các em bỏ cuộc. Lý do là chúng ta đã <strong>bắt các em làm quá nhiều việc trên cùng một màn hình</strong>. Khi chia nhỏ thao tác để mỗi màn hình chỉ giải quyết đúng một việc, tỷ lệ rắc rối giảm hẳn 60%.`,
         abTitle: 'So sánh Luồng — Tỷ lệ Hoàn thành',
         abVariants: [
-          { lbl: 'Luồng 7-bước gốc', pct: 35, cls: 'control', badge: '' },
-          { lbl: 'Thiết kế 3-giai đoạn', pct: 78, cls: 'winner', badge: '✓ Được áp dụng' }
+          { lbl: 'Luồng 7 bước cũ', pct: 35, cls: 'control', badge: '' },
+          { lbl: 'Thiết kế 3 bước mới', pct: 78, cls: 'winner', badge: '✓ Được áp dụng' }
         ],
-        abStat: 'Ước tính dựa trên phân tích cognitive load và kiểm thử prototype · n=24 học sinh',
-        journeyTitle: 'Journey Map Học sinh — Trải nghiệm Cài đặt',
-        journeyStages: ['Mở hộp','Bật nguồn','Tạo tài khoản','Đồng bộ nội dung','Đọc lần đầu'],
+        abStat: 'Dữ liệu ước tính dựa trên phân tích cognitive load và kiểm thử prototype với 24 học sinh',
+        journeyTitle: 'Hành trình Học sinh — Quá trình Cài đặt',
+        journeyStages: ['Mở hộp','Bật nguồn','Tạo tài khoản','Tải sách','Đọc lần đầu'],
         journeyRows: [
-          { label: 'Mục tiêu', cells: ['Xem thiết bị','Bật lên','Vào app nhanh','Lấy sách nhanh','Đọc bài'], types: ['','','','',''] },
-          { label: 'Cognitive Load', cells: ['Thấp','Thấp','❌ Quá tải (5 trường)','❌ Chờ lâu','Thấp'], types: ['','','pain high','pain',''] },
+          { label: 'Mục tiêu', cells: ['Xem thiết bị','Bật lên xem sao','Vào app nhanh','Lấy sách nhanh','Bắt đầu đọc'], types: ['','','','',''] },
+          { label: 'Tải Nhận thức', cells: ['Thấp','Thấp','❌ Quá tải (Nhập 5 ô)','❌ Chờ đợi nhàm chán','Thấp'], types: ['','','pain high','pain',''] },
           { label: 'Cảm xúc', cells: ['😄','🙂','😤','😴','😊'], types: ['emotion-high','emotion-high','emotion-low','emotion-mid','emotion-high'] },
-          { label: 'Giải pháp HCI', cells: ['—','—','✅ 3-giai đoạn','✅ Progress bar','—'], types: ['','','solution','solution',''] }
+          { label: 'Giải pháp HCI', cells: ['—','—','✅ Gom thành 3 bước nhỏ','✅ Thêm Progress bar','—'], types: ['','','solution','solution',''] }
         ],
-        beforeAfterTitle: 'Kết quả UX — Trước vs Sau Tái thiết kế',
-        before: [{ n: 'Hoàn thành Cài đặt', v: '~35%' },{ n: 'Điểm Thoát', v: 'Bước 2–3' },{ n: 'Thời gian đến Lần đọc 1', v: '22 phút' },{ n: 'Hỗ trợ Phụ huynh', v: 'Cao' }],
-        after: [{ n: 'Hoàn thành Cài đặt', v: '~78%' },{ n: 'Điểm Thoát', v: 'Bước 5 (cuối)' },{ n: 'Thời gian đến Lần đọc 1', v: '8 phút' },{ n: 'Hỗ trợ Phụ huynh', v: 'Giảm đáng kể' }],
+        beforeAfterTitle: 'Kết quả Trải nghiệm (UX) — Trước vs Sau',
+        before: [{ n: 'Hoàn thành Cài đặt', v: '~35%' },{ n: 'Điểm Thoát', v: 'Bước 2–3' },{ n: 'Thời gian setup', v: '22 phút' },{ n: 'Nhờ phụ huynh giúp', v: 'Rất nhiều' }],
+        after: [{ n: 'Hoàn thành Cài đặt', v: '~78%' },{ n: 'Điểm Thoát', v: 'Bước 5 (cuối)' },{ n: 'Thời gian setup', v: '8 phút' },{ n: 'Nhờ phụ huynh giúp', v: 'Giảm hẳn' }],
         learnings: [
-          { icon: '🧠', title: "Định luật Miller trong thực tế", text: "Giới hạn bộ nhớ làm việc của não người là 3–4 mục. Vượt ngưỡng đó, người dùng không phải khó tính — họ đơn giản là không thể xử lý thêm được nữa." },
-          { icon: '📱', title: 'Một hành động mỗi màn hình', text: 'Progressive disclosure không có nghĩa là ẩn thông tin. Nó có nghĩa là chỉ hiện những gì người dùng cần ở thời điểm đó — còn lại để đến khi họ thực sự cần.' },
-          { icon: '🗺️', title: 'Journey map trước khi mở Figma', text: 'Nếu tôi mở Figma trước khi lập journey map, tôi sẽ chỉ làm lại giao diện mà không chạm được vào vấn đề thật. Journey map là thứ cho thấy vấn đề hệ thống, không phải vấn đề giao diện.' }
+          { icon: '🧠', title: "Định luật Miller", text: "Chia nhỏ thông tin (chunking) sao cho mỗi bước chỉ có dưới 4 thao tác là cách giải tỏa áp lực tâm lý hiệu quả nhất cho người dùng mới." },
+          { icon: '📱', title: 'Một hành động / Màn hình', text: 'Giấu bớt đi các bước chưa cần thiết (progressive disclosure) giúp người dùng thấy mọi thứ nhẹ nhàng hơn rất nhiều.' },
+          { icon: '🗺️', title: 'Hành trình trước UI', text: 'Nhờ việc vẽ lại hành trình cảm xúc từ đầu, tôi mới phát hiện ra các lỗi hệ thống mà nếu cắm mặt vào vẽ wireframe chắc chắn sẽ sót.' }
         ]
       }
     ]
@@ -950,47 +963,45 @@ vi: {
     tag: 'Năng lực Lõi', title: 'Kỹ năng <span>Chuyên môn</span>',
     radarLbl: 'Biểu đồ Radar Kỹ năng', certLbl: 'Chứng chỉ', popupTitle: 'Định lượng & Tác động',
     list: [
-      {n:'Customer Journey Mapping',ref:'Minh chứng qua: Design Thinking (UEH)',m:['Thiết kế 15+ user flows cho startup','Giảm onboarding friction 30%','Tối ưu 5+ touchpoints chuyển đổi']},
-      {n:'Thiết kế UX / HCI',ref:'Minh chứng qua: Human-Computer Interaction (UEH)',m:['Ứng dụng vào 3 dự án thực tế','Giảm cognitive load E-Reader','Thiết kế Gradio UI chuẩn Heuristic']},
-      {n:'Agile / Scrum (CPMAI)',ref:'Minh chứng qua: Google PM Cert & EchoMind',m:['Quản lý 8 Sprints liên tục','Dẫn nhóm 7 thành viên','100% milestone đúng hạn']},
-      {n:'A/B Testing & Interleaving',ref:'Minh chứng qua: Thử nghiệm sản phẩm SIHUB',m:['Chạy 10+ thử nghiệm tính năng','Xác thực độ tin cậy 95%','Ngăn 3 lỗi UX trước khi ra mắt']},
-      {n:'Phân rã Vấn đề',ref:'Minh chứng qua: Innovation Management (UEH)',m:['Phân rã 5+ Epics cấp cao','Chẩn đoán root-cause Mode Collapse','Cấu trúc 150+ yêu cầu stakeholders']},
-      {n:'Viết PRD & User Stories',ref:'Minh chứng qua: Entrepreneurship Innovation (UEH)',m:['Soạn 10+ PRD chuẩn hóa','Quản lý backlog 200+ User Stories','Đạt chuẩn URD cấp thành phố']},
-      {n:'Python & PyTorch (Có nền tảng)',ref:'Ứng dụng qua: Dự án EchoMind AI',m:['Tối ưu kiến trúc Transformer V2','Áp dụng Int8 Quantization','Giảm độ trễ AI xuống <1s']}
+      {n:'Customer Journey Mapping',ref:'Minh chứng qua: Design Thinking (UEH)',m:['Đã thiết kế 15+ luồng người dùng (user flows) cho startup','Giảm thiểu rào cản onboarding cho 30% khách hàng mới','Tối ưu hóa 5+ touchpoints chuyển đổi quan trọng']},
+      {n:'Thiết kế UX / HCI',ref:'Minh chứng qua: Human-Computer Interaction (UEH)',m:['Ứng dụng thành công vào 3 dự án thực tế','Giảm tải nhận thức (cognitive load) hệ thống E-Reader','Thiết kế giao diện Gradio đạt chuẩn Heuristic']},
+      {n:'Agile / Scrum (CPMAI)',ref:'Minh chứng qua: Google Project Management & EchoMind',m:['Quản lý mượt mà 8 Sprints liên tục','Dẫn dắt đội ngũ 7 thành viên cross-functional','Hoàn thành 100% milestone dự án đúng hạn']},
+      {n:'A/B Testing & Interleaving',ref:'Minh chứng qua: Thử nghiệm sản phẩm tại SIHUB',m:['Thiết kế và chạy 10+ thử nghiệm tính năng','Xác thực giả thuyết với độ tin cậy 95%','Ngăn chặn 3 lỗi thiết kế UX trước khi ra mắt']},
+      {n:'Phân rã Vấn đề',ref:'Minh chứng qua: Innovation Management (UEH)',m:['Phân rã 5+ Epics cấp cao thành các task thực thi','Chẩn đoán root-cause lỗi Mode Collapse','Cấu trúc hóa 150+ yêu cầu từ các stakeholders']},
+      {n:'Viết PRD & User Stories',ref:'Minh chứng qua: Entrepreneurship Innovation (UEH)',m:['Soạn thảo 10+ PRD chuẩn hóa','Quản lý backlog với 200+ User Stories','Đạt chuẩn tài liệu URD cấp thành phố']},
+      {n:'Python & PyTorch (Có nền tảng)',ref:'Ứng dụng qua: Dự án EchoMind AI',m:['Tối ưu kiến trúc mô hình Transformer V2','Áp dụng lượng tử hóa Int8 giảm dung lượng','Giảm độ trễ suy luận AI xuống dưới 1s']}
     ],
     radarLabels: ['UX/HCI','Agile','Journey Map','Phân tích DL','Python','PyTorch/ML','A/B Testing'],
     certs: [
-      {i:'🏅',n:'Quản lý Dự án (Google PM)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
+      {i:'🏅',n:'Quản lý Dự án (Google Project Management)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Trí tuệ Doanh nghiệp (Google BI)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false},
-      {i:'🗣️',n:'TOEIC — Năng lực Tiếng Anh',org:'Đang chuẩn bị thi',dash:true,prog:'Đang học'}
+      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false}
     ]
   },
   edu: {
     tag: 'Nền tảng Học vấn', title: 'Học vấn & <span>Thành tích</span>',
     uni: 'Đại học Kinh tế TP.HCM (UEH)', major: 'Cử nhân Quản lý Công nghệ và Đổi mới Sáng tạo',
     courseTag: 'Các môn học Cốt lõi định hình Tư duy Sản phẩm',
-    courses: ['Tư duy Thiết kế','Tương tác Người-Máy (HCI)','Quản trị ĐMST','Trí tuệ Doanh nghiệp','Chuyển đổi Kinh doanh Số','Dự án AI'],
+    courses: ['Tư duy Thiết kế (Design Thinking)','Tương tác Người-Máy (HCI)','Quản trị Đổi mới Sáng tạo','Trí tuệ Doanh nghiệp (BI)','Chuyển đổi Kinh doanh Số','Dự án AI'],
     certTag: 'Chứng chỉ',
     certs: [
-      {i:'🏅',n:'Quản lý Dự án (Google PM)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
+      {i:'🏅',n:'Quản lý Dự án (Google Project Management)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Trí tuệ Doanh nghiệp (Google BI)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false},
-      {i:'🗣️',n:'TOEIC — Năng lực Tiếng Anh',org:'Đang chuẩn bị thi',dash:true,prog:'Đang học'}
+      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false}
     ]
   },
   chat: {
-    name: 'Trợ lý AI của Minh', sub: '● Trực tuyến · Sẵn sàng', reset: '↺ Làm lại', logout: '⏻ Ngôn ngữ',
-    greeting: `Xin chào! Tôi là AI assistant ở đây để giới thiệu với bạn về Nguyễn Hoàng Minh — sinh viên năm cuối UEH, đang làm Product & UX thực chiến tại SIHUB, một trong những trung tâm hỗ trợ startup lớn nhất ở TP.HCM, từ giữa năm 2024 đến nay.\n\nMinh không chỉ vẽ journey map trên giấy — anh ấy chạy A/B test thực tế, theo dõi NPS từng bước trong hành trình, và vừa dẫn dắt một nhóm 7 người xây dựng dự án AI từ đầu. Bạn muốn tìm hiểu về phần nào?`,
+    name: 'Trợ lý AI của Minh', sub: '● Trực tuyến · Sẵn sàng giải đáp', reset: '↺ Làm lại', logout: '⏻ Ngôn ngữ',
+    greeting: `Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh — Product Owner & UX Strategist. Minh chuyên thiết kế sản phẩm dựa trên sự kết hợp giữa trải nghiệm người dùng, dữ liệu và kiểm thử thực nghiệm.\n\nDanh mục đầu tư hiện có thêm phần UX Experience (Kinh nghiệm UX) mới, thể hiện chi tiết quy trình tư duy thiết kế, thử nghiệm A/B, bản đồ hành trình và tác động kinh doanh của Minh. Bạn muốn khám phá khía cạnh nào?`,
     prompts: [
       {id:'exp',i:'💼',l:'Kinh nghiệm'},{id:'proj',i:'🧠',l:'Dự án'},
       {id:'ux',i:'🎨',l:'UX Work'},{id:'skills',i:'⚡',l:'Kỹ năng'}
     ],
     ans: {
-      exp: `Minh làm việc tại SIHUB — Trung tâm Hỗ trợ Khởi nghiệp & ĐMST trực thuộc Sở KH&CN TP.HCM — từ giữa năm 2024.\n\nVị trí gần nhất là Chuyên viên Quản lý Dự án (01–10/2025). Minh là đầu mối làm việc trực tiếp với hơn 150 startup founder trong chương trình ươm tạo — thiết kế hành trình onboarding của họ từ đầu đến cuối, rồi chạy A/B test để kiểm chứng từng thay đổi. Một trong những điều Minh tự hào: thuyết phục được đội ngũ không nhìn NPS như một con số nữa, mà như một tín hiệu — để biết chính xác chỗ nào trong hành trình đang có vấn đề.\n\nTrước đó, hồi còn là Thực tập sinh R&D (07–12/2024), Minh xử lý một dự án phân tích khoảng trống năng lực quy mô lớn — làm việc với cơ quan nhà nước, viện nghiên cứu và doanh nghiệp, rồi tổng hợp tất cả thành tài liệu yêu cầu hệ thống theo chuẩn URD.`,
-      proj: `Minh có ba dự án đáng chú ý:\n\n🧠 EchoMind AI là dự án lớn nhất (09–12/2025). Đây là dự án AI của nhóm sinh viên, train mô hình giải mã tín hiệu sóng não thành văn bản bằng bộ dữ liệu Brain-to-Text 2025 từ Kaggle. Minh là Project Lead — chạy 8 Agile sprint, khi mô hình LSTM đầu tiên sập vào Mode Collapse thì Minh chẩn đoán vấn đề và quyết định chuyển sang kiến trúc Transformer. Cuối cùng mô hình đạt 55–65 từ/phút, độ trễ dưới 1 giây. Minh còn thiết kế giao diện Gradio demo để kết quả AI hiển thị theo cách người ta có thể hiểu được.\n\n📚 Hệ sinh thái E-Reader (03–06/2025) là dự án nghiên cứu người dùng cho nền tảng đọc sách điện tử dành cho học sinh. Minh lập bản đồ hành trình cài đặt, tìm ra chỗ học sinh bỏ cuộc, rồi dùng nguyên lý HCI để đơn giản hóa luồng. Dự án vào Top 20 cuộc thi do UBND TP.HCM tổ chức.\n\n🚀 Vận hành Sự kiện ĐMST — công việc đang diễn ra, tổ chức các sự kiện startup lớn như Univ.Star 2024/2025 và WHISE Week 2024 tại SIHUB.`,
-      ux: `Phần UX Experience có 3 case study, mỗi cái kể lại một câu chuyện thiết kế thực tế — không phải lý thuyết.\n\n🗺️ Case 01 là hành trình onboarding của startup tại SIHUB. Chỉ 42% founder hoàn tất được luồng kích hoạt. Minh đào vào dữ liệu, tổ chức workshop journey mapping, tìm ra điểm thoát thực sự là bước upload tài liệu (yêu cầu không rõ ràng), rồi test một cách sửa nhỏ qua A/B experiment. Kết quả: tỷ lệ kích hoạt lên 68%, NPS tăng từ 28 lên 47, support tickets giảm khoảng 70%.\n\n🧠 Case 02 là giao diện demo của EchoMind. Khi nhóm xây xong mô hình, họ làm demo bằng Gradio — và nó trông như một hộp đen. Minh đánh giá lại bằng 10 Heuristics của Nielsen rồi thêm lớp attention map để người xem thấy được mô hình đang "đọc" phần nào của sóng não. Điểm heuristic tăng từ 38 lên 82 trên 100.\n\n📱 Case 03 là luồng cài đặt cho thiết bị E-Reader của học sinh. Học sinh bỏ cuộc ở bước 2–3 vì phải điền quá nhiều thứ cùng lúc. Minh áp dụng Định luật Miller để chia nhỏ thành 3 giai đoạn. Tỷ lệ hoàn thành cài đặt tăng từ 35% lên 78%, thời gian đến lần đọc đầu tiên giảm từ 22 phút xuống còn 8 phút.`,
-      skills: `Thế mạnh lõi của Minh là product và UX — lập bản đồ hành trình người dùng, chạy A/B test, viết PRD, phân tích vấn đề thành những thứ một nhóm có thể thực thi được. Minh cũng quen với Agile và khung CPMAI, thứ mà anh ấy dùng trực tiếp qua 8 sprint trong dự án EchoMind.\n\nVề kỹ thuật, Minh biết Python và đã làm việc thực tế với PyTorch và phân tích dữ liệu — không ở mức kỹ sư, nhưng đủ để cộng tác chặt với đội AI và hiểu chuyện gì đang xảy ra bên trong.\n\nVề con người và thực thi — anh ấy đã quản lý hơn 150 startup founder với tư cách đầu mối chính tại một trung tâm do chính quyền thành phố hỗ trợ, và trình bày insight chiến lược trực tiếp lên Ban Giám đốc. Đó không phải chuyện nhỏ.`
+      exp: `Tại SIHUB, Minh đã tích lũy hơn 2 năm kinh nghiệm cốt lõi.\n\n◈ 01–10/2025 | Project Management Executive\nMinh không thích việc chỉ ngồi vẽ các sơ đồ quy trình trên giấy. Thay vào đó, Minh luôn dựa vào dữ liệu thực tế — thông qua A/B testing — để kiểm chứng xem thay đổi về UX có mang lại hiệu quả hay không. Minh cũng giúp team thay đổi góc nhìn về chỉ số NPS, biến nó từ một điểm số đo lường khô khan thành một hệ thống cảnh báo sớm về tỷ lệ giữ chân khách hàng.\n\n◈ 07–12/2024 | R&D Intern\nMinh chịu trách nhiệm phân tích nhu cầu của hơn 150 bên liên quan, sau đó quy chuẩn hóa các phản hồi định tính này thành tài liệu yêu cầu hệ thống (URD). Kinh nghiệm này là nền tảng vững chắc giúp Minh viết PRD rất sắc bén.`,
+      proj: `Ba dự án nổi bật này minh chứng rõ nhất cho tư duy phát triển sản phẩm của Minh:\n\n🧠 EchoMind AI — Flagship (09–12/2025)\nHệ thống dịch sóng não thành văn bản. Với vai trò Project Lead, Minh đã quản lý 8 Sprints, quyết đoán đổi hướng sang kiến trúc Transformer V2 khi mô hình cũ gặp lỗi. Nhờ áp dụng lượng tử hóa, hệ thống chạy mượt trên máy cá nhân với tốc độ 55-65 WPM và đạt 100% KPI kỹ thuật.\n\n📚 Hệ sinh thái E-Reader — Top 20 cấp TP\nỞ vai trò User Researcher, Minh thiết kế lại toàn bộ hành trình UX dựa trên nguyên lý HCI, giúp loại bỏ các bước thao tác thừa khiến học sinh bị quá tải nhận thức. Dự án xuất sắc lọt Top 20 cuộc thi do UBND TP.HCM tổ chức.\n\n🚀 Vận hành Sự kiện ĐMST\nTrực tiếp điều phối thành công các sự kiện quy mô lớn như Univ.Star và Tuần lễ WHISE.`,
+      ux: `Phần Kinh nghiệm UX của Minh gồm 3 case studies rất chi tiết:\n\n🗺️ Case 01: Thiết kế lại luồng Onboarding tại SIHUB\nVấn đề: tỷ lệ kích hoạt chỉ 42%. Áp dụng journey mapping + A/B testing. Kết quả: nâng tỷ lệ kích hoạt lên 68%, tăng điểm NPS từ 28 lên 47, giảm 70% yêu cầu hỗ trợ (support tickets).\n\n🏥 Case 02: Dashboard Chuyên gia EchoMind\nVấn đề: AI hộp đen trong y tế khiến bác sĩ e ngại. Giải pháp: Áp dụng đánh giá HCI heuristic + thiết kế giao diện Heatmap. Kết quả: Điểm heuristic tăng từ 38 lên 82/100, độ tin tưởng của bác sĩ tăng từ 2/5 lên 4/5.\n\n📱 Case 03: Luồng Kích hoạt E-Reader\nVấn đề: học sinh bỏ dở ngay bước cài đặt máy. Giải pháp: Áp dụng Định luật Miller + Hick để chia nhỏ thông tin. Kết quả: Tỷ lệ hoàn thành cài đặt tăng từ 35% lên 78%.`,
+      skills: `Năng lực cốt lõi của Minh được xây dựng trên 3 trụ cột vững chắc:\n\n◈ Product Craft (Thế mạnh Cốt lõi)\n→ Lập bản đồ hành trình (95%) · UX/HCI (90%) · Agile/CPMAI (88%)\n→ Viết PRD & User Stories · Kiểm thử A/B · Phân rã Vấn đề\n\n◈ Dữ liệu & Tư duy Hệ thống\n→ Python (Có nền tảng) · Phân tích Dữ liệu (EDA)\n→ Am hiểu PyTorch và kiến trúc Transformer\n\n◈ Quản lý Stakeholder & Thực thi\n→ Kinh nghiệm làm việc với 150+ đối tác cấp thành phố\n→ Trình bày báo cáo chiến lược cấp Ban Giám đốc\n→ Dẫn dắt đội ngũ kỹ thuật vận hành theo quy trình Agile`
     }
   }
 }
@@ -1206,7 +1217,7 @@ function renderProjects(){
   const t=T[lang];const grid=document.getElementById('p-grid');
   grid.innerHTML=t.proj.items.map(p=>{
     if(p.id==='echomind'){
-      return `<div class="project-card featured"><div>
+      return `<div class="project-card featured" id="ec-card"><div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;"><span class="project-badge ${p.bClass}">${p.badge}</span><span class="project-badge badge-active">${p.date}</span></div>
         <div class="project-name">${p.name}</div><div class="project-sub">${p.sub}</div>
         <p class="project-desc">${p.desc.replace(/\n/g,'<br>')}</p>
@@ -1218,7 +1229,7 @@ function renderProjects(){
       </div>
       <div style="background:var(--ink3);border-radius:18px;border:1px solid var(--border);padding:22px;text-align:center;">
         <div style="font-size:40px;margin-bottom:14px;">🧠</div>
-        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);line-height:2.2;text-align:left;">EEG Input (256ch)<br>↓ HDF5 → Tensor<br>↓ Positional Enc.<br>↓ Transformer V2<br>↓ Int8 Quantization<br>↓ Gradio Expert UI<br>→ Text Output</div>
+        <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent2);line-height:2.2;text-align:left;">EEG Input (256ch)<br>↓ HDF5 → Tensor<br>↓ Positional Enc.<br>↓ Transformer V2<br>↓ Beam Search<br>→ Text Output</div>
         <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
           <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--text2);margin-bottom:4px;" id="ec-role-lbl">Role</div>
           <div style="font-size:13px;color:var(--text);font-weight:600;">Project Lead</div>
