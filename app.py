@@ -633,42 +633,42 @@ en: {
       {
         cls: 'cs-echomind',
         num: 'Case Study 02',
-        ctag: 'Explainable AI UX · Healthcare HCI',
-        title: 'EchoMind Expert Dashboard',
-        role: 'Project Lead · UX Architect · AI Product Designer',
-        impactNum: '100%', impactLbl: 'Milestone Complete',
-        problemLabel: 'Problem Statement',
-        problem: `The EchoMind AI model could decode EEG signals with 92–95% accuracy — but <strong>healthcare professionals wouldn't trust it</strong>. In clinical settings, a black-box system that says "the patient wants water" without explaining *why* is a liability, not a tool. The challenge: design a UI that makes AI decisions interpretable without overwhelming doctors.`,
-        approachTitle: 'How I Approached It',
+        ctag: 'AI Product UX · Expert Dashboard Design',
+        title: 'EchoMind: Designing the Output Interface',
+        role: 'Project Lead · UI/UX Thinker · Gradio Demo Designer',
+        impactNum: '100%', impactLbl: 'Milestones Done',
+        problemLabel: 'Context & Challenge',
+        problem: `EchoMind is a university AI project built on the <strong>Brain-to-Text 2025 dataset (Kaggle)</strong> — we trained a model to decode non-invasive EEG signals into text. Once the model was working, we faced a UX question: <strong>how do we show the output in a way that actually makes sense to someone reviewing it?</strong> A raw text output with no context tells you nothing — you can't tell if the model was confident, which part of the brain it read, or whether the signal was clean.`,
+        approachTitle: 'How We Thought About It',
         steps: [
-          { n:'01', t:'HCI Heuristic Analysis', d:'Applied Nielsen\'s 10 Usability Heuristics to the initial Gradio prototype. Found critical issues: no visibility of system status, no error recovery path for misclassified signals.' },
-          { n:'02', t:'Cognitive Load Mapping', d:'Mapped the cognitive load of the expert user (neurologist) when reviewing AI outputs. Identified 3 high-load moments where attention heatmaps were critical vs optional.' },
-          { n:'03', t:'Attention Map UI Design', d:'Designed a layered overlay system — green/yellow/red attention zones on the EEG waveform that revealed WHICH brain regions the model focused on per decoded word.' },
-          { n:'04', t:'Progressive Disclosure', d:'Applied progressive disclosure: basic output first (text + confidence %) → expand for attention map → expand for full signal breakdown. Matches expert mental model.' }
+          { n:'01', t:'Start with the demo interface', d:'We built the first version in Gradio — just the model output as plain text plus a confidence score. When we reviewed it ourselves, we realised it felt like a black box. If we couldn't trust it, nobody else would.' },
+          { n:'02', t:'Apply HCI heuristics to the prototype', d:'I ran Nielsen's 10 Usability Heuristics against our V1 Gradio demo. Found two real problems: the interface gave no indication it was processing, and there was no way to flag when the signal quality was low.' },
+          { n:'03', t:'Think through what an expert would need', d:'If this model were used by a clinician in future, what would they actually need to see? We mapped out the questions: What did the model decode? How sure is it? Which brain region did it focus on? That framing drove the V2 design.' },
+          { n:'04', t:'Design the Attention Map layer', d:'The most meaningful addition was showing WHICH part of the EEG waveform the model paid attention to for each decoded word — visualised as a colour overlay. This turns a black box into something you can reason about.' }
         ],
-        insightLabel: 'Key Insight',
-        insight: `Doctors weren't asking "is this accurate?" — they were asking <strong>"can I explain this to the patient's family?"</strong> Explainability wasn't a technical requirement; it was a trust and liability requirement. The dashboard needed to answer that question, not just show a percentage.`,
-        abTitle: 'Interface Comparison — Heuristic Evaluation',
+        insightLabel: 'Key Realisation',
+        insight: `The model result alone means almost nothing without context. <strong>A 93% accuracy number tells you it works — the attention map shows you WHY it works.</strong> Designing for explainability from the start, even in a prototype, forces you to think about the output from the user's perspective, not just the engineer's.`,
+        abTitle: 'Interface Comparison — Team Heuristic Review',
         abVariants: [
-          { lbl: 'V1 Basic UI', pct: 38, cls: 'control', badge: '' },
-          { lbl: 'V2 + Attention Maps', pct: 82, cls: 'winner', badge: '✓ Selected' }
+          { lbl: 'V1 — Plain output', pct: 38, cls: 'control', badge: '' },
+          { lbl: 'V2 — With Attention Map', pct: 82, cls: 'winner', badge: '✓ Final version' }
         ],
-        abStat: 'Evaluation method: Expert heuristic review + team usability score (1–100) · Evaluators: 4 team members',
-        journeyTitle: 'Expert User Flow — Dashboard Interaction',
-        journeyStages: ['View Output','Check Confidence','Inspect Heatmap','Review Raw Signal','Document Decision'],
+        abStat: 'Scored using Nielsen's 10 Heuristics by 4 team members · Scale 0–100 · Not a clinical study',
+        journeyTitle: 'Thinking Through the User Flow',
+        journeyStages: ['See output','Check confidence','Understand why','Review signal','Draw conclusion'],
         journeyRows: [
-          { label: 'User Need', cells: ['What did patient say?','How certain is AI?','Which brain region?','Any noise artifact?','Clinical record'], types: ['','','','',''] },
-          { label: 'V1 Pain', cells: ['Text only','% only, no context','❌ Not available','Raw chart, complex','Manual export'], types: ['','','pain high','pain','pain'] },
-          { label: 'V2 Solution', cells: ['Text + signal preview','% + confidence band','✅ Attention overlay','Filtered + annotated','Auto-structured log'], types: ['solution','solution','solution','solution','solution'] },
-          { label: 'Trust Level', cells: ['😐','😐','😊','😊','😊'], types: ['emotion-mid','emotion-mid','emotion-high','emotion-high','emotion-high'] }
+          { label: 'What user wants', cells: ['What was decoded?','Is it reliable?','How did it decide?','Was signal clean?','Can I trust this?'], types: ['','','','',''] },
+          { label: 'V1 gap', cells: ['Text only','% with no context','❌ Nothing shown','Raw chart','Unclear'], types: ['','','pain high','pain','pain'] },
+          { label: 'V2 added', cells: ['Text + waveform','% + signal quality','✅ Attention overlay','Highlighted region','Much clearer'], types: ['solution','solution','solution','solution','solution'] },
+          { label: 'Clarity', cells: ['😐','😐','😊','😊','😊'], types: ['emotion-mid','emotion-mid','emotion-high','emotion-high','emotion-high'] }
         ],
-        beforeAfterTitle: 'Design Impact — V1 vs V2 Expert Dashboard',
-        before: [{ n: 'Heuristic Score', v: '38/100' },{ n: 'Explainability', v: '❌ None' },{ n: 'Doctor Trust Score', v: '2/5' },{ n: 'Error Recovery', v: 'Manual' }],
-        after: [{ n: 'Heuristic Score', v: '82/100' },{ n: 'Explainability', v: '✓ Attention Maps' },{ n: 'Doctor Trust Score', v: '4/5' },{ n: 'Error Recovery', v: 'Guided flow' }],
+        beforeAfterTitle: 'V1 vs V2 — What Changed',
+        before: [{ n: 'Heuristic Score', v: '38/100' },{ n: 'Shows reasoning', v: '❌ No' },{ n: 'Signal quality info', v: '❌ None' },{ n: 'Error feedback', v: 'None' }],
+        after: [{ n: 'Heuristic Score', v: '82/100' },{ n: 'Shows reasoning', v: '✓ Attention map' },{ n: 'Signal quality info', v: '✓ Visible' },{ n: 'Error feedback', v: 'Shown clearly' }],
         learnings: [
-          { icon: '🏥', title: 'Domain Context Matters', text: 'Healthcare UX requires trust architecture, not just usability. Explainability is a core feature, not a nice-to-have.' },
-          { icon: '🧩', title: 'Progressive Disclosure', text: 'Showing everything at once overwhelming doctors. Layered reveals matched their actual clinical workflow.' },
-          { icon: '🎨', title: 'Heuristics as Scaffolding', text: 'Nielsen\'s heuristics gave a structured audit framework, surfacing 6 critical issues the team missed.' }
+          { icon: '🔭', title: 'Design the output, not just the model', text: 'Even for a research project, how you present the result matters. A well-designed output is what makes the model feel trustworthy, not just accurate.' },
+          { icon: '🧩', title: 'Heuristics work on prototypes too', text: 'Running a quick heuristic review on our own Gradio demo caught problems we had completely normalised. Takes 30 minutes, saves a lot of confusion.' },
+          { icon: '🗺️', title: 'Think about the user, even when there isn't one yet', text: 'This was a student project — no real users. But thinking through "who would use this and what would they need" shaped better design decisions throughout.' }
         ]
       },
       {
@@ -749,16 +749,16 @@ en: {
   },
   chat: {
     name: "Minh's AI Assistant", sub: '● Online · Ready to answer', reset: '↺ Reset', logout: '⏻ Lang',
-    greeting: `Hello! I'm the AI representing Nguyen Hoang Minh — a Product Owner & UX Strategist who designs with data and validates with experiments.\n\nMinh's portfolio now includes a dedicated UX Experience section showing his design thinking process, A/B experiments, journey maps, and measurable business impact. What would you like to explore?`,
+    greeting: `Hey there! I'm an AI assistant here to tell you about Nguyen Hoang Minh — he's a final-year student at UEH who's been doing real product and UX work at SIHUB, one of Ho Chi Minh City's main startup hubs, for the past couple of years.\n\nHe's the kind of person who doesn't just map user journeys on paper — he actually runs A/B tests, tracks NPS stage by stage, and led a 7-person AI project from scratch. What do you want to know about him?`,
     prompts: [
       {id:'exp',i:'💼',l:'Experience'},{id:'proj',i:'🧠',l:'Projects'},
       {id:'ux',i:'🎨',l:'UX Work'},{id:'skills',i:'⚡',l:'Skills'}
     ],
     ans: {
-      exp: `Minh has 3+ years at SIHUB (Startup & Innovation Hub of HCMC).\n\n◈ Jan–Oct 2025 | Project Management Executive\nDesigned end-to-end digital journey maps. Used A/B testing and Interleaving for all feature validation. Transformed NPS from a static score into a real-time behavioral signal system for the Board.\n\n◈ Jul–Dec 2024 | R&D Intern\nLed competency gap analysis with 150+ stakeholders. Authored URD-standard docs bridging qualitative feedback with technical requirements.`,
-      proj: `Minh's top three projects:\n\n🧠 EchoMind AI — Flagship (Sep–Dec 2025)\nBCI system: EEG → Text. As Project Lead, managed 8 CPMAI Sprints, diagnosed LSTM Mode Collapse, pivoted to Transformer V2. Results: 55–65 WPM, <1s latency, 72% KPI. Expert Dashboard with Attention Maps.\n\n📚 E-Reader Ecosystem — Top 20 City Level\nHCI-focused user journey. Decomposed cognitive friction. Top 20 HCMC People's Committee competition.\n\n🚀 Innovation Events Operations\nOrganized Univ.Star 2024/2025 and WHISE Week 2024 at SIHUB.`,
-      ux: `Minh's UX Experience section covers 3 deep case studies:\n\n🗺️ Case 01: SIHUB Startup Onboarding\nProblem: 42% activation rate. Applied journey mapping + A/B testing. Result: 68% activation, NPS from 28 → 47, 70% reduction in support tickets.\n\n🏥 Case 02: EchoMind Expert Dashboard\nProblem: Black-box AI in healthcare. Applied HCI heuristics + Attention Map UI design. Heuristic score: 38 → 82/100. Doctor trust: 2/5 → 4/5.\n\n📱 Case 03: E-Reader Activation Flow\nProblem: Students dropping off at setup. Applied Miller's Law + Hick's Law. Setup completion: 35% → 78%. Time to first read: 22 min → 8 min.\n\nEach case shows: Problem Framing → Research → A/B Test → Journey Map → Business Impact.`,
-      skills: `Minh's competency profile — three pillars:\n\n◈ Product Craft (Core Strength)\n→ Journey Mapping (95%) · UX/HCI (90%) · Agile/CPMAI (88%)\n→ PRD & User Stories · A/B Testing · Problem Decomposition\n\n◈ Data & Systems Thinking\n→ Python · Data Analysis · PyTorch/ML\n\n◈ Stakeholder & Execution\n→ 150+ stakeholders at city/government level\n→ Board-level strategic reporting\n→ Led 7-member Agile team`
+      exp: `Minh has been at SIHUB — that's the Startup & Innovation Hub under the HCMC Department of Science & Technology — since mid-2024.\n\nIn his most recent role as Project Management Executive (Jan–Oct 2025), he was the main point of contact for 150+ startup founders going through the incubation program. He designed their onboarding journeys end-to-end and ran A/B tests to validate every change. One of the things he's proud of: he helped the team stop treating NPS as just a number and start treating it as a signal — something that tells you exactly where in the journey things are going wrong.\n\nBefore that, as an R&D Intern, he handled a large-scale competency gap analysis — gathering data from government officials, research institutes, and companies — and turned all that qualitative mess into structured URD documentation.`,
+      proj: `Sure! Minh has three projects worth knowing about:\n\n🧠 EchoMind AI — his flagship project (Sep–Dec 2025). This was a university AI project where his team trained a model to decode brainwave signals into text, using the Brain-to-Text 2025 dataset from Kaggle. Minh was the Project Lead — he ran 8 Agile sprints, and when their first model (an LSTM) kept breaking down, he diagnosed the problem and made the call to switch to a Transformer architecture. The model ended up hitting 55–65 words per minute with under 1 second of latency. He also designed the output interface so people could actually understand what the model was doing.\n\n📚 E-Reader Ecosystem — a city-level project (Mar–Jun 2025) where he did user research for a student e-reading platform. He mapped the setup journey, found where students were dropping off, and used HCI principles to simplify it. The project made it to the Top 20 at an HCMC People's Committee competition.\n\n🚀 Innovation Events — ongoing work organizing major startup events like Univ.Star 2024/2025 and WHISE Week 2024 at SIHUB.`,
+      ux: `The UX section has three case studies that show how Minh thinks through design problems — not just the output, but the whole process.\n\n🗺️ Case 01 is about the SIHUB onboarding flow. Only 42% of startup founders were completing the activation journey. He dug into the data, ran a journey mapping workshop, found the real drop-off point (it was a document upload step with unclear requirements), and tested a fix via A/B experiment. Result: 68% activation, NPS jumped from 28 to 47, support tickets dropped by about 70%.\n\n🧠 Case 02 is the EchoMind dashboard — how do you show AI output in a way that actually makes sense? His team built a demo in Gradio and it felt like a black box. He used Nielsen's heuristics to audit it, then added an attention map layer so you could see which part of the brainwave the model was reading. Heuristic score went from 38 to 82 out of 100.\n\n📱 Case 03 is the E-Reader setup flow. Students were abandoning the 7-step setup process at step 2 or 3 — way too many things to fill in at once. He applied Miller's Law to chunk it down to 3 phases. Setup completion went from 35% to 78%, and first-read time dropped from 22 minutes to 8.`,
+      skills: `Minh's strongest area is product and UX work — we're talking journey mapping, running A/B tests, writing PRDs, breaking down complex problems into things a team can actually build. He's also comfortable with Agile and the CPMAI framework, which he ran across 8 sprints on the EchoMind project.\n\nOn the technical side, he knows Python and has hands-on experience with PyTorch and data analysis — not at an engineer level, but enough to work closely with AI teams and understand what's happening under the hood.\n\nAnd in terms of working with people — he's managed 150+ startup founders as the main point of contact at a city government-backed hub, and presented strategic insights directly to the Board. That's not a small thing.`
     }
   }
 },
@@ -867,42 +867,42 @@ vi: {
         ]
       },
       {
-        cls: 'cs-echomind', num: 'Case Study 02', ctag: 'Explainable AI UX · Healthcare HCI',
-        title: 'EchoMind: Expert Dashboard & Explainable AI',
-        role: 'Project Lead · UX Architect · AI Product Designer',
+        cls: 'cs-echomind', num: 'Case Study 02', ctag: 'AI Project UX · Thiết kế Giao diện Đầu ra',
+        title: 'EchoMind: Thiết kế Giao diện Hiển thị Kết quả AI',
+        role: 'Project Lead · Người thiết kế giao diện Gradio Demo',
         impactNum: '100%', impactLbl: 'Milestone Hoàn thành',
-        problemLabel: 'Vấn đề Đặt ra',
-        problem: `Mô hình EchoMind đạt độ chính xác 92–95% trong điều kiện lab, nhưng khi demo với bác sĩ, phản ứng nhận được lại là sự nghi ngờ. Trong môi trường y tế, <strong>một AI nói "bệnh nhân muốn uống nước" mà không giải thích được vì sao</strong> thì không phải công cụ hỗ trợ — đó là rủi ro pháp lý. Bài toán đặt ra là thiết kế giao diện sao cho bác sĩ hiểu được quyết định của AI mà không bị quá tải thêm thông tin.`,
-        approachTitle: 'Cách Tiếp Cận',
+        problemLabel: 'Bối cảnh & Vấn đề',
+        problem: `EchoMind là dự án AI của nhóm sinh viên, được xây dựng trên <strong>bộ dữ liệu Brain-to-Text 2025 (Kaggle)</strong> — nhóm huấn luyện mô hình để giải mã tín hiệu sóng não EEG phi xâm lấn thành văn bản. Khi mô hình đã chạy được, câu hỏi tiếp theo xuất hiện: <strong>hiển thị kết quả như thế nào để người xem thực sự hiểu được?</strong> Chỉ in ra một dòng văn bản với một con số phần trăm không đủ — bạn không biết mô hình có chắc không, nó đọc vùng não nào, hay tín hiệu đầu vào có sạch không.`,
+        approachTitle: 'Nhóm Tiếp Cận Thế Nào',
         steps: [
-          { n:'01', t:'Đánh giá heuristic HCI', d:'Tôi áp dụng 10 Heuristics của Nielsen để rà soát prototype Gradio. Phát hiện hai lỗi nghiêm trọng: hệ thống không hiển thị trạng thái đang xử lý, và không có đường phục hồi khi AI phân loại sai tín hiệu.' },
-          { n:'02', t:'Lập bản đồ tải nhận thức', d:'Tiếp theo, tôi lập bản đồ cognitive load của bác sĩ thần kinh khi đọc kết quả AI. Xác định được 3 thời điểm tải nhận thức tăng đột biến — và đây là lúc attention heatmap trở thành thứ bắt buộc, không còn là tùy chọn.' },
-          { n:'03', t:'Thiết kế Attention Map UI', d:'Từ insight đó, tôi thiết kế hệ thống overlay nhiều lớp: các vùng màu xanh, vàng, đỏ trên sóng EEG cho thấy trực tiếp vùng não nào mô hình đang chú ý khi giải mã từng từ.' },
-          { n:'04', t:'Tổ chức theo Progressive Disclosure', d:'Toàn bộ dashboard được sắp xếp theo lớp: hiển thị kết quả cơ bản trước (văn bản + độ tin cậy), rồi mới cho phép mở rộng xem attention map, cuối cùng mới là phân tích tín hiệu chi tiết. Cách này phù hợp với quy trình làm việc thực tế của bác sĩ.' }
+          { n:'01', t:'Xây bản demo V1 bằng Gradio', d:'Phiên bản đầu tiên chỉ hiển thị văn bản giải mã và một con số độ tin cậy. Khi cả nhóm tự ngồi dùng thử, ai cũng cảm thấy nó như một hộp đen — không hiểu mô hình đang làm gì bên trong.' },
+          { n:'02', t:'Đánh giá bằng 10 Heuristics của Nielsen', d:'Tôi chạy đánh giá heuristic trên chính prototype V1 của nhóm. Phát hiện được hai vấn đề: giao diện không cho biết hệ thống đang xử lý, và không có cách nào phát hiện khi chất lượng tín hiệu đầu vào kém.' },
+          { n:'03', t:'Đặt câu hỏi: người dùng cần biết gì?', d:'Nếu công cụ này được dùng trong thực tế, người review kết quả cần trả lời được: mô hình giải mã ra cái gì, nó tự tin tới đâu, và nó dựa vào phần nào của tín hiệu EEG. Ba câu hỏi đó định hướng thiết kế V2.' },
+          { n:'04', t:'Thiết kế lớp Attention Map', d:'Thay đổi có ý nghĩa nhất là thêm lớp highlight trực tiếp lên dạng sóng EEG — cho thấy phần nào của tín hiệu mà mô hình chú ý khi giải mã từng từ. Cái này biến hộp đen thành thứ có thể quan sát và lý giải được.' }
         ],
-        insightLabel: 'Insight Cốt Lõi',
-        insight: `Bác sĩ không quan tâm đến con số độ chính xác. Câu hỏi thực sự của họ là: <strong>"Tôi có thể giải thích điều này cho gia đình bệnh nhân không?"</strong> Explainability không phải yêu cầu kỹ thuật — đó là yêu cầu về niềm tin và trách nhiệm. Dashboard cần trả lời câu hỏi đó, không chỉ hiện một con số phần trăm.`,
-        abTitle: 'So sánh Giao diện — Đánh giá Heuristic',
+        insightLabel: 'Điều Nhóm Nhận Ra',
+        insight: `Kết quả mô hình đứng một mình thì ít có giá trị. <strong>Con số 93% accuracy cho biết nó hoạt động được — attention map cho thấy vì sao nó hoạt động.</strong> Dù đây chỉ là dự án sinh viên, việc nghĩ đến cách trình bày đầu ra từ góc độ người xem — thay vì chỉ từ góc độ kỹ thuật — làm cho cả sản phẩm thuyết phục hơn hẳn.`,
+        abTitle: 'So sánh V1 vs V2 — Đánh giá của nhóm',
         abVariants: [
-          { lbl: 'V1 Basic UI', pct: 38, cls: 'control', badge: '' },
-          { lbl: 'V2 + Attention Maps', pct: 82, cls: 'winner', badge: '✓ Được chọn' }
+          { lbl: 'V1 — Chỉ text + %', pct: 38, cls: 'control', badge: '' },
+          { lbl: 'V2 — Có Attention Map', pct: 82, cls: 'winner', badge: '✓ Phiên bản cuối' }
         ],
-        abStat: 'Phương pháp: Đánh giá heuristic chuyên gia + điểm usability nhóm (1–100) · Đánh giá viên: 4 thành viên',
-        journeyTitle: 'Luồng Người dùng Chuyên gia — Tương tác Dashboard',
-        journeyStages: ['Xem Kết quả','Kiểm tra Độ tin cậy','Xem Heatmap','Review Tín hiệu Thô','Ghi nhận QĐ'],
+        abStat: 'Đánh giá theo 10 Heuristics Nielsen · 4 thành viên nhóm cho điểm · Thang 0–100 · Không phải nghiên cứu lâm sàng',
+        journeyTitle: 'Luồng suy nghĩ khi thiết kế giao diện',
+        journeyStages: ['Xem kết quả','Kiểm tra độ tin cậy','Hiểu lý do','Đọc tín hiệu','Kết luận'],
         journeyRows: [
-          { label: 'Nhu cầu User', cells: ['Bệnh nhân nói gì?','AI chắc chắn bao nhiêu?','Vùng não nào?','Có nhiễu không?','Hồ sơ lâm sàng'], types: ['','','','',''] },
-          { label: 'V1 Pain', cells: ['Chỉ có text','% không có ngữ cảnh','❌ Không có','Biểu đồ thô','Xuất thủ công'], types: ['','','pain high','pain','pain'] },
-          { label: 'V2 Giải pháp', cells: ['Text + preview','% + confidence band','✅ Attention overlay','Đã lọc + chú thích','Log tự động'], types: ['solution','solution','solution','solution','solution'] },
-          { label: 'Độ Tin tưởng', cells: ['😐','😐','😊','😊','😊'], types: ['emotion-mid','emotion-mid','emotion-high','emotion-high','emotion-high'] }
+          { label: 'Người dùng cần', cells: ['Mô hình đọc được gì?','Có chắc không?','Dựa vào đâu?','Tín hiệu sạch không?','Có tin được không?'], types: ['','','','',''] },
+          { label: 'V1 thiếu', cells: ['Chỉ có text','% không ngữ cảnh','❌ Không hiển thị','Biểu đồ thô','Không rõ'], types: ['','','pain high','pain','pain'] },
+          { label: 'V2 bổ sung', cells: ['Text + waveform preview','% + chất lượng tín hiệu','✅ Attention overlay','Vùng được highlight','Rõ hơn nhiều'], types: ['solution','solution','solution','solution','solution'] },
+          { label: 'Mức độ rõ ràng', cells: ['😐','😐','😊','😊','😊'], types: ['emotion-mid','emotion-mid','emotion-high','emotion-high','emotion-high'] }
         ],
-        beforeAfterTitle: 'Tác động Thiết kế — V1 vs V2 Expert Dashboard',
-        before: [{ n: 'Điểm Heuristic', v: '38/100' },{ n: 'Explainability', v: '❌ Không có' },{ n: 'Tin tưởng Bác sĩ', v: '2/5' },{ n: 'Error Recovery', v: 'Thủ công' }],
-        after: [{ n: 'Điểm Heuristic', v: '82/100' },{ n: 'Explainability', v: '✓ Attention Maps' },{ n: 'Tin tưởng Bác sĩ', v: '4/5' },{ n: 'Error Recovery', v: 'Guided flow' }],
+        beforeAfterTitle: 'V1 vs V2 — Điều thay đổi',
+        before: [{ n: 'Điểm Heuristic', v: '38/100' },{ n: 'Giải thích được', v: '❌ Không' },{ n: 'Thông tin tín hiệu', v: '❌ Không có' },{ n: 'Phản hồi lỗi', v: 'Không có' }],
+        after: [{ n: 'Điểm Heuristic', v: '82/100' },{ n: 'Giải thích được', v: '✓ Attention map' },{ n: 'Thông tin tín hiệu', v: '✓ Hiển thị rõ' },{ n: 'Phản hồi lỗi', v: 'Có thông báo' }],
         learnings: [
-          { icon: '🏥', title: 'Ngữ cảnh domain quyết định tất cả', text: 'UX trong y tế cần được xây dựng trên nền tảng tin tưởng trước, usability sau. Khả năng giải thích của AI không phải tính năng bổ sung — đó là tính năng cốt lõi của sản phẩm.' },
-          { icon: '🧩', title: 'Reveal từng lớp, không đổ hết một lần', text: 'Đổ hết thông tin lên màn hình cùng một lúc làm bác sĩ choáng ngợp. Tổ chức theo lớp giúp họ đọc đúng theo workflow lâm sàng thực tế — từng bước, khi cần.' },
-          { icon: '🎨', title: 'Heuristics là khung scaffold, không phải checklist', text: '10 Heuristics của Nielsen cho tôi cấu trúc để đánh giá có hệ thống — và nhờ đó phát hiện ra 6 vấn đề nghiêm trọng mà cả nhóm đã bỏ sót trong suốt quá trình phát triển.' }
+          { icon: '🔭', title: 'Thiết kế đầu ra, không chỉ mô hình', text: 'Ngay cả trong dự án nghiên cứu, cách bạn trình bày kết quả quan trọng không kém việc kết quả đó có chính xác không. Giao diện tốt là thứ làm cho mô hình cảm thấy đáng tin, không chỉ là con số accuracy.' },
+          { icon: '🧩', title: 'Heuristics hiệu quả ngay cả trên prototype', text: 'Chạy đánh giá heuristic trên chính demo của nhóm mất chừng 30 phút nhưng giúp phát hiện những vấn đề mà cả nhóm đã quen mắt và không còn nhận ra nữa.' },
+          { icon: '🗺️', title: 'Nghĩ về người dùng, dù chưa có người dùng thật', text: 'Đây là dự án sinh viên, không có người dùng thực tế. Nhưng việc đặt câu hỏi "ai sẽ dùng và họ cần gì" giúp đưa ra những quyết định thiết kế tốt hơn ngay từ đầu.' }
         ]
       },
       {
@@ -981,16 +981,16 @@ vi: {
   },
   chat: {
     name: 'Trợ lý AI của Minh', sub: '● Trực tuyến · Sẵn sàng', reset: '↺ Làm lại', logout: '⏻ Ngôn ngữ',
-    greeting: `Xin chào! Tôi là AI đại diện cho Nguyễn Hoàng Minh — Product Owner & UX Strategist thiết kế dựa trên dữ liệu và kiểm thử bằng thực nghiệm.\n\nDanh mục đầu tư hiện có phần UX Experience mới thể hiện quy trình tư duy thiết kế, thử nghiệm A/B, journey maps và tác động kinh doanh. Bạn muốn khám phá khía cạnh nào?`,
+    greeting: `Xin chào! Tôi là AI assistant ở đây để giới thiệu với bạn về Nguyễn Hoàng Minh — sinh viên năm cuối UEH, đang làm Product & UX thực chiến tại SIHUB, một trong những trung tâm hỗ trợ startup lớn nhất ở TP.HCM, từ giữa năm 2024 đến nay.\n\nMinh không chỉ vẽ journey map trên giấy — anh ấy chạy A/B test thực tế, theo dõi NPS từng bước trong hành trình, và vừa dẫn dắt một nhóm 7 người xây dựng dự án AI từ đầu. Bạn muốn tìm hiểu về phần nào?`,
     prompts: [
       {id:'exp',i:'💼',l:'Kinh nghiệm'},{id:'proj',i:'🧠',l:'Dự án'},
       {id:'ux',i:'🎨',l:'UX Work'},{id:'skills',i:'⚡',l:'Kỹ năng'}
     ],
     ans: {
-      exp: `Minh có 3+ năm kinh nghiệm tại SIHUB.\n\n◈ 01–10/2025 | Project Management Executive\nThiết kế end-to-end digital journey maps. A/B testing và Interleaving kiểm chứng mọi thay đổi. Chuyển NPS thành hệ thống tín hiệu hành vi real-time báo cáo lên Board.\n\n◈ 07–12/2024 | R&D Intern\nPhân tích khoảng trống năng lực 150+ stakeholders. Tài liệu URD kết nối insights định tính với yêu cầu hệ thống.`,
-      proj: `Ba dự án nổi bật:\n\n🧠 EchoMind AI — Flagship (09–12/2025)\nGiải mã EEG → văn bản. Quản lý 8 CPMAI Sprints, pivot LSTM → Transformer V2. 55–65 WPM, KPI 72%, Expert Dashboard Attention Maps.\n\n📚 E-Reader Ecosystem — Top 20 cấp TP\nHCI-focused user journey, giảm cognitive friction. Top 20 UBND TP.HCM.\n\n🚀 Vận hành Sự kiện ĐMST\nUniv.Star 2024/2025 và WHISE Week 2024 tại SIHUB.`,
-      ux: `Phần UX Experience có 3 case studies chuyên sâu:\n\n🗺️ Case 01: SIHUB Onboarding\nVấn đề: activation rate 42%. Journey mapping + A/B testing. Kết quả: 68% activation, NPS 28→47, giảm 70% support tickets.\n\n🏥 Case 02: EchoMind Expert Dashboard\nVấn đề: AI hộp đen trong y tế. HCI heuristics + Attention Map UI. Heuristic score 38→82/100. Trust bác sĩ 2/5→4/5.\n\n📱 Case 03: E-Reader Activation Flow\nVấn đề: học sinh bỏ dở cài đặt. Áp dụng Định luật Miller + Hick. Hoàn thành cài đặt 35%→78%. Thời gian đọc lần 1: 22→8 phút.`,
-      skills: `3 trụ cột năng lực:\n\n◈ Product Craft (Cốt lõi)\n→ Journey Mapping 95% · UX/HCI 90% · Agile 88%\n→ PRD & User Stories · A/B Testing · Problem Decomposition\n\n◈ Dữ liệu & Tư duy Hệ thống\n→ Python · Phân tích Dữ liệu · PyTorch/ML\n\n◈ Thực thi & Stakeholder\n→ 150+ stakeholders cấp thành phố\n→ Báo cáo chiến lược lên Board\n→ Dẫn nhóm 7 người qua 8 Sprints`
+      exp: `Minh làm việc tại SIHUB — Trung tâm Hỗ trợ Khởi nghiệp & ĐMST trực thuộc Sở KH&CN TP.HCM — từ giữa năm 2024.\n\nVị trí gần nhất là Chuyên viên Quản lý Dự án (01–10/2025). Minh là đầu mối làm việc trực tiếp với hơn 150 startup founder trong chương trình ươm tạo — thiết kế hành trình onboarding của họ từ đầu đến cuối, rồi chạy A/B test để kiểm chứng từng thay đổi. Một trong những điều Minh tự hào: thuyết phục được đội ngũ không nhìn NPS như một con số nữa, mà như một tín hiệu — để biết chính xác chỗ nào trong hành trình đang có vấn đề.\n\nTrước đó, hồi còn là Thực tập sinh R&D (07–12/2024), Minh xử lý một dự án phân tích khoảng trống năng lực quy mô lớn — làm việc với cơ quan nhà nước, viện nghiên cứu và doanh nghiệp, rồi tổng hợp tất cả thành tài liệu yêu cầu hệ thống theo chuẩn URD.`,
+      proj: `Minh có ba dự án đáng chú ý:\n\n🧠 EchoMind AI là dự án lớn nhất (09–12/2025). Đây là dự án AI của nhóm sinh viên, train mô hình giải mã tín hiệu sóng não thành văn bản bằng bộ dữ liệu Brain-to-Text 2025 từ Kaggle. Minh là Project Lead — chạy 8 Agile sprint, khi mô hình LSTM đầu tiên sập vào Mode Collapse thì Minh chẩn đoán vấn đề và quyết định chuyển sang kiến trúc Transformer. Cuối cùng mô hình đạt 55–65 từ/phút, độ trễ dưới 1 giây. Minh còn thiết kế giao diện Gradio demo để kết quả AI hiển thị theo cách người ta có thể hiểu được.\n\n📚 Hệ sinh thái E-Reader (03–06/2025) là dự án nghiên cứu người dùng cho nền tảng đọc sách điện tử dành cho học sinh. Minh lập bản đồ hành trình cài đặt, tìm ra chỗ học sinh bỏ cuộc, rồi dùng nguyên lý HCI để đơn giản hóa luồng. Dự án vào Top 20 cuộc thi do UBND TP.HCM tổ chức.\n\n🚀 Vận hành Sự kiện ĐMST — công việc đang diễn ra, tổ chức các sự kiện startup lớn như Univ.Star 2024/2025 và WHISE Week 2024 tại SIHUB.`,
+      ux: `Phần UX Experience có 3 case study, mỗi cái kể lại một câu chuyện thiết kế thực tế — không phải lý thuyết.\n\n🗺️ Case 01 là hành trình onboarding của startup tại SIHUB. Chỉ 42% founder hoàn tất được luồng kích hoạt. Minh đào vào dữ liệu, tổ chức workshop journey mapping, tìm ra điểm thoát thực sự là bước upload tài liệu (yêu cầu không rõ ràng), rồi test một cách sửa nhỏ qua A/B experiment. Kết quả: tỷ lệ kích hoạt lên 68%, NPS tăng từ 28 lên 47, support tickets giảm khoảng 70%.\n\n🧠 Case 02 là giao diện demo của EchoMind. Khi nhóm xây xong mô hình, họ làm demo bằng Gradio — và nó trông như một hộp đen. Minh đánh giá lại bằng 10 Heuristics của Nielsen rồi thêm lớp attention map để người xem thấy được mô hình đang "đọc" phần nào của sóng não. Điểm heuristic tăng từ 38 lên 82 trên 100.\n\n📱 Case 03 là luồng cài đặt cho thiết bị E-Reader của học sinh. Học sinh bỏ cuộc ở bước 2–3 vì phải điền quá nhiều thứ cùng lúc. Minh áp dụng Định luật Miller để chia nhỏ thành 3 giai đoạn. Tỷ lệ hoàn thành cài đặt tăng từ 35% lên 78%, thời gian đến lần đọc đầu tiên giảm từ 22 phút xuống còn 8 phút.`,
+      skills: `Thế mạnh lõi của Minh là product và UX — lập bản đồ hành trình người dùng, chạy A/B test, viết PRD, phân tích vấn đề thành những thứ một nhóm có thể thực thi được. Minh cũng quen với Agile và khung CPMAI, thứ mà anh ấy dùng trực tiếp qua 8 sprint trong dự án EchoMind.\n\nVề kỹ thuật, Minh biết Python và đã làm việc thực tế với PyTorch và phân tích dữ liệu — không ở mức kỹ sư, nhưng đủ để cộng tác chặt với đội AI và hiểu chuyện gì đang xảy ra bên trong.\n\nVề con người và thực thi — anh ấy đã quản lý hơn 150 startup founder với tư cách đầu mối chính tại một trung tâm do chính quyền thành phố hỗ trợ, và trình bày insight chiến lược trực tiếp lên Ban Giám đốc. Đó không phải chuyện nhỏ.`
     }
   }
 }
