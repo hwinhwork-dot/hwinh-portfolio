@@ -717,7 +717,7 @@ vi: {
   w: {
     status: 'Sẵn sàng đón nhận cơ hội Product & UX mới · TP.HCM',
     role: 'Product Owner · UX Strategist · AI Builder',
-    summary: `Chuyên gia trẻ về <strong style="color:var(--text)">Quản lý Công nghệ & Đổi mới Sáng tạo</strong>, mong muốn xây dựng sản phẩm tại dựa trên User Problem và xây dựng UX Design, Tư duy Hệ thống và AI. Tôi biến các dữ liệu người dùng phức tạp và "nỗi đau" thành trải nghiệm số thực tế, có thể đo lường.`,
+    summary: `Chuyên gia trẻ về <strong style="color:var(--text)">Quản lý Công nghệ & Đổi mới Sáng tạo</strong> — xây dựng sản phẩm tại giao điểm của UX Design, Tư duy Hệ thống và AI. Tôi chuyển hóa dữ liệu người dùng phức tạp và "nỗi đau" thành trải nghiệm số mượt mà, có thể đo lường.`,
     stats: ['Năm kinh nghiệm','Stakeholders quản lý','KPI kỹ thuật AI','Chung cuộc cấp TP'],
     explore: 'Khám phá hồ sơ này',
     hint: 'Dùng thanh điều hướng hoặc chat với AI Assistant để khám phá chi tiết về kinh nghiệm, dự án và kỹ năng.'
@@ -886,7 +886,7 @@ vi: {
   },
   chat: {
     name: 'Trợ lý AI của Minh', sub: '● Trực tuyến · Sẵn sàng', reset: '↺ Làm lại', logout: '⏻ Ngôn ngữ',
-    greeting: `Xin chào! Tôi là AI assistant ở đây để giới thiệu với bạn về Nguyễn Hoàng Minh, là sinh viên năm cuối UEH, từng làm Product & UX thực chiến tại SIHUB, một trong những trung tâm hỗ trợ startup lớn nhất ở TP.HCM, từ giữa năm 2024 đến tháng 10 năm 2025.\n\nMinh không chỉ vẽ journey map trên giấy — anh ấy chạy A/B test thực tế, theo dõi NPS từng bước trong hành trình, và vừa dẫn dắt một nhóm 7 người xây dựng dự án AI từ đầu. Bạn muốn tìm hiểu về phần nào?`,
+    greeting: `Xin chào! Tôi là AI assistant ở đây để giới thiệu với bạn về Nguyễn Hoàng Minh — sinh viên năm cuối UEH, đang làm Product & UX thực chiến tại SIHUB, một trong những trung tâm hỗ trợ startup lớn nhất ở TP.HCM, từ giữa năm 2024 đến tháng 10 năm 2025.\n\nMinh không chỉ vẽ journey map trên giấy — anh ấy chạy A/B test thực tế, theo dõi NPS từng bước trong hành trình, và vừa dẫn dắt một nhóm 7 người xây dựng dự án AI từ đầu. Bạn muốn tìm hiểu về phần nào?`,
     prompts: [
       {id:'exp',i:'💼',l:'Kinh nghiệm'},{id:'proj',i:'🧠',l:'Dự án'},
       {id:'ux',i:'🎨',l:'UX Work'},{id:'skills',i:'⚡',l:'Kỹ năng'}
