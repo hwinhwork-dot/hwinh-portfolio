@@ -678,8 +678,7 @@ en: {
     certs: [
       {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false},
-      {i:'🗣️',n:'TOEIC — English Proficiency',org:'Preparing for certification exam',dash:true,prog:'In Progress'}
+      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false}
     ]
   },
   edu: {
@@ -691,8 +690,7 @@ en: {
     certs: [
       {i:'🏅',n:'Google Project Management',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Google Business Intelligence',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false},
-      {i:'🗣️',n:'TOEIC — English Proficiency',org:'Preparing for certification exam',dash:true,prog:'In Progress'}
+      {i:'🔄',n:'Agile Management Certification',org:'Professional Certification',dash:false}
     ]
   },
   chat: {
@@ -871,8 +869,7 @@ vi: {
     certs: [
       {i:'🏅',n:'Quản lý Dự án (Google PM)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Trí tuệ Doanh nghiệp (Google BI)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false},
-      {i:'🗣️',n:'TOEIC — Năng lực Tiếng Anh',org:'Đang chuẩn bị thi',dash:true,prog:'Đang học'}
+      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false}
     ]
   },
   edu: {
@@ -884,13 +881,12 @@ vi: {
     certs: [
       {i:'🏅',n:'Quản lý Dự án (Google PM)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/certificate/695T8LGAXCX2'},
       {i:'📊',n:'Trí tuệ Doanh nghiệp (Google BI)',org:'Coursera · Google',dash:false,link:'https://www.coursera.org/account/accomplishments/specialization/certificate/BD9KAWKMEKXD'},
-      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false},
-      {i:'🗣️',n:'TOEIC — Năng lực Tiếng Anh',org:'Đang chuẩn bị thi',dash:true,prog:'Đang học'}
+      {i:'🔄',n:'Quản trị Agile',org:'Chứng nhận Chuyên nghiệp',dash:false}
     ]
   },
   chat: {
     name: 'Trợ lý AI của Minh', sub: '● Trực tuyến · Sẵn sàng', reset: '↺ Làm lại', logout: '⏻ Ngôn ngữ',
-    greeting: `Xin chào! Tôi là AI assistant ở đây để giới thiệu với bạn về Nguyễn Hoàng Minh — sinh viên năm cuối UEH, đang làm Product & UX thực chiến tại SIHUB, một trong những trung tâm hỗ trợ startup lớn nhất ở TP.HCM, từ giữa năm 2024 đến nay.\n\nMinh không chỉ vẽ journey map trên giấy — anh ấy chạy A/B test thực tế, theo dõi NPS từng bước trong hành trình, và vừa dẫn dắt một nhóm 7 người xây dựng dự án AI từ đầu. Bạn muốn tìm hiểu về phần nào?`,
+    greeting: `Xin chào! Tôi là AI assistant ở đây để giới thiệu với bạn về Nguyễn Hoàng Minh — sinh viên năm cuối UEH, đang làm Product & UX thực chiến tại SIHUB, một trong những trung tâm hỗ trợ startup lớn nhất ở TP.HCM, từ giữa năm 2024 đến tháng 10 năm 2025.\n\nMinh không chỉ vẽ journey map trên giấy — anh ấy chạy A/B test thực tế, theo dõi NPS từng bước trong hành trình, và vừa dẫn dắt một nhóm 7 người xây dựng dự án AI từ đầu. Bạn muốn tìm hiểu về phần nào?`,
     prompts: [
       {id:'exp',i:'💼',l:'Kinh nghiệm'},{id:'proj',i:'🧠',l:'Dự án'},
       {id:'ux',i:'🎨',l:'UX Work'},{id:'skills',i:'⚡',l:'Kỹ năng'}
