@@ -424,11 +424,11 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
         <div class="contact-chip copyable" onclick="copyEmail()" title="Click to copy">✉ hwinh.work@gmail.com</div>
         <div class="contact-chip">📞 +84 765 828 191</div>
         <div class="contact-chip">📍 Hồ Chí Minh</div>
-        <div class="contact-chip">🎓 UEH · GPA 3.53/4.0</div>
+        <div class="contact-chip">🎓 UEH · GPA 3.57/4.0</div>
       </div>
       <div class="stat-grid fade-up d5">
-        <div class="stat-card"><div class="stat-number">3+</div><div class="stat-label" id="ws1">Years Exp.</div></div>
-        <div class="stat-card"><div class="stat-number">150+</div><div class="stat-label" id="ws2">Stakeholders</div></div>
+        <div class="stat-card"><div class="stat-number">+1</div><div class="stat-label" id="ws1">Years Exp.</div></div>
+        <div class="stat-card"><div class="stat-number">100+</div><div class="stat-label" id="ws2">Stakeholders</div></div>
         <div class="stat-card"><div class="stat-number">72%</div><div class="stat-label" id="ws3">AI Tech. KPI</div></div>
         <div class="stat-card"><div class="stat-number">Top 20</div><div class="stat-label" id="ws4">City Finalist</div></div>
       </div>
