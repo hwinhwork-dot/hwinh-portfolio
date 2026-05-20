@@ -486,7 +486,7 @@ a.cert-card:hover .cert-link-icon{opacity:1 !important;color:var(--accent2) !imp
         <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);letter-spacing:1px;margin-bottom:14px;">AUG 2022 — AUG 2026</div>
         <h3 style="font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--text);margin-bottom:6px;" id="ed-uni">University of Economics HCMC (UEH)</h3>
         <p style="color:var(--text2);font-size:15px;margin-bottom:20px;" id="ed-major">Bachelor of Technology &amp; Innovation Management</p>
-        <div class="gpa-badge"><span style="font-size:26px;">🏆</span><div><div style="font-size:11px;color:var(--text2);margin-bottom:3px;">Grade Point Average</div><div class="gpa-val">3.53 / 4.0</div></div></div>
+        <div class="gpa-badge"><span style="font-size:26px;">🏆</span><div><div style="font-size:11px;color:var(--text2);margin-bottom:3px;">Grade Point Average</div><div class="gpa-val">3.57 / 4.0</div></div></div>
       </div>
       <div id="ed-courses"></div>
       <div class="subtle-div"></div>
@@ -717,7 +717,7 @@ vi: {
   w: {
     status: 'Sẵn sàng đón nhận cơ hội Product & UX mới · TP.HCM',
     role: 'Product Owner · UX Strategist · AI Builder',
-    summary: `Chuyên gia trẻ về <strong style="color:var(--text)">Quản lý Công nghệ & Đổi mới Sáng tạo</strong> — xây dựng sản phẩm tại giao điểm của UX Design, Tư duy Hệ thống và AI. Tôi chuyển hóa dữ liệu người dùng phức tạp và "nỗi đau" thành trải nghiệm số mượt mà, có thể đo lường.`,
+    summary: `Chuyên gia trẻ về <strong style="color:var(--text)">Quản lý Công nghệ & Đổi mới Sáng tạo</strong> — xây dựng sản phẩm tại giao điểm của UX Design, Tư duy Hệ thống và AI. Tôi chuyển hóa dữ liệu người dùng phức tạp và "nỗi đau" thành các sản phẩm đáp ứng được nhu cầu của người dùngg.`,
     stats: ['Năm kinh nghiệm','Stakeholders quản lý','KPI kỹ thuật AI','Chung cuộc cấp TP'],
     explore: 'Khám phá hồ sơ này',
     hint: 'Dùng thanh điều hướng hoặc chat với AI Assistant để khám phá chi tiết về kinh nghiệm, dự án và kỹ năng.'
