@@ -1,4 +1,19 @@
-<!DOCTYPE html>
+import streamlit as st
+import streamlit.components.v1 as components
+
+st.set_page_config(layout="wide", page_title="Hoàng Minh | Product & UX", page_icon="◈", initial_sidebar_state="collapsed")
+
+st.markdown("""
+    <style>
+        .block-container { padding: 0 !important; max-width: 100% !important; overflow: hidden; }
+        header { display: none !important; }
+        footer { display: none !important; }
+        iframe { border: none !important; height: 100vh !important; width: 100% !important; }
+        .stApp { background: #07070b; }
+    </style>
+""", unsafe_allow_html=True)
+
+html_code = r"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1335,3 +1350,6 @@ function resetChat(){if(isTyping||isTrans)return;initChat();}
 </script>
 </body>
 </html>
+"""
+
+components.html(html_code, height=900, scrolling=False)
